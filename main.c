@@ -66,7 +66,7 @@ void draw_walls(t_test *test)
     y = 0;
     while (y < 3)
     {
-    	x = test->param.width_with_x - test->param.width;
+    	x = test->param.width_with_x - test->param.width-1;
         while (x < test->param.width_with_x - 2)
         {
     		draw_on_image(test, &test->all.wall, x * 64, y *64);
@@ -86,10 +86,10 @@ void draw_floors(t_test *test)
 	count = 0;
     while (y < test->param.height - 2)
     {
-    	x = test->param.width_with_x - test->param.width - count - 1;
+    	x = test->param.width_with_x - test->param.width - count - 1 - 1;
         while (x < test->param.width_with_x - 2 - count)
         {
-			if (x == test->param.width_with_x - test->param.width - count - 1)
+			if (x == test->param.width_with_x - test->param.width - count - 1 - 1)
     			draw_on_image(test, &test->all.floor_half_right, x * 64, 3*64 + y *64);
 			else if (x == test->param.width_with_x - 2 - count - 1)
     			draw_on_image(test, &test->all.floor_half_left, x * 64, 3*64 + y *64);
@@ -102,38 +102,38 @@ void draw_floors(t_test *test)
     }
 }
 
-// void draw_furnitures(t_test *test)
-// {
-// 	int y;
-// 	int x;
-// 	int count;
+void draw_furnitures(t_test *test)
+{
+	int y;
+	int x;
+	int count;
 
-// 	y = 1;	
-// 	count = 0;
-// 	while (y + 3 < test->param.height_with_wall - 1)
-// 	{
-//     	x = 1;
-// 		while (x + (test->param.width_with_x - test->param.width - count - 1) < test->param.width_with_x - 2 - count)
-// 		{
-// 			// printf("%d | %d \n", x, y);
-// 			if (test->param.map[y][x] == '1')
-// 			{
-// 				// printf("Un 1 est ici !\n");
-// 				draw_on_image(test, &test->all.box, 3*64 + x*64 - (count*64), 3*64 + (y-1)*64);
-// 			}
-// 			x++;
-// 		}
-// 		count++;
-// 		y++;
-// 	}
-// }
+	y = 1;	
+	count = 0;
+	while (y + 3 < test->param.height_with_wall - 1)
+	{
+    	x = 1;
+		while (x + (test->param.width_with_x - test->param.width - count - 1) < test->param.width_with_x - 2 - count)
+		{
+			// printf("%d | %d \n", x, y);
+			if (test->param.map[y][x] == '1')
+			{
+				// printf("Un 1 est ici !\n");
+				draw_on_image(test, &test->all.box, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64);
+			}
+			x++;
+		}
+		count++;
+		y++;
+	}
+}
 
 int    render(t_test *test)
 {  
 	draw_background(test);
 	draw_walls(test);
 	draw_floors(test);
-	// draw_furnitures(test);
+	draw_furnitures(test);
     mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
 	return (0);
 }
@@ -163,7 +163,7 @@ int main(int ac, char **av)
     test.data.img = mlx_new_image(test.mlx, test.param.width_with_x*64-(2*64), (test.param.height-2)*64+3*64);
     test.data.addr = mlx_get_data_addr(test.data.img, &test.data.bits_per_pixel, &test.data.line_length, &test.data.endian);
 
-    test.all.wall.img = mlx_xpm_file_to_image(test.mlx, "textures/book.xpm", &test.all.wall.x, &test.all.wall.y);
+    test.all.wall.img = mlx_xpm_file_to_image(test.mlx, "textures/wall.xpm", &test.all.wall.x, &test.all.wall.y);
     test.all.wall.addr = mlx_get_data_addr(test.all.wall.img, &test.all.wall.bits_per_pixel, &test.all.wall.line_length, &test.all.wall.endian);
 
     test.all.floor.img = mlx_xpm_file_to_image(test.mlx, "textures/book.xpm", &test.all.floor.x, &test.all.floor.y);
