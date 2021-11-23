@@ -116,11 +116,10 @@ void draw_furnitures(t_test *test)
 		while (x + (test->param.width_with_x - test->param.width - count - 1) < test->param.width_with_x - 2 - count)
 		{
 			// printf("%d | %d \n", x, y);
-			if (test->param.map[y][x] == '1')
-			{
-				// printf("Un 1 est ici !\n");
+			if (test->param.map[y][x] == '1' && y != 1)
 				draw_on_image(test, &test->all.box, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64);
-			}
+			else if (test->param.map[y][x] == '1' && (test->param.map[y][x - 1] == '0' || (test->param.map[y][x - 1] == '1' && x - 1 == 0)) && (test->param.map[y][x + 1] == '0' || (test->param.map[y][x + 1] == '1' && x + 1 == test->param.width - 1)) && y == 1)
+				draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64 - 32);
 			x++;
 		}
 		count++;
@@ -166,7 +165,7 @@ int main(int ac, char **av)
     test.all.wall.img = mlx_xpm_file_to_image(test.mlx, "textures/wall.xpm", &test.all.wall.x, &test.all.wall.y);
     test.all.wall.addr = mlx_get_data_addr(test.all.wall.img, &test.all.wall.bits_per_pixel, &test.all.wall.line_length, &test.all.wall.endian);
 
-    test.all.floor.img = mlx_xpm_file_to_image(test.mlx, "textures/book.xpm", &test.all.floor.x, &test.all.floor.y);
+    test.all.floor.img = mlx_xpm_file_to_image(test.mlx, "textures/floor.xpm", &test.all.floor.x, &test.all.floor.y);
     test.all.floor.addr = mlx_get_data_addr(test.all.floor.img, &test.all.floor.bits_per_pixel, &test.all.floor.line_length, &test.all.floor.endian);
 
     test.all.floor_half_right.img = mlx_xpm_file_to_image(test.mlx, "textures/floor_half_right.xpm", &test.all.floor_half_right.x, &test.all.floor_half_right.y);
@@ -176,11 +175,8 @@ int main(int ac, char **av)
 
     test.all.box.img = mlx_xpm_file_to_image(test.mlx, "textures/box.xpm", &test.all.box.x, &test.all.box.y);
     test.all.box.addr = mlx_get_data_addr(test.all.box.img, &test.all.box.bits_per_pixel, &test.all.box.line_length, &test.all.box.endian);
-
-	if (!test.all.box.img)
-		printf("pas ok\n");
-	if (!test.all.box.addr)
-		printf("pas ok\n");
+    test.all.pot.img = mlx_xpm_file_to_image(test.mlx, "textures/pot.xpm", &test.all.pot.x, &test.all.pot.y);
+    test.all.pot.addr = mlx_get_data_addr(test.all.pot.img, &test.all.pot.bits_per_pixel, &test.all.pot.line_length, &test.all.pot.endian);
 
 	mlx_hook(test.win, 2, 1L << 0, &handle_keypress, &test);
     // render(&test);
