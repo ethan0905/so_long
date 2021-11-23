@@ -18,6 +18,9 @@ void	clean_exit(t_test *test)
 	mlx_destroy_image(test->mlx, test->all.floor.img);
 	mlx_destroy_image(test->mlx, test->all.floor_half_left.img);
 	mlx_destroy_image(test->mlx, test->all.floor_half_right.img);
+	mlx_destroy_image(test->mlx, test->all.box.img);
+	mlx_destroy_image(test->mlx, test->all.pot.img);
+	mlx_destroy_image(test->mlx, test->all.newspaper.img);
     mlx_destroy_window(test->mlx, test->win);
     test->win = NULL;
 	// mlx_loop_end(test->mlx);

@@ -115,11 +115,32 @@ void draw_furnitures(t_test *test)
     	x = 1;
 		while (x + (test->param.width_with_x - test->param.width - count - 1) < test->param.width_with_x - 2 - count)
 		{
-			// printf("%d | %d \n", x, y);
 			if (test->param.map[y][x] == '1' && y != 1)
 				draw_on_image(test, &test->all.box, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64);
 			else if (test->param.map[y][x] == '1' && (test->param.map[y][x - 1] == '0' || (test->param.map[y][x - 1] == '1' && x - 1 == 0)) && (test->param.map[y][x + 1] == '0' || (test->param.map[y][x + 1] == '1' && x + 1 == test->param.width - 1)) && y == 1)
 				draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64 - 32);
+			x++;
+		}
+		count++;
+		y++;
+	}
+}
+
+void draw_collectibles(t_test *test)
+{
+	int y;
+	int x;
+	int count;
+
+	y = 1;	
+	count = 0;
+	while (y + 3 < test->param.height_with_wall - 1)
+	{
+    	x = 1;
+		while (x + (test->param.width_with_x - test->param.width - count - 1) < test->param.width_with_x - 2 - count)
+		{
+			if (test->param.map[y][x] == 'C')
+				draw_on_image(test, &test->all.newspaper, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64);
 			x++;
 		}
 		count++;
@@ -133,6 +154,7 @@ int    render(t_test *test)
 	draw_walls(test);
 	draw_floors(test);
 	draw_furnitures(test);
+	draw_collectibles(test);
     mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
 	return (0);
 }
@@ -177,6 +199,9 @@ int main(int ac, char **av)
     test.all.box.addr = mlx_get_data_addr(test.all.box.img, &test.all.box.bits_per_pixel, &test.all.box.line_length, &test.all.box.endian);
     test.all.pot.img = mlx_xpm_file_to_image(test.mlx, "textures/pot.xpm", &test.all.pot.x, &test.all.pot.y);
     test.all.pot.addr = mlx_get_data_addr(test.all.pot.img, &test.all.pot.bits_per_pixel, &test.all.pot.line_length, &test.all.pot.endian);
+
+    test.all.newspaper.img = mlx_xpm_file_to_image(test.mlx, "textures/newspaper.xpm", &test.all.newspaper.x, &test.all.newspaper.y);
+    test.all.newspaper.addr = mlx_get_data_addr(test.all.newspaper.img, &test.all.newspaper.bits_per_pixel, &test.all.newspaper.line_length, &test.all.newspaper.endian);
 
 	mlx_hook(test.win, 2, 1L << 0, &handle_keypress, &test);
     // render(&test);
