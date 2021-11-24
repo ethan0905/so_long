@@ -129,6 +129,89 @@ void draw_floors(t_test *test)
     }
 }
 
+// void draw_furnitures(t_test *test)
+// {
+// 	int y;
+// 	int x;
+// 	int count;
+// 	int random_obj;
+// 	int piano;
+// 	int i;
+// 	int j;
+
+// 	y = 1;	
+// 	count = 0;
+// 	random_obj = 0;
+// 	piano = 0;
+// 	while (y + 3 < test->param.height_with_wall - 1)
+// 	{
+//     	x = 1;
+// 		while (x + (test->param.width_with_x - test->param.width - count - 1) < test->param.width_with_x - 2 - count)
+// 		{
+// 			if (test->param.map[y][x] == '1' && y != 1)
+// 				draw_on_image(test, &test->all.box, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64);
+// 			else if (test->param.map[y][x] == '1' && (test->param.map[y][x - 1] == '0' || (test->param.map[y][x - 1] == '1' && x - 1 == 0)) && (test->param.map[y][x + 1] == '0' || (test->param.map[y][x + 1] == '1' && x + 1 == test->param.width - 1)) && y == 1)
+// 			{
+// 				if (random_obj == 0)
+// 					draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64 - 32);
+// 				else if (random_obj == 1)
+// 					draw_on_image(test, &test->all.cardboard, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64 - 32 + 10);
+// 				random_obj++;
+// 			}
+// 			else if (test->param.map[y][x] == '1' && test->param.map[y][x + 1] == '1' && x + 1 != test->param.width - 1 && (test->param.map[y][x-1] == '0' || (test->param.map[y][x-1] == '1' && x - 1 == 0)) && (test->param.map[y][x + 2] == '0' || (test->param.map[y][x + 2] == '1' && x + 2 == test->param.width - 1)))
+// 			{
+// 					draw_on_image(test, &test->all.dresser_downleft, 3*64 + (x-1)*64 - (count*64) + 8, 3*64 + (y-1)*64 - 22);
+// 					draw_on_image(test, &test->all.dresser_downright, 3*64 + (x-1)*64 - (count*64) + 64 + 8, 3*64 + (y-1)*64 - 22);
+// 					draw_on_image(test, &test->all.dresser_topleft, 3*64 + (x-1)*64 - (count*64) + 8, 3*64 + (y-1)*64 - 64 - 22);
+// 					draw_on_image(test, &test->all.dresser_topright, 3*64 + (x-1)*64 - (count*64) + 64 + 8, 3*64 + (y-1)*64 - 64 - 22);
+// 			}
+// 			else if (test->param.map[y][x] == '1' && test->param.map[y][x + 1] == '1' && test->param.map[y][x + 2] == '1' && x + 1 != test->param.width - 1 && (test->param.map[y][x-1] == '0' || (test->param.map[y][x-1] == '1' && x - 1  == 0)) && (test->param.map[y][x + 3] == '0' || (test->param.map[y][x + 3] == '1' && x + 3 == test->param.width - 1)))
+// 			{
+// 					if (piano == 0)
+// 					{
+// 							draw_on_image(test, &test->all.piano.downleft, 3*64 + (x-1)*64 - (count*64) + 8, 3*64 + (y-1)*64 - 22);
+// 							draw_on_image(test, &test->all.piano.midleft, 3*64 + (x-1)*64 - (count*64) + 8, 3*64 + (y-1)*64 - 22 - 64);
+// 							draw_on_image(test, &test->all.piano.topleft, 3*64 + (x-1)*64 - (count*64) + 8 + 9, 3*64 + (y-1)*64 - 22 - 128);
+// 							draw_on_image(test, &test->all.piano.downmid, 3*64 + (x-1)*64 - (count*64) + 8 + 64, 3*64 + (y-1)*64 - 22);
+// 							draw_on_image(test, &test->all.piano.midmid, 3*64 + (x-1)*64 - (count*64) + 8 + 64, 3*64 + (y-1)*64 - 22 - 64);
+// 							draw_on_image(test, &test->all.piano.topmid, 3*64 + (x-1)*64 - (count*64) + 8 + 64, 3*64 + (y-1)*64 - 22 - 128);
+// 							draw_on_image(test, &test->all.piano.downright, 3*64 + (x-1)*64 - (count*64) + 8 + 128, 3*64 + (y-1)*64 - 22);
+// 							draw_on_image(test, &test->all.piano.midright, 3*64 + (x-1)*64 - (count*64) + 8 + 128, 3*64 + (y-1)*64 - 22 - 64);
+// 							draw_on_image(test, &test->all.piano.topright, 3*64 + (x-1)*64 - (count*64) + 8 + 128, 3*64 + (y-1)*64 - 22 - 128);
+// 							piano++;
+// 					}
+// 					else
+// 					{
+// 							draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64 - 32);
+// 							draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64) + 64, 3*64 + (y-1)*64 - 32);
+// 							draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64) + 128, 3*64 + (y-1)*64 - 32);
+// 					}
+// 			}
+// 			else if (test->param.map[y][x] == '1' && test->param.map[y][x + 1] == '1' && test->param.map[y][x + 2] == '1' && test->param.map[y][x + 3] == '1')
+// 			{
+// 				i = x;
+// 				while (test->param.map[y][i] == '1')
+// 					i++;
+// 				j = i;
+// 				i = 0;
+// 				while (i + 1 < j - x)
+// 				{
+// 					draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64) + (i * 64), 3*64 + (y-1)*64 - 32);
+// 					i++;
+// 				}
+// 				// printf("i vaut : %d\n", i);
+// 				// printf("j vaut : %d\n", j);
+// 				// printf("XXXXXXXXXXX vaut : %d\n", x);
+// 				if (j != test->param.width)
+// 					draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64) + (i * 64), 3*64 + (y-1)*64 - 32);
+// 			}
+// 			x++;
+// 		}
+// 		count++;
+// 		y++;
+// 	}
+// }
+
 void draw_furnitures(t_test *test)
 {
 	int y;
@@ -136,6 +219,8 @@ void draw_furnitures(t_test *test)
 	int count;
 	int random_obj;
 	int piano;
+	int i;
+	int j;
 
 	y = 1;	
 	count = 0;
@@ -184,6 +269,24 @@ void draw_furnitures(t_test *test)
 							draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64) + 64, 3*64 + (y-1)*64 - 32);
 							draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64) + 128, 3*64 + (y-1)*64 - 32);
 					}
+			}
+			else if (test->param.map[y][x] == '1' && test->param.map[y][x + 1] == '1' && test->param.map[y][x + 2] == '1' && test->param.map[y][x + 3] == '1')
+			{
+				i = x;
+				while (test->param.map[y][i] == '1')
+					i++;
+				j = i;
+				i = 0;
+				while (i + 1 < j - x)
+				{
+					draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64) + (i * 64), 3*64 + (y-1)*64 - 32);
+					i++;
+				}
+				// printf("i vaut : %d\n", i);
+				// printf("j vaut : %d\n", j);
+				// printf("XXXXXXXXXXX vaut : %d\n", x);
+				if (j != test->param.width)
+					draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64) + (i * 64), 3*64 + (y-1)*64 - 32);
 			}
 			x++;
 		}
@@ -239,37 +342,60 @@ void draw_exit(t_test *test)
 	}
 }
 
-// void draw_player(t_test *test)
-// {
-// 	int y;
-// 	int x;
-// 	int count;
+void	get_pos_player(t_test *test)
+{
+	int i;
+	int j;
 
-// 	y = 1;	
-// 	count = 0;
-// 	while (y + 3 < test->param.height_with_wall - 1)
-// 	{
-//     	x = 1;
-// 		while (x + (test->param.width_with_x - test->param.width - count - 1) < test->param.width_with_x - 2 - count)
-// 		{
-// 			if (test->param.map[y][x] == 'P')
-// 				draw_on_image_bis(test, &test->player.frontside, (x-1)*64, 3*64 + (y-1)*64);
-// 			x++;
-// 		}
-// 		count++;
-// 		y++;
-// 	}
-// }
+	i = 0;
+    while (test->param.map[i])
+	{
+		j = 0;
+		while (test->param.map[i][j])
+		{
+			if (test->param.map[i][j] == 'P')
+			{
+				test->player.pos_i = i;
+				test->player.pos_j = j;
+				//(j-1)*64 + 12 -> set the position according to the j value in the tab. (+12 is only for more logical player positioning)
+				//+(test.data.height - 3) * 64 -> allow you to adjust the player on the x axis depending on the height of the map (every + 1 will need to add 64px to pos_x)
+				//-(i-1)*64 -> allow you to adjust the player depending of the y value the player spawn (every +1 will need to remove 64px to print the player closer to the left border) 
+				// ORIGINAL SET UP PLAYER
+
+				test->player.pos_x = (j-1)*64 + 30 + (test->param.height - 3) * 64 - (i-1)*64; 
+				test->player.pos_y = 3 * 64 + (i-1) * 64 - 64 - 25 + 10;
+
+				//
+			}
+			j++;
+		}
+		i++;
+	}
+	// printf("pos i : %d\n", test->player.pos_i);
+	// printf("pos j : %d\n", test->player.pos_j);
+	// printf("pos x : %d\n", test->player.pos_x);
+	// printf("pos y : %d\n", test->player.pos_y);
+}
+
+void draw_player(t_test *test)
+{
+	get_pos_player(test);
+	draw_on_image_bis(test, &test->player.frontside, test->player.pos_x, test->player.pos_y);
+}
 
 int    render(t_test *test)
-{  
-	draw_background(test);
-	draw_walls(test);
-	draw_floors(test);
-	draw_furnitures(test);
-	draw_collectibles(test);
-	draw_exit(test);
-	// draw_player(test);
+{
+	if (test->param.rendered == 0)
+	{
+		draw_background(test);
+		draw_walls(test);
+		draw_floors(test);
+		draw_furnitures(test);
+		draw_collectibles(test);
+		draw_exit(test);
+		draw_player(test);
+		test->param.rendered++;
+	}
     mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
 	return (0);
 }
@@ -302,7 +428,7 @@ int main(int ac, char **av)
     test.all.wall.img = mlx_xpm_file_to_image(test.mlx, "textures/wall.xpm", &test.all.wall.x, &test.all.wall.y);
     test.all.wall.addr = mlx_get_data_addr(test.all.wall.img, &test.all.wall.bits_per_pixel, &test.all.wall.line_length, &test.all.wall.endian);
 
-    test.all.floor.img = mlx_xpm_file_to_image(test.mlx, "textures/floor.xpm", &test.all.floor.x, &test.all.floor.y);
+    test.all.floor.img = mlx_xpm_file_to_image(test.mlx, "textures/book.xpm", &test.all.floor.x, &test.all.floor.y);
     test.all.floor.addr = mlx_get_data_addr(test.all.floor.img, &test.all.floor.bits_per_pixel, &test.all.floor.line_length, &test.all.floor.endian);
 
     test.all.floor_half_right.img = mlx_xpm_file_to_image(test.mlx, "textures/floor_half_right.xpm", &test.all.floor_half_right.x, &test.all.floor_half_right.y);

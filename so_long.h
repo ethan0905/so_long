@@ -56,10 +56,15 @@ typedef struct s_param
 	int width_with_x;
 	int height;
     int height_with_wall;
+    int rendered;
 }				t_param;
 
 typedef struct s_player
 {
+    int pos_i;
+    int pos_j;
+    int pos_x;
+    int pos_y;
     t_data frontside;
 }              t_player;
 
