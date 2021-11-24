@@ -58,6 +58,24 @@ typedef struct s_param
     int height_with_wall;
 }				t_param;
 
+typedef struct s_player
+{
+    t_data frontside;
+}              t_player;
+
+typedef struct s_piano
+{
+    t_data topright;
+    t_data topmid;
+    t_data topleft;
+    t_data midright;
+    t_data midmid;
+    t_data midleft;    
+    t_data downright;
+    t_data downmid;
+    t_data downleft;
+}              t_piano;
+
 typedef struct s_all
 {
     t_data wall;
@@ -65,6 +83,16 @@ typedef struct s_all
     t_data floor_half_right;
     t_data floor_half_left;
     t_data box;
+    t_data pot;
+    t_data cardboard;
+    t_data dresser_topright;
+    t_data dresser_topleft;
+    t_data dresser_downright;
+    t_data dresser_downleft;
+    t_piano piano;
+    t_data newspaper;
+    t_data exit_half_right;
+    t_data exit_half_left;
 }               t_all;
 
 typedef struct s_test
@@ -74,6 +102,7 @@ typedef struct s_test
 	t_param param;
     t_data data;
     t_all all;
+    t_player player;
 }               t_test;
 
 char	*get_line(char *save);

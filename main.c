@@ -39,6 +39,33 @@ void	draw_on_image(t_test *test, t_data *img, int startx, int starty)
 	}
 }
 
+void	draw_on_image_bis(t_test *test, t_data *img, int startx, int starty)
+{
+	int tex_x = 0;
+	int tex_y = 0;
+	int	x, y = 0;
+	double ratio_x;
+	double ratio_y;
+
+	ratio_x = 1.0f;
+	ratio_y = 1.0f;
+	while (y < 128)
+	{
+		tex_y = (int)((double)y * ratio_y);
+		x = 0;
+		while (x < 128)
+		{
+			tex_x = (int)((double)x * ratio_x);
+			if (get_pixel(img, tex_x, tex_y) != (int)0xFF000000)
+				my_mlx_pixel_put(test, x + startx, y + starty, get_pixel(img, tex_x, tex_y));
+			// printf("seg ici \n");
+			// fflush(stdout);
+			x++;
+		}
+		y++;
+	}
+}
+
 void draw_background(t_test *test)
 {
     int y;
@@ -107,9 +134,13 @@ void draw_furnitures(t_test *test)
 	int y;
 	int x;
 	int count;
+	int random_obj;
+	int piano;
 
 	y = 1;	
 	count = 0;
+	random_obj = 0;
+	piano = 0;
 	while (y + 3 < test->param.height_with_wall - 1)
 	{
     	x = 1;
@@ -118,7 +149,42 @@ void draw_furnitures(t_test *test)
 			if (test->param.map[y][x] == '1' && y != 1)
 				draw_on_image(test, &test->all.box, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64);
 			else if (test->param.map[y][x] == '1' && (test->param.map[y][x - 1] == '0' || (test->param.map[y][x - 1] == '1' && x - 1 == 0)) && (test->param.map[y][x + 1] == '0' || (test->param.map[y][x + 1] == '1' && x + 1 == test->param.width - 1)) && y == 1)
-				draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64 - 32);
+			{
+				if (random_obj == 0)
+					draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64 - 32);
+				else if (random_obj == 1)
+					draw_on_image(test, &test->all.cardboard, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64 - 32 + 10);
+				random_obj++;
+			}
+			else if (test->param.map[y][x] == '1' && test->param.map[y][x + 1] == '1' && x + 1 != test->param.width - 1 && (test->param.map[y][x-1] == '0' || (test->param.map[y][x-1] == '1' && x - 1 == 0)) && (test->param.map[y][x + 2] == '0' || (test->param.map[y][x + 2] == '1' && x + 2 == test->param.width - 1)))
+			{
+					draw_on_image(test, &test->all.dresser_downleft, 3*64 + (x-1)*64 - (count*64) + 8, 3*64 + (y-1)*64 - 22);
+					draw_on_image(test, &test->all.dresser_downright, 3*64 + (x-1)*64 - (count*64) + 64 + 8, 3*64 + (y-1)*64 - 22);
+					draw_on_image(test, &test->all.dresser_topleft, 3*64 + (x-1)*64 - (count*64) + 8, 3*64 + (y-1)*64 - 64 - 22);
+					draw_on_image(test, &test->all.dresser_topright, 3*64 + (x-1)*64 - (count*64) + 64 + 8, 3*64 + (y-1)*64 - 64 - 22);
+			}
+			else if (test->param.map[y][x] == '1' && test->param.map[y][x + 1] == '1' && test->param.map[y][x + 2] == '1' && x + 1 != test->param.width - 1 && (test->param.map[y][x-1] == '0' || (test->param.map[y][x-1] == '1' && x - 1  == 0)) && (test->param.map[y][x + 3] == '0' || (test->param.map[y][x + 3] == '1' && x + 3 == test->param.width - 1)))
+			{
+					if (piano == 0)
+					{
+							draw_on_image(test, &test->all.piano.downleft, 3*64 + (x-1)*64 - (count*64) + 8, 3*64 + (y-1)*64 - 22);
+							draw_on_image(test, &test->all.piano.midleft, 3*64 + (x-1)*64 - (count*64) + 8, 3*64 + (y-1)*64 - 22 - 64);
+							draw_on_image(test, &test->all.piano.topleft, 3*64 + (x-1)*64 - (count*64) + 8 + 9, 3*64 + (y-1)*64 - 22 - 128);
+							draw_on_image(test, &test->all.piano.downmid, 3*64 + (x-1)*64 - (count*64) + 8 + 64, 3*64 + (y-1)*64 - 22);
+							draw_on_image(test, &test->all.piano.midmid, 3*64 + (x-1)*64 - (count*64) + 8 + 64, 3*64 + (y-1)*64 - 22 - 64);
+							draw_on_image(test, &test->all.piano.topmid, 3*64 + (x-1)*64 - (count*64) + 8 + 64, 3*64 + (y-1)*64 - 22 - 128);
+							draw_on_image(test, &test->all.piano.downright, 3*64 + (x-1)*64 - (count*64) + 8 + 128, 3*64 + (y-1)*64 - 22);
+							draw_on_image(test, &test->all.piano.midright, 3*64 + (x-1)*64 - (count*64) + 8 + 128, 3*64 + (y-1)*64 - 22 - 64);
+							draw_on_image(test, &test->all.piano.topright, 3*64 + (x-1)*64 - (count*64) + 8 + 128, 3*64 + (y-1)*64 - 22 - 128);
+							piano++;
+					}
+					else
+					{
+							draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64 - 32);
+							draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64) + 64, 3*64 + (y-1)*64 - 32);
+							draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64) + 128, 3*64 + (y-1)*64 - 32);
+					}
+			}
 			x++;
 		}
 		count++;
@@ -173,6 +239,28 @@ void draw_exit(t_test *test)
 	}
 }
 
+// void draw_player(t_test *test)
+// {
+// 	int y;
+// 	int x;
+// 	int count;
+
+// 	y = 1;	
+// 	count = 0;
+// 	while (y + 3 < test->param.height_with_wall - 1)
+// 	{
+//     	x = 1;
+// 		while (x + (test->param.width_with_x - test->param.width - count - 1) < test->param.width_with_x - 2 - count)
+// 		{
+// 			if (test->param.map[y][x] == 'P')
+// 				draw_on_image_bis(test, &test->player.frontside, (x-1)*64, 3*64 + (y-1)*64);
+// 			x++;
+// 		}
+// 		count++;
+// 		y++;
+// 	}
+// }
+
 int    render(t_test *test)
 {  
 	draw_background(test);
@@ -181,17 +269,18 @@ int    render(t_test *test)
 	draw_furnitures(test);
 	draw_collectibles(test);
 	draw_exit(test);
+	// draw_player(test);
     mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
 	return (0);
 }
 
 int     handle_keypress(int keysym, t_test *test)
 {	
-    if (keysym == 65307)
+    if (keysym == ESC)
     {
 	    clean_exit(test);
     }
-    else if (keysym != 65307)
+    else if (keysym != ESC)
         write(1, &keysym, 1);
     return (0);
 }
@@ -225,6 +314,39 @@ int main(int ac, char **av)
     test.all.box.addr = mlx_get_data_addr(test.all.box.img, &test.all.box.bits_per_pixel, &test.all.box.line_length, &test.all.box.endian);
     test.all.pot.img = mlx_xpm_file_to_image(test.mlx, "textures/pot.xpm", &test.all.pot.x, &test.all.pot.y);
     test.all.pot.addr = mlx_get_data_addr(test.all.pot.img, &test.all.pot.bits_per_pixel, &test.all.pot.line_length, &test.all.pot.endian);
+    test.all.cardboard.img = mlx_xpm_file_to_image(test.mlx, "textures/cardboard.xpm", &test.all.cardboard.x, &test.all.cardboard.y);
+    test.all.cardboard.addr = mlx_get_data_addr(test.all.cardboard.img, &test.all.cardboard.bits_per_pixel, &test.all.cardboard.line_length, &test.all.cardboard.endian);
+    test.all.dresser_topright.img = mlx_xpm_file_to_image(test.mlx, "textures/dresser3_topright.xpm", &test.all.dresser_topright.x, &test.all.dresser_topright.y);
+    test.all.dresser_topright.addr = mlx_get_data_addr(test.all.dresser_topright.img, &test.all.dresser_topright.bits_per_pixel, &test.all.dresser_topright.line_length, &test.all.dresser_topright.endian);
+    test.all.dresser_topleft.img = mlx_xpm_file_to_image(test.mlx, "textures/dresser3_topleft.xpm", &test.all.dresser_topleft.x, &test.all.dresser_topleft.y);
+    test.all.dresser_topleft.addr = mlx_get_data_addr(test.all.dresser_topleft.img, &test.all.dresser_topleft.bits_per_pixel, &test.all.dresser_topleft.line_length, &test.all.dresser_topleft.endian);
+    test.all.dresser_downright.img = mlx_xpm_file_to_image(test.mlx, "textures/dresser3_downright.xpm", &test.all.dresser_downright.x, &test.all.dresser_downright.y);
+    test.all.dresser_downright.addr = mlx_get_data_addr(test.all.dresser_downright.img, &test.all.dresser_downright.bits_per_pixel, &test.all.dresser_downright.line_length, &test.all.dresser_downright.endian);
+    test.all.dresser_downleft.img = mlx_xpm_file_to_image(test.mlx, "textures/dresser3_downleft.xpm", &test.all.dresser_downleft.x, &test.all.dresser_downleft.y);
+    test.all.dresser_downleft.addr = mlx_get_data_addr(test.all.dresser_downleft.img, &test.all.dresser_downleft.bits_per_pixel, &test.all.dresser_downleft.line_length, &test.all.dresser_downleft.endian);
+    
+// PIANO /////
+	test.all.piano.topright.img = mlx_xpm_file_to_image(test.mlx, "textures/piano_topright.xpm", &test.all.piano.topright.x, &test.all.piano.topright.y);
+    test.all.piano.topright.addr = mlx_get_data_addr(test.all.piano.topright.img, &test.all.piano.topright.bits_per_pixel, &test.all.piano.topright.line_length, &test.all.piano.topright.endian);
+    test.all.piano.topmid.img = mlx_xpm_file_to_image(test.mlx, "textures/piano_topmid.xpm", &test.all.piano.topmid.x, &test.all.piano.topmid.y);
+    test.all.piano.topmid.addr = mlx_get_data_addr(test.all.piano.topmid.img, &test.all.piano.topmid.bits_per_pixel, &test.all.piano.topmid.line_length, &test.all.piano.topmid.endian);
+    test.all.piano.topleft.img = mlx_xpm_file_to_image(test.mlx, "textures/piano_topleft.xpm", &test.all.piano.topleft.x, &test.all.piano.topleft.y);
+    test.all.piano.topleft.addr = mlx_get_data_addr(test.all.piano.topleft.img, &test.all.piano.topleft.bits_per_pixel, &test.all.piano.topleft.line_length, &test.all.piano.topleft.endian);
+
+	test.all.piano.midright.img = mlx_xpm_file_to_image(test.mlx, "textures/piano_midright.xpm", &test.all.piano.midright.x, &test.all.piano.midright.y);
+    test.all.piano.midright.addr = mlx_get_data_addr(test.all.piano.midright.img, &test.all.piano.midright.bits_per_pixel, &test.all.piano.midright.line_length, &test.all.piano.midright.endian);
+    test.all.piano.midmid.img = mlx_xpm_file_to_image(test.mlx, "textures/piano_midmid.xpm", &test.all.piano.midmid.x, &test.all.piano.midmid.y);
+    test.all.piano.midmid.addr = mlx_get_data_addr(test.all.piano.midmid.img, &test.all.piano.midmid.bits_per_pixel, &test.all.piano.midmid.line_length, &test.all.piano.midmid.endian);
+    test.all.piano.midleft.img = mlx_xpm_file_to_image(test.mlx, "textures/piano_midleft.xpm", &test.all.piano.midleft.x, &test.all.piano.midleft.y);
+    test.all.piano.midleft.addr = mlx_get_data_addr(test.all.piano.midleft.img, &test.all.piano.midleft.bits_per_pixel, &test.all.piano.midleft.line_length, &test.all.piano.midleft.endian);
+
+	test.all.piano.downright.img = mlx_xpm_file_to_image(test.mlx, "textures/piano_downright.xpm", &test.all.piano.downright.x, &test.all.piano.downright.y);
+    test.all.piano.downright.addr = mlx_get_data_addr(test.all.piano.downright.img, &test.all.piano.downright.bits_per_pixel, &test.all.piano.downright.line_length, &test.all.piano.downright.endian);
+    test.all.piano.downmid.img = mlx_xpm_file_to_image(test.mlx, "textures/piano_downmid.xpm", &test.all.piano.downmid.x, &test.all.piano.downmid.y);
+    test.all.piano.downmid.addr = mlx_get_data_addr(test.all.piano.downmid.img, &test.all.piano.downmid.bits_per_pixel, &test.all.piano.downmid.line_length, &test.all.piano.downmid.endian);
+    test.all.piano.downleft.img = mlx_xpm_file_to_image(test.mlx, "textures/piano_downleft.xpm", &test.all.piano.downleft.x, &test.all.piano.downleft.y);
+    test.all.piano.downleft.addr = mlx_get_data_addr(test.all.piano.downleft.img, &test.all.piano.downleft.bits_per_pixel, &test.all.piano.downleft.line_length, &test.all.piano.downleft.endian);
+/////////////
 
     test.all.newspaper.img = mlx_xpm_file_to_image(test.mlx, "textures/newspaper.xpm", &test.all.newspaper.x, &test.all.newspaper.y);
     test.all.newspaper.addr = mlx_get_data_addr(test.all.newspaper.img, &test.all.newspaper.bits_per_pixel, &test.all.newspaper.line_length, &test.all.newspaper.endian);
@@ -233,6 +355,9 @@ int main(int ac, char **av)
     test.all.exit_half_left.addr = mlx_get_data_addr(test.all.exit_half_left.img, &test.all.exit_half_left.bits_per_pixel, &test.all.exit_half_left.line_length, &test.all.exit_half_left.endian);
 	test.all.exit_half_right.img = mlx_xpm_file_to_image(test.mlx, "textures/ladder_half_right.xpm", &test.all.exit_half_right.x, &test.all.exit_half_right.y);
     test.all.exit_half_right.addr = mlx_get_data_addr(test.all.exit_half_right.img, &test.all.exit_half_right.bits_per_pixel, &test.all.exit_half_right.line_length, &test.all.exit_half_right.endian);
+	
+	test.player.frontside.img = mlx_xpm_file_to_image(test.mlx, "textures/detective_frontside.xpm", &test.player.frontside.x, &test.player.frontside.y);
+    test.player.frontside.addr = mlx_get_data_addr(test.player.frontside.img, &test.player.frontside.bits_per_pixel, &test.player.frontside.line_length, &test.player.frontside.endian);
 	mlx_hook(test.win, 2, 1L << 0, &handle_keypress, &test);
     // render(&test);
 	mlx_loop_hook(test.mlx, render, &test);
