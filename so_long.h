@@ -105,6 +105,7 @@ typedef struct s_all
     t_data newspaper;
     t_data exit_half_right;
     t_data exit_half_left;
+    // t_data spike;
 }               t_all;
 
 typedef struct s_collec
