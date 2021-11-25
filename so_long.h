@@ -62,7 +62,9 @@ typedef struct s_param
 typedef struct s_player
 {
     int pos_i;
+    int lastpos_i;
     int pos_j;
+    int lastpos_j;
     int pos_x;
     int pos_y;
     t_data frontside;
@@ -100,14 +102,22 @@ typedef struct s_all
     t_data exit_half_left;
 }               t_all;
 
+typedef struct s_collec
+{
+	int amount;
+	int count;
+	int exit;
+}		t_collec;
+
 typedef struct s_test
 {
-    void *mlx;
-    void *win;
+	void *mlx;
+	void *win;
 	t_param param;
-    t_data data;
-    t_all all;
-    t_player player;
+	t_data data;
+	t_all all;
+	t_player player;
+	t_collec collec;
 }               t_test;
 
 char	*get_line(char *save);
@@ -116,9 +126,14 @@ int    get_map(t_test *test, int ac, char **av);
 //Init
 void	initialize(t_test *test);
 
+//MOVE
+void	move_right(t_test *test);
+
 //Utils
 int	get_pixel(t_data *img, int x, int y);
 void	my_mlx_pixel_put(t_test *test, int x, int y, int color);
+void	draw_on_image(t_test *test, t_data *img, int startx, int starty);
+void	draw_on_image_bis(t_test *test, t_data *img, int startx, int starty);
 
 //Exit
 void	clean_exit(t_test *test);

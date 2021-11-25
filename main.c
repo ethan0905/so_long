@@ -406,6 +406,8 @@ int     handle_keypress(int keysym, t_test *test)
     {
 	    clean_exit(test);
     }
+    else if (keysym == D)
+	    move_right(test);
     else if (keysym != ESC)
         write(1, &keysym, 1);
     return (0);
