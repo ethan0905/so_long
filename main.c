@@ -233,7 +233,7 @@ void draw_furnitures(t_test *test)
 		{
 			if (test->param.map[y][x] == '1' && y != 1)
 				draw_on_image(test, &test->all.box, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64);
-			else if (test->param.map[y][x] == '1' && (test->param.map[y][x - 1] == '0' || (test->param.map[y][x - 1] == '1' && x - 1 == 0)) && (test->param.map[y][x + 1] == '0' || (test->param.map[y][x + 1] == '1' && x + 1 == test->param.width - 1)) && y == 1)
+			else if (test->param.map[y][x] == '1' && ((test->param.map[y][x - 1] == '0' || test->param.map[y][x - 1] == 'P') || (test->param.map[y][x - 1] == '1' && x - 1 == 0)) && ((test->param.map[y][x + 1] == '0' || test->param.map[y][x + 1] == 'P') || (test->param.map[y][x + 1] == '1' && x + 1 == test->param.width - 1)) && y == 1)
 			{
 				if (random_obj == 0)
 					draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64 - 32);
@@ -241,14 +241,14 @@ void draw_furnitures(t_test *test)
 					draw_on_image(test, &test->all.cardboard, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64 - 32 + 10);
 				random_obj++;
 			}
-			else if (test->param.map[y][x] == '1' && test->param.map[y][x + 1] == '1' && x + 1 != test->param.width - 1 && (test->param.map[y][x-1] == '0' || (test->param.map[y][x-1] == '1' && x - 1 == 0)) && (test->param.map[y][x + 2] == '0' || (test->param.map[y][x + 2] == '1' && x + 2 == test->param.width - 1)))
+			else if (test->param.map[y][x] == '1' && test->param.map[y][x + 1] == '1' && x + 1 != test->param.width - 1 && ((test->param.map[y][x-1] == '0' || test->param.map[y][x-1] == 'P') || (test->param.map[y][x-1] == '1' && x - 1 == 0)) && ((test->param.map[y][x + 2] == '0' || test->param.map[y][x + 2] == 'P') || (test->param.map[y][x + 2] == '1' && x + 2 == test->param.width - 1)))
 			{
 					draw_on_image(test, &test->all.dresser_downleft, 3*64 + (x-1)*64 - (count*64) + 8, 3*64 + (y-1)*64 - 22);
 					draw_on_image(test, &test->all.dresser_downright, 3*64 + (x-1)*64 - (count*64) + 64 + 8, 3*64 + (y-1)*64 - 22);
 					draw_on_image(test, &test->all.dresser_topleft, 3*64 + (x-1)*64 - (count*64) + 8, 3*64 + (y-1)*64 - 64 - 22);
 					draw_on_image(test, &test->all.dresser_topright, 3*64 + (x-1)*64 - (count*64) + 64 + 8, 3*64 + (y-1)*64 - 64 - 22);
 			}
-			else if (test->param.map[y][x] == '1' && test->param.map[y][x + 1] == '1' && test->param.map[y][x + 2] == '1' && x + 1 != test->param.width - 1 && (test->param.map[y][x-1] == '0' || (test->param.map[y][x-1] == '1' && x - 1  == 0)) && (test->param.map[y][x + 3] == '0' || (test->param.map[y][x + 3] == '1' && x + 3 == test->param.width - 1)))
+			else if (test->param.map[y][x] == '1' && test->param.map[y][x + 1] == '1' && test->param.map[y][x + 2] == '1' && x + 1 != test->param.width - 1 && ((test->param.map[y][x-1] == '0' || test->param.map[y][x-1] == 'P') || (test->param.map[y][x-1] == '1' && x - 1  == 0)) && ((test->param.map[y][x + 3] == '0' || test->param.map[y][x + 3] == 'P') || (test->param.map[y][x + 3] == '1' && x + 3 == test->param.width - 1)))
 			{
 					if (piano == 0)
 					{
