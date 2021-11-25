@@ -367,6 +367,8 @@ void	get_pos_player(t_test *test)
 
 				//
 			}
+			else if (test->param.map[i][j] == 'C' && test->param.rendered == 0)
+				test->collec.amount++;
 			j++;
 		}
 		i++;
@@ -510,8 +512,6 @@ int main(int ac, char **av)
 	test.player.leftside.img = mlx_xpm_file_to_image(test.mlx, "textures/detective_sideleft.xpm", &test.player.leftside.x, &test.player.leftside.y);
 	test.player.leftside.addr = mlx_get_data_addr(test.player.leftside.img, &test.player.leftside.bits_per_pixel, &test.player.leftside.line_length, &test.player.leftside.endian);
 	
-	// test.player.side = &test.player.frontside;
-	printf("iciiiii\n");
 	mlx_hook(test.win, 2, 1L << 0, &handle_keypress, &test);
     // render(&test);
 	mlx_loop_hook(test.mlx, render, &test);
