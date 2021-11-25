@@ -396,7 +396,7 @@ int    render(t_test *test)
 		draw_player(test);
 		test->param.rendered++;
 	}
-    mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
+	mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
 	return (0);
 }
 
@@ -428,7 +428,7 @@ int main(int ac, char **av)
     test.all.wall.img = mlx_xpm_file_to_image(test.mlx, "textures/wall.xpm", &test.all.wall.x, &test.all.wall.y);
     test.all.wall.addr = mlx_get_data_addr(test.all.wall.img, &test.all.wall.bits_per_pixel, &test.all.wall.line_length, &test.all.wall.endian);
 
-    test.all.floor.img = mlx_xpm_file_to_image(test.mlx, "textures/book.xpm", &test.all.floor.x, &test.all.floor.y);
+    test.all.floor.img = mlx_xpm_file_to_image(test.mlx, "textures/floor.xpm", &test.all.floor.x, &test.all.floor.y);
     test.all.floor.addr = mlx_get_data_addr(test.all.floor.img, &test.all.floor.bits_per_pixel, &test.all.floor.line_length, &test.all.floor.endian);
 
     test.all.floor_half_right.img = mlx_xpm_file_to_image(test.mlx, "textures/floor_half_right.xpm", &test.all.floor_half_right.x, &test.all.floor_half_right.y);
