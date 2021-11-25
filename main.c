@@ -396,6 +396,16 @@ int    render(t_test *test)
 		draw_player(test);
 		test->param.rendered++;
 	}
+	else
+	{
+		draw_background(test);
+		draw_walls(test);
+		draw_floors(test);
+		draw_furnitures(test);
+		draw_collectibles(test);
+		draw_exit(test);
+		draw_player(test);	
+	}
 	mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
 	return (0);
 }
@@ -408,6 +418,12 @@ int     handle_keypress(int keysym, t_test *test)
     }
     else if (keysym == D)
 	    move_right(test);
+    else if (keysym == A)
+	    move_left(test);
+    else if (keysym == W)
+	    move_up(test);
+    else if (keysym == S)
+	    move_down(test);
     else if (keysym != ESC)
         write(1, &keysym, 1);
     return (0);
@@ -485,7 +501,14 @@ int main(int ac, char **av)
     test.all.exit_half_right.addr = mlx_get_data_addr(test.all.exit_half_right.img, &test.all.exit_half_right.bits_per_pixel, &test.all.exit_half_right.line_length, &test.all.exit_half_right.endian);
 	
 	test.player.frontside.img = mlx_xpm_file_to_image(test.mlx, "textures/detective_frontside.xpm", &test.player.frontside.x, &test.player.frontside.y);
-    test.player.frontside.addr = mlx_get_data_addr(test.player.frontside.img, &test.player.frontside.bits_per_pixel, &test.player.frontside.line_length, &test.player.frontside.endian);
+	test.player.frontside.addr = mlx_get_data_addr(test.player.frontside.img, &test.player.frontside.bits_per_pixel, &test.player.frontside.line_length, &test.player.frontside.endian);
+	test.player.backside.img = mlx_xpm_file_to_image(test.mlx, "textures/detective_backside.xpm", &test.player.backside.x, &test.player.backside.y);
+	test.player.backside.addr = mlx_get_data_addr(test.player.backside.img, &test.player.backside.bits_per_pixel, &test.player.backside.line_length, &test.player.backside.endian);
+	test.player.rightside.img = mlx_xpm_file_to_image(test.mlx, "textures/detective_sideright.xpm", &test.player.rightside.x, &test.player.rightside.y);
+	test.player.rightside.addr = mlx_get_data_addr(test.player.rightside.img, &test.player.rightside.bits_per_pixel, &test.player.rightside.line_length, &test.player.rightside.endian);
+	test.player.leftside.img = mlx_xpm_file_to_image(test.mlx, "textures/detective_sideleft.xpm", &test.player.leftside.x, &test.player.leftside.y);
+	test.player.leftside.addr = mlx_get_data_addr(test.player.leftside.img, &test.player.leftside.bits_per_pixel, &test.player.leftside.line_length, &test.player.leftside.endian);
+	
 	mlx_hook(test.win, 2, 1L << 0, &handle_keypress, &test);
     // render(&test);
 	mlx_loop_hook(test.mlx, render, &test);

@@ -68,6 +68,9 @@ typedef struct s_player
     int pos_x;
     int pos_y;
     t_data frontside;
+    t_data backside;
+    t_data rightside;
+    t_data leftside;
 }              t_player;
 
 typedef struct s_piano
@@ -128,6 +131,9 @@ void	initialize(t_test *test);
 
 //MOVE
 void	move_right(t_test *test);
+void	move_left(t_test *test);
+void	move_up(t_test *test);
+void	move_down(t_test *test);
 
 //Utils
 int	get_pixel(t_data *img, int x, int y);

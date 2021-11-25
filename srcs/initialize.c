@@ -51,4 +51,10 @@ void	initialize(t_test *test)
 	test->all.exit_half_right.addr = NULL;
 	test->player.frontside.img = NULL;
 	test->player.frontside.addr = NULL;
+	test->player.backside.img = NULL;
+	test->player.backside.addr = NULL;
+	test->player.rightside.img = NULL;
+	test->player.rightside.addr = NULL;
+	test->player.leftside.img = NULL;
+	test->player.leftside.addr = NULL;
 }
