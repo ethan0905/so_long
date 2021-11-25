@@ -32,6 +32,7 @@
 # define A 97
 # define S 115
 # define D 100
+# define P 112
 
 # define BUFFER_SIZE 1
 

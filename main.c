@@ -413,6 +413,10 @@ int    render(t_test *test)
 	return (0);
 }
 
+void	play_piano()
+{
+	ft_putstr_fd("Hmm strange.. This piano seems to be perfectly working...\n", 1);
+}
 int     handle_keypress(int keysym, t_test *test)
 {	
     if (keysym == ESC)
@@ -427,6 +431,8 @@ int     handle_keypress(int keysym, t_test *test)
 	    move_up(test);
     else if (keysym == S)
 	    move_down(test);
+	else if (keysym == P && test->param.map[test->player.pos_i-1][test->player.pos_j] == '1')
+		play_piano(test);
     else if (keysym != ESC)
         write(1, &keysym, 1);
     return (0);
