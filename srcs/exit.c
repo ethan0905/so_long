@@ -38,6 +38,9 @@ void	clean_exit(t_test *test)
 	mlx_destroy_image(test->mlx, test->all.exit_half_right.img);
 	mlx_destroy_image(test->mlx, test->all.exit_half_left.img);
 	mlx_destroy_image(test->mlx, test->player.frontside.img);
+	mlx_destroy_image(test->mlx, test->player.backside.img);
+	mlx_destroy_image(test->mlx, test->player.rightside.img);
+	mlx_destroy_image(test->mlx, test->player.leftside.img);
 	mlx_destroy_window(test->mlx, test->win);
 	test->win = NULL;
 	// mlx_loop_end(test->mlx);

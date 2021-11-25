@@ -380,7 +380,7 @@ void	get_pos_player(t_test *test)
 void draw_player(t_test *test)
 {
 	get_pos_player(test);
-	draw_on_image_bis(test, &test->player.frontside, test->player.pos_x, test->player.pos_y);
+	draw_on_image_bis(test, test->player.side, test->player.pos_x, test->player.pos_y);
 }
 
 int    render(t_test *test)
@@ -393,10 +393,11 @@ int    render(t_test *test)
 		draw_furnitures(test);
 		draw_collectibles(test);
 		draw_exit(test);
+		test->player.side = &test->player.frontside;
 		draw_player(test);
 		test->param.rendered++;
 	}
-	else
+	else if (test->param.rendered == 1)
 	{
 		draw_background(test);
 		draw_walls(test);
@@ -404,7 +405,7 @@ int    render(t_test *test)
 		draw_furnitures(test);
 		draw_collectibles(test);
 		draw_exit(test);
-		draw_player(test);	
+		draw_player(test);
 	}
 	mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
 	return (0);
@@ -509,6 +510,8 @@ int main(int ac, char **av)
 	test.player.leftside.img = mlx_xpm_file_to_image(test.mlx, "textures/detective_sideleft.xpm", &test.player.leftside.x, &test.player.leftside.y);
 	test.player.leftside.addr = mlx_get_data_addr(test.player.leftside.img, &test.player.leftside.bits_per_pixel, &test.player.leftside.line_length, &test.player.leftside.endian);
 	
+	// test.player.side = &test.player.frontside;
+	printf("iciiiii\n");
 	mlx_hook(test.win, 2, 1L << 0, &handle_keypress, &test);
     // render(&test);
 	mlx_loop_hook(test.mlx, render, &test);

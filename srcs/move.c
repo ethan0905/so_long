@@ -13,7 +13,9 @@ void move_right(t_test *test/*, int wtd*/)
             test->param.map[test->player.pos_i][test->player.pos_j + 1] = 'P';
             test->player.lastpos_j = test->player.pos_j;
             test->player.pos_j++;
-            draw_on_image_bis(test, &test->player.rightside, test->player.pos_x+64, test->player.pos_y);
+	        test->player.side = &test->player.rightside;
+            // render(test);
+            // draw_on_image_bis(test, &test->player.rightside, test->player.pos_x+64, test->player.pos_y);
             test->player.pos_x += 64;
             test->player.pos_y += 0;        
         }
@@ -33,7 +35,9 @@ void move_right(t_test *test/*, int wtd*/)
             test->param.map[test->player.pos_i][test->player.pos_j + 1] = 'P';
             test->player.lastpos_j = test->player.pos_j;
             test->player.pos_j++;
-            draw_on_image_bis(test, &test->player.rightside, test->player.pos_x+64, test->player.pos_y);
+	    test->player.side = &test->player.rightside;
+            // render(test);
+            // draw_on_image_bis(test, &test->player.rightside, test->player.pos_x+64, test->player.pos_y);
             test->player.pos_x += 64;
             test->player.pos_y += 0;
         }
@@ -52,7 +56,9 @@ void    move_left(t_test *test)
         test->param.map[test->player.pos_i][test->player.pos_j - 1] = 'P';
         test->player.lastpos_j = test->player.pos_j;
         test->player.pos_j--;
-        draw_on_image_bis(test, &test->player.leftside, test->player.pos_x-64, test->player.pos_y);
+	    test->player.side = &test->player.leftside;
+        // render(test);
+        // draw_on_image_bis(test, &test->player.leftside, test->player.pos_x-64, test->player.pos_y);
         test->player.pos_x -= 64;
         test->player.pos_y += 0;
     }
@@ -72,7 +78,9 @@ void    move_left(t_test *test)
         test->param.map[test->player.pos_i][test->player.pos_j - 1] = 'P';
         test->player.lastpos_j = test->player.pos_j;
         test->player.pos_j--;
-        draw_on_image_bis(test, &test->player.leftside, test->player.pos_x-64, test->player.pos_y);
+	    test->player.side = &test->player.leftside;
+        // render(test);
+        // draw_on_image_bis(test, &test->player.leftside, test->player.pos_x-64, test->player.pos_y);
         test->player.pos_x -= 64;
         test->player.pos_y += 0;
     }
@@ -91,7 +99,9 @@ void    move_down(t_test *test/*, int wtd*/)
         test->param.map[test->player.pos_i + 1][test->player.pos_j] = 'P';
         test->player.lastpos_i = test->player.pos_i;
         test->player.pos_i++;
-        draw_on_image_bis(test, &test->player.frontside, test->player.pos_x-64, test->player.pos_y + 64);
+	    test->player.side = &test->player.frontside;
+        // render(test);
+    //    draw_on_image_bis(test, &test->player.frontside, test->player.pos_x-64, test->player.pos_y + 64);
         test->player.pos_x -= 64;
         test->player.pos_y += 64;
     }
@@ -111,7 +121,9 @@ void    move_down(t_test *test/*, int wtd*/)
         test->param.map[test->player.pos_i + 1][test->player.pos_j] = 'P';
         test->player.lastpos_i = test->player.pos_i;
         test->player.pos_i++;
-        draw_on_image_bis(test, &test->player.frontside, test->player.pos_x-64, test->player.pos_y + 64);
+		test->player.side = &test->player.frontside;
+        // render(test);
+    	// draw_on_image_bis(test, &test->player.frontside, test->player.pos_x-64, test->player.pos_y + 64);
         test->player.pos_x -= 64;
         test->player.pos_y += 64;
     }
@@ -130,7 +142,9 @@ void    move_up(t_test *test/*, int wtd*/)
         test->param.map[test->player.pos_i - 1][test->player.pos_j] = 'P';
         test->player.lastpos_i = test->player.pos_i;
         test->player.pos_i--;
-        draw_on_image_bis(test, &test->player.backside, test->player.pos_x+64, test->player.pos_y-64);
+		test->player.side = &test->player.backside;
+        // render(test);
+    //    draw_on_image_bis(test, &test->player.backside, test->player.pos_x+64, test->player.pos_y-64);
         test->player.pos_x += 64;
         test->player.pos_y -= 64;
     }
@@ -150,7 +164,9 @@ void    move_up(t_test *test/*, int wtd*/)
         test->param.map[test->player.pos_i - 1][test->player.pos_j] = 'P';
         test->player.lastpos_i = test->player.pos_i;
         test->player.pos_i--;
-        draw_on_image_bis(test, &test->player.backside, test->player.pos_x+64, test->player.pos_y-64);
+	    test->player.side = &test->player.backside;
+        // render(test);
+        // draw_on_image_bis(test, &test->player.backside, test->player.pos_x+64, test->player.pos_y-64);
         test->player.pos_x += 64;
         test->player.pos_y -= 64;
     }

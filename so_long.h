@@ -71,6 +71,7 @@ typedef struct s_player
     t_data backside;
     t_data rightside;
     t_data leftside;
+    t_data *side;
 }              t_player;
 
 typedef struct s_piano
