@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 22:58:48 by mahautlat         #+#    #+#              #
-#    Updated: 2021/11/23 17:30:41 by esafar           ###   ########.fr        #
+#    Updated: 2021/11/25 16:02:14 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCS =	main.c \
 		./srcs/exit.c \
 		./srcs/ft_putpixel.c \
 		./srcs/get_map.c \
-		initialize.c
+		./srcs/move.c \
+		./srcs/initialize.c
 
 
 OBJS 		= ${SRCS:.c=.o}
