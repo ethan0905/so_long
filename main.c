@@ -418,6 +418,18 @@ void	pick_up_coll(t_test *test)
         test->collec.count++;
         printf("%d object in your inventory\n", test->collec.count);
 	}
+	else if (test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'C')
+	{
+		test->param.map[test->player.pos_i + 1][test->player.pos_j] = '0';
+        test->collec.count++;
+        printf("%d object in your inventory\n", test->collec.count);
+	}
+	else if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == 'C')
+	{
+		test->param.map[test->player.pos_i - 1][test->player.pos_j] = '0';
+        test->collec.count++;
+        printf("%d object in your inventory\n", test->collec.count);
+	}
 }
 
 int     handle_keypress(int keysym, t_test *test)
@@ -434,7 +446,7 @@ int     handle_keypress(int keysym, t_test *test)
 	    move_up(test);
     else if (keysym == S)
 	    move_down(test);
-	else if (keysym == E /*&& (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C' || test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C')*/)
+	else if (keysym == E)
 		pick_up_coll(test);
 	else if (keysym == P && test->param.map[test->player.pos_i-1][test->player.pos_j] == '1')
 		play_piano(test);
