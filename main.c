@@ -135,20 +135,88 @@ void draw_furnitures(t_test *test)
 	int j;
 	int x;
 	int y;
+	int random_obj;
+	int piano;
 
-	i = 0; 
+	i = 1;
+	piano = 0;
+	random_obj = 0;
 	while (test->param.map[i + 1])
 	{
-		j = 0;
+		j = 1;
 		while (test->param.map[i][j + 1])
 		{
 			x = (64 + (test->param.height - 2 - i)*64 + (j-1)*64);
 			y = (192 + (i-1)*64);
-			if (test->param.map[i][j] == '1' && j > 0 && i > 0)
-			{
-				// printf("%d | %d\n", x, y);
+			// if (test->param.map[i][j] == '1' && j > 0 && i > 0)       /////working
+			// {
+			// 	// printf("%d | %d\n", x, y);
+			// 	draw_on_image(test, &test->all.box, x, y);
+			// }														//////jusqua here
+			if (test->param.map[i][j] == '1' && i != 1)
 				draw_on_image(test, &test->all.box, x, y);
+			else if (test->param.map[i][j] == '1' && ((test->param.map[i][j - 1] == '0' || test->param.map[i][j - 1] == 'P') || (test->param.map[i][j - 1] == '1' && j - 1 == 0)) && ((test->param.map[i][j + 1] == '0' || test->param.map[i][j + 1] == 'P') || (test->param.map[i][j + 1] == '1' && j + 1 == test->param.width - 1)) && i == 1)
+			{
+				// printf("%d -> ceci est bien un pot.\n", random_obj);
+				if (random_obj == 0)
+				{
+					draw_on_image(test, &test->all.pot, x, y - 32);
+					random_obj = 1;
+				}
+				else if (random_obj == 1)
+				{
+					draw_on_image(test, &test->all.cardboard, x, y - 32); //cardboard
+					random_obj = 0;
+				}
 			}
+			else if (test->param.map[i][j] == '1' && test->param.map[i][j + 1] == '1' && j + 1 != test->param.width - 1 && ((test->param.map[i][j - 1] == '0' || test->param.map[i][j - 1] == 'P') || (test->param.map[i][j - 1] == '1' && j - 1 == 0)) && ((test->param.map[i][j + 2] == '0' || test->param.map[i][j + 2] == 'P') || (test->param.map[i][j + 2] == '1' && j + 2 == test->param.width - 1)))
+			{
+					draw_on_image(test, &test->all.dresser_downleft, x, y - 24);
+					draw_on_image(test, &test->all.dresser_downright, x + 64, y - 24);
+					draw_on_image(test, &test->all.dresser_topleft, x, y - 64 - 24);
+					draw_on_image(test, &test->all.dresser_topright, x + 64, y - 64 - 24);
+			}
+			else if (test->param.map[i][j] == '1' && test->param.map[i][j + 1] == '1' && test->param.map[i][j + 2] == '1' && j + 1 != test->param.width - 1 && ((test->param.map[i][j - 1] == '0' || test->param.map[i][j - 1] == 'P') || (test->param.map[i][j - 1] == '1' && j - 1  == 0)) && ((test->param.map[i][j + 3] == '0' || test->param.map[i][j + 3] == 'P') || (test->param.map[i][j + 3] == '1' && j + 3 == test->param.width - 1)))
+			{
+					if (piano == 0)
+					{
+							draw_on_image(test, &test->all.piano.downleft, x, y - 26);
+							draw_on_image(test, &test->all.piano.midleft, x, y - 64 - 26);
+							draw_on_image(test, &test->all.piano.topleft, x + 9, y - 128 - 26);
+							draw_on_image(test, &test->all.piano.downmid, x + 64, y - 26);
+							draw_on_image(test, &test->all.piano.midmid, x + 64, y - 64 - 26);
+							draw_on_image(test, &test->all.piano.topmid, x + 64, y - 128 - 26);
+							draw_on_image(test, &test->all.piano.downright, x + 128, y - 26);
+							draw_on_image(test, &test->all.piano.midright, x + 128, y - 64 - 26);
+							draw_on_image(test, &test->all.piano.topright, x + 128, y - 128 - 26);
+							piano++;
+					}
+					else
+					{
+							draw_on_image(test, &test->all.pot, x, y - 32);
+							draw_on_image(test, &test->all.pot, x + 64, y - 32);
+							draw_on_image(test, &test->all.pot, x + 128, y - 32);
+					}
+			}
+			// else if (test->param.map[i][j] == '1' && test->param.map[i][j + 1] == '1' && test->param.map[i][j + 2] == '1' && test->param.map[i][j + 3] == '1')
+			// {
+			// 	i = x;
+			// 	while (test->param.map[y][i] == '1')
+			// 		i++;
+			// 	j = i;
+			// 	i = 0;
+			// 	while (i + 1 < j - x)
+			// 	{
+			// 		draw_on_image(test, &test->all.pot, x, y);
+			// 		i++;
+			// 	}
+			// 	if (j != test->param.width)
+			// 		draw_on_image(test, &test->all.pot, x, y);
+			// }
+
+
+
+
 			j++;
 		}
 		i++;
