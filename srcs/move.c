@@ -2,20 +2,12 @@
 
 void move_right(t_test *test/*, int wtd*/)
 {   
-    // printf("Position = %d %d\n", test->player.pos_i, test->player.pos_j);
     if (test->player.pos_j < test->param.width && test->player.pos_i < test->param.height && test->param.map[test->player.pos_i][test->player.pos_j + 1] != '1')
     {
         if (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C')
         {
-            test->collec.count++;
-            printf("%d object in your inventory\n", test->collec.count);
-            test->param.map[test->player.pos_i][test->player.pos_j] = '0';
-            test->param.map[test->player.pos_i][test->player.pos_j + 1] = 'P';
-            test->player.lastpos_j = test->player.pos_j;
-            test->player.pos_j++;
 	        test->player.side = &test->player.rightside;
-            test->player.pos_x += 64;
-            test->player.pos_y += 0;        
+            printf("Press E to take the item\n");      
         }
         else if (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'E' && test->collec.count != test->collec.amount)
         {
@@ -52,15 +44,17 @@ void    move_left(t_test *test)
     {
         if (test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'C')
         {
-            test->collec.count++;
-            printf("%d object in your inventory\n", test->collec.count);
-            test->param.map[test->player.pos_i][test->player.pos_j] = '0';
-            test->param.map[test->player.pos_i][test->player.pos_j - 1] = 'P';
-            test->player.lastpos_j = test->player.pos_j;
-            test->player.pos_j--;
+            // test->collec.count++;
+            // printf("%d object in your inventory\n", test->collec.count);
+            // test->param.map[test->player.pos_i][test->player.pos_j] = '0';
+            // test->param.map[test->player.pos_i][test->player.pos_j - 1] = 'P';
+            // test->player.lastpos_j = test->player.pos_j;
+            // test->player.pos_j--;
+	        // test->player.side = &test->player.leftside;
+            // test->player.pos_x -= 64;
+            // test->player.pos_y += 0;
 	        test->player.side = &test->player.leftside;
-            test->player.pos_x -= 64;
-            test->player.pos_y += 0;
+            printf("Press E to take the item\n");
         }
         else if (test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'E' && test->collec.count != test->collec.amount)
         {
@@ -91,7 +85,7 @@ void    move_left(t_test *test)
     draw_score(test);
 }
 
-void    move_down(t_test *test/*, int wtd*/)
+void    move_down(t_test *test)
 {
     if (test->player.pos_i + 1 != 0 && test->param.map[test->player.pos_i + 1][test->player.pos_j] != '1')
     {

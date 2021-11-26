@@ -340,7 +340,6 @@ void	draw_button(t_test *test)
 		if (test->button.time % 2 == 0)
 		{
         	draw_on_image(test, &test->button.e_key, test->player.pos_x + 32, test->player.pos_y - 42);
-        	printf("Press E to take the item\n");
 			usleep(450000);
 			test->button.time = 1;
 		}
@@ -361,7 +360,6 @@ void	draw_button(t_test *test)
 				test->player.side = &test->player.frontside;
 			draw_player(test);
 			draw_score(test);
-        	printf("Button disappear\n");
 			usleep(450000);
 			test->button.time = 0;
 		}
@@ -372,7 +370,7 @@ int    render(t_test *test)
 {
 	if (test->param.rendered == 0)
 	{
-		// draw_background(test);
+		draw_background(test);
 		draw_walls(test);
 		draw_floors(test);
 		draw_furnitures(test);
@@ -387,7 +385,7 @@ int    render(t_test *test)
 	}
 	else if (test->param.rendered == 1)
 	{
-		// draw_background(test);
+		draw_background(test);
 		draw_walls(test);
 		draw_floors(test);
 		draw_furnitures(test);
@@ -405,6 +403,23 @@ void	play_piano()
 {
 	ft_putstr_fd("Hmm strange.. This piano seems to be perfectly working...\n", 1);
 }
+
+void	pick_up_coll(t_test *test)
+{
+	if (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C')
+	{
+		test->param.map[test->player.pos_i][test->player.pos_j + 1] = '0';
+        test->collec.count++;
+        printf("%d object in your inventory\n", test->collec.count);
+	}
+	else if (test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'C')
+	{
+		test->param.map[test->player.pos_i][test->player.pos_j - 1] = '0';
+        test->collec.count++;
+        printf("%d object in your inventory\n", test->collec.count);
+	}
+}
+
 int     handle_keypress(int keysym, t_test *test)
 {	
     if (keysym == ESC)
@@ -419,6 +434,8 @@ int     handle_keypress(int keysym, t_test *test)
 	    move_up(test);
     else if (keysym == S)
 	    move_down(test);
+	else if (keysym == E /*&& (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C' || test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C')*/)
+		pick_up_coll(test);
 	else if (keysym == P && test->param.map[test->player.pos_i-1][test->player.pos_j] == '1')
 		play_piano(test);
 	else if (keysym != ESC)
