@@ -42,6 +42,7 @@ void move_right(t_test *test/*, int wtd*/)
     }
     else
         test->player.side = &test->player.rightside;
+    draw_score(test);
 }
 
 void    move_left(t_test *test)
@@ -85,6 +86,7 @@ void    move_left(t_test *test)
     }
     else
         test->player.side = &test->player.leftside;
+    draw_score(test);
 }
 
 void    move_down(t_test *test/*, int wtd*/)
@@ -128,6 +130,7 @@ void    move_down(t_test *test/*, int wtd*/)
     }
     else
 		test->player.side = &test->player.frontside;
+    draw_score(test);
 }
 
 void    move_up(t_test *test)
@@ -171,4 +174,5 @@ void    move_up(t_test *test)
     }
     else
 	    test->player.side = &test->player.backside;
+    draw_score(test);
 }

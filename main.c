@@ -381,11 +381,16 @@ void draw_player(t_test *test)
 	draw_on_image_bis(test, test->player.side, test->player.pos_x, test->player.pos_y);
 }
 
+void	draw_score(t_test *test)
+{
+	mlx_string_put(test->mlx, test->win, 10, 10, 0xf4fefe, "step moves : ");
+}
+
 int    render(t_test *test)
 {
 	if (test->param.rendered == 0)
 	{
-		draw_background(test);
+		// draw_background(test);
 		draw_walls(test);
 		draw_floors(test);
 		draw_furnitures(test);
@@ -394,18 +399,21 @@ int    render(t_test *test)
 		test->player.side = &test->player.frontside;
 		draw_player(test);
 		test->param.rendered++;
+		mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
+		draw_score(test);
 	}
 	else if (test->param.rendered == 1)
 	{
-		draw_background(test);
+		// draw_background(test);
 		draw_walls(test);
 		draw_floors(test);
 		draw_furnitures(test);
 		draw_collectibles(test);
 		draw_exit(test);
 		draw_player(test);
+		mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
+		draw_score(test);
 	}
-	mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
 	return (0);
 }
 
