@@ -336,6 +336,34 @@ void	draw_score(t_test *test)
 	amount = NULL;
 }
 
+void	draw_trap(t_test *test)
+{
+	int i;
+	int j;
+	int x;
+	int y;
+
+	i = 1;
+	while (test->param.map[i + 1])
+	{
+		j = 1;
+		while (test->param.map[i][j + 1])
+		{
+			x = (64 + (test->param.height - 2 - i)*64 + (j-1)*64);
+			y = (192 + (i-1)*64);
+			if (test->param.map[i][j] == 'T')
+			{
+ 				draw_on_image(test, &test->all.spike, x+16, y-32-8);
+ 				draw_on_image(test, &test->all.spike, x+8, y-32);
+ 				draw_on_image(test, &test->all.spike, x, y-16-8);
+ 				draw_on_image(test, &test->all.spike, x-8, y-16);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 void	draw_button(t_test *test)
 {
     if ((test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C' || test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'C' || test->param.map[test->player.pos_i - 1][test->player.pos_j] == 'C' || test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'C'))
@@ -353,6 +381,7 @@ void	draw_button(t_test *test)
 			draw_furnitures(test);
 			draw_collectibles(test);
 			draw_exit(test);
+			draw_trap(test);
 			if (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C')
 				test->player.side = &test->player.rightside;
 			else if (test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'C')
@@ -382,6 +411,7 @@ void	draw_button(t_test *test)
 			draw_furnitures(test);
 			draw_collectibles(test);
 			draw_exit(test);
+			draw_trap(test);
 			test->player.side = &test->player.backside;
 			draw_player(test);
 			draw_score(test);
@@ -391,33 +421,33 @@ void	draw_button(t_test *test)
 	}
 }
 
-void	draw_trap(t_test *test)
-{
-	int i;
-	int j;
-	int x;
-	int y;
+// void	draw_trap(t_test *test)
+// {
+// 	int i;
+// 	int j;
+// 	int x;
+// 	int y;
 
-	i = 1;
-	while (test->param.map[i + 1])
-	{
-		j = 1;
-		while (test->param.map[i][j + 1])
-		{
-			x = (64 + (test->param.height - 2 - i)*64 + (j-1)*64);
-			y = (192 + (i-1)*64);
-			if (test->param.map[i][j] == 'T')
-			{
- 				draw_on_image(test, &test->all.spike, x+16, y-32-8);
- 				draw_on_image(test, &test->all.spike, x+8, y-32);
- 				draw_on_image(test, &test->all.spike, x, y-16-8);
- 				draw_on_image(test, &test->all.spike, x-8, y-16);
-			}
-			j++;
-		}
-		i++;
-	}
-}
+// 	i = 1;
+// 	while (test->param.map[i + 1])
+// 	{
+// 		j = 1;
+// 		while (test->param.map[i][j + 1])
+// 		{
+// 			x = (64 + (test->param.height - 2 - i)*64 + (j-1)*64);
+// 			y = (192 + (i-1)*64);
+// 			if (test->param.map[i][j] == 'T')
+// 			{
+//  				draw_on_image(test, &test->all.spike, x+16, y-32-8);
+//  				draw_on_image(test, &test->all.spike, x+8, y-32);
+//  				draw_on_image(test, &test->all.spike, x, y-16-8);
+//  				draw_on_image(test, &test->all.spike, x-8, y-16);
+// 			}
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
 
 int    render(t_test *test)
 {
