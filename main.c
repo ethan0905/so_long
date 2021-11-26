@@ -135,6 +135,8 @@ void draw_furnitures(t_test *test)
 	int j;
 	int x;
 	int y;
+	// int iter;
+	// int jter;
 	int random_obj;
 	int piano;
 
@@ -157,7 +159,6 @@ void draw_furnitures(t_test *test)
 				draw_on_image(test, &test->all.box, x, y);
 			else if (test->param.map[i][j] == '1' && ((test->param.map[i][j - 1] == '0' || test->param.map[i][j - 1] == 'P') || (test->param.map[i][j - 1] == '1' && j - 1 == 0)) && ((test->param.map[i][j + 1] == '0' || test->param.map[i][j + 1] == 'P') || (test->param.map[i][j + 1] == '1' && j + 1 == test->param.width - 1)) && i == 1)
 			{
-				// printf("%d -> ceci est bien un pot.\n", random_obj);
 				if (random_obj == 0)
 				{
 					draw_on_image(test, &test->all.pot, x, y - 32);
@@ -198,25 +199,13 @@ void draw_furnitures(t_test *test)
 							draw_on_image(test, &test->all.pot, x + 128, y - 32);
 					}
 			}
-			// else if (test->param.map[i][j] == '1' && test->param.map[i][j + 1] == '1' && test->param.map[i][j + 2] == '1' && test->param.map[i][j + 3] == '1')
-			// {
-			// 	i = x;
-			// 	while (test->param.map[y][i] == '1')
-			// 		i++;
-			// 	j = i;
-			// 	i = 0;
-			// 	while (i + 1 < j - x)
-			// 	{
-			// 		draw_on_image(test, &test->all.pot, x, y);
-			// 		i++;
-			// 	}
-			// 	if (j != test->param.width)
-			// 		draw_on_image(test, &test->all.pot, x, y);
-			// }
-
-
-
-
+			else if (i == 1 && j != test->param.width - 4 && test->param.map[i][j] == '1' && test->param.map[i][j + 1] == '1' && test->param.map[i][j + 2] == '1' && test->param.map[i][j + 3] == '1')
+			{
+				draw_on_image(test, &test->all.pot, x, y - 32);
+				draw_on_image(test, &test->all.pot, x + 64, y - 32);
+				draw_on_image(test, &test->all.pot, x + 128, y - 32);
+				draw_on_image(test, &test->all.pot, x + 192, y - 32);
+			}
 			j++;
 		}
 		i++;
