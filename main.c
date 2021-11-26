@@ -135,8 +135,6 @@ void draw_furnitures(t_test *test)
 	int j;
 	int x;
 	int y;
-	// int iter;
-	// int jter;
 	int random_obj;
 	int piano;
 
@@ -295,27 +293,51 @@ void draw_furnitures(t_test *test)
 // 	}
 // }
 
-void draw_collectibles(t_test *test)
+void	draw_collectibles(t_test *test)
 {
-	int y;
+	int i;
+	int j;
 	int x;
-	int count;
+	int y;
 
-	y = 1;	
-	count = 0;
-	while (y + 3 < test->param.height_with_wall - 1)
+
+	i = 1;
+	while (test->param.map[i + 1])
 	{
-    	x = 1;
-		while (x + (test->param.width_with_x - test->param.width - count - 1) < test->param.width_with_x - 2 - count)
+		j = 1;
+		while (test->param.map[i][j + 1])
 		{
-			if (test->param.map[y][x] == 'C')
-				draw_on_image(test, &test->all.newspaper, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64);
-			x++;
+			x = (64 + (test->param.height - 2 - i)*64 + (j-1)*64);
+			y = (192 + (i-1)*64);
+			if (test->param.map[i][j] == 'C')
+				draw_on_image(test, &test->all.newspaper, x, y);
+			j++;
 		}
-		count++;
-		y++;
+		i++;
 	}
 }
+
+// void draw_collectibles(t_test *test)
+// {
+// 	int y;
+// 	int x;
+// 	int count;
+
+// 	y = 1;	
+// 	count = 0;
+// 	while (y + 3 < test->param.height_with_wall - 1)
+// 	{
+//     	x = 1;
+// 		while (x + (test->param.width_with_x - test->param.width - count - 1) < test->param.width_with_x - 2 - count)
+// 		{
+// 			if (test->param.map[y][x] == 'C')
+// 				draw_on_image(test, &test->all.newspaper, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64);
+// 			x++;
+// 		}
+// 		count++;
+// 		y++;
+// 	}
+// }
 
 void draw_exit(t_test *test)
 {
