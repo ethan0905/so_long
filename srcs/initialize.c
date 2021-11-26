@@ -16,6 +16,7 @@ void	initialize(t_test *test)
 	test->player.lastpos_j = 0;
 	test->player.pos_x = 0;
 	test->player.pos_y = 0;
+	test->player.steps = 0;
 	test->collec.amount = 0;
 	test->collec.count = 0;
 	test->collec.exit = 0;

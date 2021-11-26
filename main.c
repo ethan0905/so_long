@@ -383,14 +383,32 @@ void draw_player(t_test *test)
 
 void	draw_score(t_test *test)
 {
-	char *result;
+	char *steps;
+	char *collec;
+	char *amount;
 
-	result = ft_itoa(test->player.steps);
-	if (!result)
+	steps = ft_itoa(test->player.steps);
+	if (!steps)
 		clean_exit(test);
-	mlx_string_put(test->mlx, test->win, 10, 10, 0xf4fefe, result);
-	free(result);
-	result = NULL;
+	mlx_string_put(test->mlx, test->win, 10, 12, 0xf4fefe, "Total steps :");
+	mlx_string_put(test->mlx, test->win, 92, 13, 0xf4fefe, steps);
+	collec = ft_itoa(test->collec.count);
+	if (!collec)
+		clean_exit(test);
+	amount = ft_itoa(test->collec.amount);
+	if (!amount)
+		clean_exit(test);
+	mlx_string_put(test->mlx, test->win, 10, 24, 0xfefefe, "Collectibles collected :");
+	mlx_string_put(test->mlx, test->win, 158, 25, 0xfefefe, collec);
+	mlx_string_put(test->mlx, test->win, 166 + (ft_strlen(collec) - 1) * 6, 25, 0xfefefe, "/");
+	mlx_string_put(test->mlx, test->win, 173 + (ft_strlen(collec) - 1) * 7, 25, 0xfefefe, amount);
+
+	free(steps);
+	steps = NULL;
+	free(collec);
+	collec = NULL;
+	free(amount);
+	amount = NULL;
 }
 
 int    render(t_test *test)
