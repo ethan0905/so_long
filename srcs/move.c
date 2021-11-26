@@ -1,6 +1,6 @@
 #include "../so_long.h"
 
-void move_right(t_test *test/*, int wtd*/)
+void move_right(t_test *test)
 {   
     if (test->player.pos_j < test->param.width && test->player.pos_i < test->param.height && test->param.map[test->player.pos_i][test->player.pos_j + 1] != '1')
     {
@@ -82,15 +82,6 @@ void    move_down(t_test *test)
     {
         if (test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'C')
         {
-            // test->collec.count++;
-            // printf("%d object in your inventory\n", test->collec.count);
-            // test->param.map[test->player.pos_i][test->player.pos_j] = '0';
-            // test->param.map[test->player.pos_i + 1][test->player.pos_j] = 'P';
-            // test->player.lastpos_i = test->player.pos_i;
-            // test->player.pos_i++;
-	        // test->player.side = &test->player.frontside;
-            // test->player.pos_x -= 64;
-            // test->player.pos_y += 64;
 	        test->player.side = &test->player.frontside;
             printf("Press E to take the item\n");
         }
@@ -129,15 +120,6 @@ void    move_up(t_test *test)
     {
         if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == 'C')
         {
-            // test->collec.count++;
-            // printf("%d object in your inventory\n", test->collec.count);
-            // test->param.map[test->player.pos_i][test->player.pos_j] = '0';
-            // test->param.map[test->player.pos_i - 1][test->player.pos_j] = 'P';
-            // test->player.lastpos_i = test->player.pos_i;
-            // test->player.pos_i--;
-		    // test->player.side = &test->player.backside;
-            // test->player.pos_x += 64;
-            // test->player.pos_y -= 64;
 	        test->player.side = &test->player.backside;
             printf("Press E to take the item\n");
         }

@@ -106,7 +106,7 @@ typedef struct s_all
     t_piano piano;
     t_data exit_half_right;
     t_data exit_half_left;
-    // t_data spike;
+    t_data spike;
 }               t_all;
 
 typedef struct s_collec

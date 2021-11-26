@@ -44,7 +44,9 @@ void	initialize(t_test *test)
 	test->all.dresser_topleft.img = NULL;
 	test->all.dresser_topleft.addr = NULL;   
 	test->all.dresser_topright.img = NULL;
-	test->all.dresser_topright.addr = NULL;  
+	test->all.dresser_topright.addr = NULL;
+	test->all.spike.img = NULL;
+	test->all.spike.addr = NULL;
 	test->collec.newspaper.img = NULL;
 	test->collec.newspaper.addr = NULL;
 	test->collec.wanted.img = NULL;

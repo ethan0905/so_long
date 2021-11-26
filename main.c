@@ -391,9 +391,37 @@ void	draw_button(t_test *test)
 	}
 }
 
+void	draw_trap(t_test *test)
+{
+	int i;
+	int j;
+	int x;
+	int y;
+
+	i = 1;
+	while (test->param.map[i + 1])
+	{
+		j = 1;
+		while (test->param.map[i][j + 1])
+		{
+			x = (64 + (test->param.height - 2 - i)*64 + (j-1)*64);
+			y = (192 + (i-1)*64);
+			if (test->param.map[i][j] == 'T')
+			{
+ 				draw_on_image(test, &test->all.spike, x+16, y-32-8);
+ 				draw_on_image(test, &test->all.spike, x+8, y-32);
+ 				draw_on_image(test, &test->all.spike, x, y-16-8);
+ 				draw_on_image(test, &test->all.spike, x-8, y-16);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 int    render(t_test *test)
 {
-	if (test->param.rendered == 0)
+	if (test->param.rendered == 0 || test->param.rendered == 1)
 	{
 		draw_background(test);
 		draw_walls(test);
@@ -401,26 +429,31 @@ int    render(t_test *test)
 		draw_furnitures(test);
 		draw_collectibles(test);
 		draw_exit(test);
-		test->player.side = &test->player.frontside;
-		draw_player(test);
-		test->param.rendered++;
-		mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
-		draw_score(test);
-		draw_button(test);
-	}
-	else if (test->param.rendered == 1)
-	{
-		draw_background(test);
-		draw_walls(test);
-		draw_floors(test);
-		draw_furnitures(test);
-		draw_collectibles(test);
-		draw_exit(test);
+		draw_trap(test);
+		if (test->param.rendered == 0)
+		{
+			test->player.side = &test->player.frontside;
+			test->param.rendered = 1;
+		}
 		draw_player(test);
 		mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
 		draw_score(test);
 		draw_button(test);
 	}
+	// else if (test->param.rendered == 1)
+	// {
+	// 	draw_background(test);
+	// 	draw_walls(test);
+	// 	draw_floors(test);
+	// 	draw_furnitures(test);
+	// 	draw_collectibles(test);
+	// 	draw_exit(test);
+	// 	draw_trap(test);
+	// 	draw_player(test);
+	// 	mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
+	// 	draw_score(test);
+	// 	draw_button(test);
+	// }
 	return (0);
 }
 
@@ -569,8 +602,9 @@ int main(int ac, char **av)
     test.button.e_key.addr = mlx_get_data_addr(test.button.e_key.img, &test.button.e_key.bits_per_pixel, &test.button.e_key.line_length, &test.button.e_key.endian);
 	test.button.p_key.img = mlx_xpm_file_to_image(test.mlx, "textures/key_p.xpm", &test.button.p_key.x, &test.button.p_key.y);
     test.button.p_key.addr = mlx_get_data_addr(test.button.p_key.img, &test.button.p_key.bits_per_pixel, &test.button.p_key.line_length, &test.button.p_key.endian);
-	// test.all.spike.img = mlx_xpm_file_to_image(test.mlx, "textures/spike.xpm", &test.all.spike.x, &test.all.spike.y);
-    // test.all.spike.addr = mlx_get_data_addr(test.all.spike.img, &test.all.spike.bits_per_pixel, &test.all.spike.line_length, &test.all.spike.endian);
+
+	test.all.spike.img = mlx_xpm_file_to_image(test.mlx, "textures/spike.xpm", &test.all.spike.x, &test.all.spike.y);
+    test.all.spike.addr = mlx_get_data_addr(test.all.spike.img, &test.all.spike.bits_per_pixel, &test.all.spike.line_length, &test.all.spike.endian);
 	mlx_hook(test.win, 2, 1L << 0, &handle_keypress, &test);
     // render(&test);
 	mlx_loop_hook(test.mlx, render, &test);
