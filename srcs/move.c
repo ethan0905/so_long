@@ -177,6 +177,9 @@ void    move_up(t_test *test)
         test->player.steps++;
     }
     else
-	    test->player.side = &test->player.backside;
+    {
+	    test->player.side = &test->player.backside; 
+    }
     draw_score(test);
+
 }

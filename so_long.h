@@ -118,6 +118,12 @@ typedef struct s_collec
     t_data wanted;
 }		t_collec;
 
+typedef struct s_button
+{
+    int time;
+    t_data e_key;
+}		t_button;
+
 typedef struct s_test
 {
 	void *mlx;
@@ -127,6 +133,7 @@ typedef struct s_test
 	t_all all;
 	t_player player;
 	t_collec collec;
+    t_button button;
 }               t_test;
 
 char	*get_line(char *save);

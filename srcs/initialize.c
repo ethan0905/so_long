@@ -61,6 +61,7 @@ void	initialize(t_test *test)
 	test->player.rightside.addr = NULL;
 	test->player.leftside.img = NULL;
 	test->player.leftside.addr = NULL;
+	test->button.time = 0;
 	// test->player.side->img = NULL;
 	write(1, "bonjour\n", 8);
 	// test->player.side->addr = NULL;

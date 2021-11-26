@@ -333,6 +333,41 @@ void	draw_score(t_test *test)
 	amount = NULL;
 }
 
+void	draw_button(t_test *test)
+{
+    if ((test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C' || test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'C' || test->param.map[test->player.pos_i - 1][test->player.pos_j] == 'C' || test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'C'))
+    {
+		if (test->button.time % 2 == 0)
+		{
+        	draw_on_image(test, &test->button.e_key, test->player.pos_x + 32, test->player.pos_y - 42);
+        	printf("Press E to take the item\n");
+			usleep(450000);
+			test->button.time = 1;
+		}
+		else if (test->button.time % 2 == 1)
+		{
+			draw_walls(test);
+			draw_floors(test);
+			draw_furnitures(test);
+			draw_collectibles(test);
+			draw_exit(test);
+			if (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C')
+				test->player.side = &test->player.rightside;
+			else if (test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'C')
+				test->player.side = &test->player.leftside;
+			else if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == 'C')
+				test->player.side = &test->player.backside;
+			else if (test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'C')
+				test->player.side = &test->player.frontside;
+			draw_player(test);
+			draw_score(test);
+        	printf("Button disappear\n");
+			usleep(450000);
+			test->button.time = 0;
+		}
+    }
+}
+
 int    render(t_test *test)
 {
 	if (test->param.rendered == 0)
@@ -348,6 +383,7 @@ int    render(t_test *test)
 		test->param.rendered++;
 		mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
 		draw_score(test);
+		draw_button(test);
 	}
 	else if (test->param.rendered == 1)
 	{
@@ -360,6 +396,7 @@ int    render(t_test *test)
 		draw_player(test);
 		mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
 		draw_score(test);
+		draw_button(test);
 	}
 	return (0);
 }
@@ -384,7 +421,7 @@ int     handle_keypress(int keysym, t_test *test)
 	    move_down(test);
 	else if (keysym == P && test->param.map[test->player.pos_i-1][test->player.pos_j] == '1')
 		play_piano(test);
-    else if (keysym != ESC)
+	else if (keysym != ESC)
         write(1, &keysym, 1);
     return (0);
 }
@@ -471,6 +508,8 @@ int main(int ac, char **av)
 	test.player.leftside.img = mlx_xpm_file_to_image(test.mlx, "textures/detective_sideleft.xpm", &test.player.leftside.x, &test.player.leftside.y);
 	test.player.leftside.addr = mlx_get_data_addr(test.player.leftside.img, &test.player.leftside.bits_per_pixel, &test.player.leftside.line_length, &test.player.leftside.endian);
 	
+    test.button.e_key.img = mlx_xpm_file_to_image(test.mlx, "textures/key_e.xpm", &test.button.e_key.x, &test.button.e_key.y);
+    test.button.e_key.addr = mlx_get_data_addr(test.button.e_key.img, &test.button.e_key.bits_per_pixel, &test.button.e_key.line_length, &test.button.e_key.endian);
 	// test.all.spike.img = mlx_xpm_file_to_image(test.mlx, "textures/spike.xpm", &test.all.spike.x, &test.all.spike.y);
     // test.all.spike.addr = mlx_get_data_addr(test.all.spike.img, &test.all.spike.bits_per_pixel, &test.all.spike.line_length, &test.all.spike.endian);
 	mlx_hook(test.win, 2, 1L << 0, &handle_keypress, &test);
