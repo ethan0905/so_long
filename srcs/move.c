@@ -39,6 +39,7 @@ void move_right(t_test *test/*, int wtd*/)
             test->player.pos_x += 64;
             test->player.pos_y += 0;
         }
+        test->player.steps++;
     }
     else
         test->player.side = &test->player.rightside;
@@ -83,6 +84,7 @@ void    move_left(t_test *test)
             test->player.pos_x -= 64;
             test->player.pos_y += 0;
         }
+        test->player.steps++;
     }
     else
         test->player.side = &test->player.leftside;
@@ -127,6 +129,7 @@ void    move_down(t_test *test/*, int wtd*/)
             test->player.pos_x -= 64;
             test->player.pos_y += 64;
         }
+        test->player.steps++;
     }
     else
 		test->player.side = &test->player.frontside;
@@ -171,6 +174,7 @@ void    move_up(t_test *test)
             test->player.pos_x += 64;
             test->player.pos_y -= 64;
         }
+        test->player.steps++;
     }
     else
 	    test->player.side = &test->player.backside;

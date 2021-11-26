@@ -68,6 +68,7 @@ typedef struct s_player
     int lastpos_j;
     int pos_x;
     int pos_y;
+    int steps;
     t_data frontside;
     t_data backside;
     t_data rightside;

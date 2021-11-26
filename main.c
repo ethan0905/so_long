@@ -383,7 +383,14 @@ void draw_player(t_test *test)
 
 void	draw_score(t_test *test)
 {
-	mlx_string_put(test->mlx, test->win, 10, 10, 0xf4fefe, "step moves : ");
+	char *result;
+
+	result = ft_itoa(test->player.steps);
+	if (!result)
+		clean_exit(test);
+	mlx_string_put(test->mlx, test->win, 10, 10, 0xf4fefe, result);
+	free(result);
+	result = NULL;
 }
 
 int    render(t_test *test)
