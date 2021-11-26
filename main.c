@@ -364,6 +364,28 @@ void	draw_button(t_test *test)
 			test->button.time = 0;
 		}
     }
+	else if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 1] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 2] == '0' && test->player.pos_j + 1 < test->param.width - 1 && test->param.map[test->player.pos_i - 1][test->player.pos_j - 1] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j - 2] == '0')
+	{
+		if (test->button.time % 2 == 0)
+		{
+        	draw_on_image(test, &test->button.p_key, test->player.pos_x + 32, test->player.pos_y - 42);
+			usleep(450000);
+			test->button.time = 1;
+		}
+		else if (test->button.time % 2 == 1)
+		{
+			draw_walls(test);
+			draw_floors(test);
+			draw_furnitures(test);
+			draw_collectibles(test);
+			draw_exit(test);
+			test->player.side = &test->player.backside;
+			draw_player(test);
+			draw_score(test);
+			usleep(450000);
+			test->button.time = 0;
+		}
+	}
 }
 
 int    render(t_test *test)
@@ -399,9 +421,12 @@ int    render(t_test *test)
 	return (0);
 }
 
-void	play_piano()
+void	play_piano(t_test *test)
 {
-	ft_putstr_fd("Hmm strange.. This piano seems to be perfectly working...\n", 1);
+	if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 1] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 2] == '0' && test->player.pos_j + 1 < test->param.width - 1 && test->param.map[test->player.pos_i - 1][test->player.pos_j - 1] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j - 2] == '0')
+	{
+		ft_putstr_fd("Hmm strange.. This piano seems to be perfectly working...\n", 1);
+	}
 }
 
 void	pick_up_coll(t_test *test)
@@ -448,7 +473,7 @@ int     handle_keypress(int keysym, t_test *test)
 	    move_down(test);
 	else if (keysym == E)
 		pick_up_coll(test);
-	else if (keysym == P && test->param.map[test->player.pos_i-1][test->player.pos_j] == '1')
+	else if (keysym == P)
 		play_piano(test);
 	else if (keysym != ESC)
         write(1, &keysym, 1);
@@ -539,6 +564,8 @@ int main(int ac, char **av)
 	
     test.button.e_key.img = mlx_xpm_file_to_image(test.mlx, "textures/key_e.xpm", &test.button.e_key.x, &test.button.e_key.y);
     test.button.e_key.addr = mlx_get_data_addr(test.button.e_key.img, &test.button.e_key.bits_per_pixel, &test.button.e_key.line_length, &test.button.e_key.endian);
+	test.button.p_key.img = mlx_xpm_file_to_image(test.mlx, "textures/key_p.xpm", &test.button.p_key.x, &test.button.p_key.y);
+    test.button.p_key.addr = mlx_get_data_addr(test.button.p_key.img, &test.button.p_key.bits_per_pixel, &test.button.p_key.line_length, &test.button.p_key.endian);
 	// test.all.spike.img = mlx_xpm_file_to_image(test.mlx, "textures/spike.xpm", &test.all.spike.x, &test.all.spike.y);
     // test.all.spike.addr = mlx_get_data_addr(test.all.spike.img, &test.all.spike.bits_per_pixel, &test.all.spike.line_length, &test.all.spike.endian);
 	mlx_hook(test.win, 2, 1L << 0, &handle_keypress, &test);

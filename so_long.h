@@ -123,6 +123,7 @@ typedef struct s_button
 {
     int time;
     t_data e_key;
+    t_data p_key;
 }		t_button;
 
 typedef struct s_test
