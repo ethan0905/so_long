@@ -27,6 +27,7 @@ void	clean_exit(t_test *test)
 	mlx_destroy_image(test->mlx, test->all.dresser_downleft.img);
 	mlx_destroy_image(test->mlx, test->collec.newspaper.img);
 	mlx_destroy_image(test->mlx, test->collec.wanted.img);
+	mlx_destroy_image(test->mlx, test->collec.murder_article.img);
 	mlx_destroy_image(test->mlx, test->all.piano.downleft.img);
 	mlx_destroy_image(test->mlx, test->all.piano.downmid.img);
 	mlx_destroy_image(test->mlx, test->all.piano.downright.img);

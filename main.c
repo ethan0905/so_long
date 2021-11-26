@@ -224,7 +224,10 @@ void	draw_collectibles(t_test *test)
 			y = (192 + (i-1)*64);
 			if (test->param.map[i][j] == 'C' && j % 2 == 0)
 			{
-				draw_on_image(test, &test->collec.newspaper, x, y);
+				if (i % 2 == 0)
+					draw_on_image(test, &test->collec.newspaper, x, y);
+				else if (i % 2 == 1)
+					draw_on_image(test, &test->collec.murder_article, x, y);
 				// test->collec.random = 1;
 			}
 			else if (test->param.map[i][j] == 'C' && j % 2 == 1)
@@ -460,9 +463,7 @@ void	pick_up_coll(t_test *test)
 int     handle_keypress(int keysym, t_test *test)
 {	
     if (keysym == ESC)
-    {
 	    clean_exit(test);
-    }
     else if (keysym == D)
 	    move_right(test);
     else if (keysym == A)
@@ -547,6 +548,8 @@ int main(int ac, char **av)
     test.collec.newspaper.addr = mlx_get_data_addr(test.collec.newspaper.img, &test.collec.newspaper.bits_per_pixel, &test.collec.newspaper.line_length, &test.collec.newspaper.endian);
 	test.collec.wanted.img = mlx_xpm_file_to_image(test.mlx, "textures/wanted.xpm", &test.collec.wanted.x, &test.collec.wanted.y);
     test.collec.wanted.addr = mlx_get_data_addr(test.collec.wanted.img, &test.collec.wanted.bits_per_pixel, &test.collec.wanted.line_length, &test.collec.wanted.endian);
+	test.collec.murder_article.img = mlx_xpm_file_to_image(test.mlx, "textures/murder_article.xpm", &test.collec.murder_article.x, &test.collec.murder_article.y);
+    test.collec.murder_article.addr = mlx_get_data_addr(test.collec.murder_article.img, &test.collec.murder_article.bits_per_pixel, &test.collec.murder_article.line_length, &test.collec.murder_article.endian);
 
     test.all.exit_half_left.img = mlx_xpm_file_to_image(test.mlx, "textures/ladder_half_left.xpm", &test.all.exit_half_left.x, &test.all.exit_half_left.y);
     test.all.exit_half_left.addr = mlx_get_data_addr(test.all.exit_half_left.img, &test.all.exit_half_left.bits_per_pixel, &test.all.exit_half_left.line_length, &test.all.exit_half_left.endian);

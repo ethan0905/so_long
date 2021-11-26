@@ -117,6 +117,7 @@ typedef struct s_collec
     int random;
     t_data newspaper;
     t_data wanted;
+    t_data murder_article;
 }		t_collec;
 
 typedef struct s_button
