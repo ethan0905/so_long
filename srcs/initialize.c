@@ -20,6 +20,7 @@ void	initialize(t_test *test)
 	test->collec.amount = 0;
 	test->collec.count = 0;
 	test->collec.exit = 0;
+	test->collec.random = 0;
 	test->data.img = NULL;
 	test->data.addr = NULL;
 	test->all.wall.img = NULL;

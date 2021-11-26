@@ -211,10 +211,10 @@ void	draw_collectibles(t_test *test)
 	int j;
 	int x;
 	int y;
-	int random;
+	// int random;
 
 	i = 1;
-	random = 0;
+	// random = 0;
 	while (test->param.map[i + 1])
 	{
 		j = 1;
@@ -222,13 +222,16 @@ void	draw_collectibles(t_test *test)
 		{
 			x = (64 + (test->param.height - 2 - i)*64 + (j-1)*64);
 			y = (192 + (i-1)*64);
-			if (test->param.map[i][j] == 'C' && random == 0)
+			if (test->param.map[i][j] == 'C' && j % 2 == 0)
 			{
 				draw_on_image(test, &test->collec.newspaper, x, y);
-				random++;
+				// test->collec.random = 1;
 			}
-			else if (test->param.map[i][j] == 'C' && random > 0)
+			else if (test->param.map[i][j] == 'C' && j % 2 == 1)
+			{
 				draw_on_image(test, &test->collec.wanted, x, y);
+				// test->collec.random = 0;
+			}
 			j++;
 		}
 		i++;

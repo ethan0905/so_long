@@ -113,6 +113,7 @@ typedef struct s_collec
 	int amount;
 	int count;
 	int exit;
+    int random;
     t_data newspaper;
     t_data wanted;
 }		t_collec;
