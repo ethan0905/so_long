@@ -148,11 +148,6 @@ void draw_furnitures(t_test *test)
 		{
 			x = (64 + (test->param.height - 2 - i)*64 + (j-1)*64);
 			y = (192 + (i-1)*64);
-			// if (test->param.map[i][j] == '1' && j > 0 && i > 0)       /////working
-			// {
-			// 	// printf("%d | %d\n", x, y);
-			// 	draw_on_image(test, &test->all.box, x, y);
-			// }														//////jusqua here
 			if (test->param.map[i][j] == '1' && i != 1)
 				draw_on_image(test, &test->all.box, x, y);
 			else if (test->param.map[i][j] == '1' && ((test->param.map[i][j - 1] == '0' || test->param.map[i][j - 1] == 'P') || (test->param.map[i][j - 1] == '1' && j - 1 == 0)) && ((test->param.map[i][j + 1] == '0' || test->param.map[i][j + 1] == 'P') || (test->param.map[i][j + 1] == '1' && j + 1 == test->param.width - 1)) && i == 1)
@@ -164,7 +159,7 @@ void draw_furnitures(t_test *test)
 				}
 				else if (random_obj == 1)
 				{
-					draw_on_image(test, &test->all.cardboard, x, y - 32); //cardboard
+					draw_on_image(test, &test->all.cardboard, x, y - 32);
 					random_obj = 0;
 				}
 			}
@@ -208,90 +203,7 @@ void draw_furnitures(t_test *test)
 		}
 		i++;
 	}
-	// test->player.pos_x = (j-1)*64 + 30 + (test->param.height - 3) * 64 - (i-1)*64; 
-	// test->player.pos_y = 3 * 64 + (i-1) * 64 - 64 - 25 + 10;
 }
-
-//Veritable draw furniture
-// void draw_furnitures(t_test *test)
-// {
-// 	int y;
-// 	int x;
-// 	int count;
-// 	int random_obj;
-// 	int piano;
-// 	int i;
-// 	int j;
-
-// 	y = 1;	
-// 	count = 0;
-// 	random_obj = 0;
-// 	piano = 0;
-// 	while (y + 3 < test->param.height_with_wall - 1)
-// 	{
-//     	x = 1;
-// 		while (x + (test->param.width_with_x - test->param.width - count - 1) < test->param.width_with_x - 2 - count)
-// 		{
-// 			if (test->param.map[y][x] == '1' && y != 1)
-// 				draw_on_image(test, &test->all.box, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64);
-// 			else if (test->param.map[y][x] == '1' && ((test->param.map[y][x - 1] == '0' || test->param.map[y][x - 1] == 'P') || (test->param.map[y][x - 1] == '1' && x - 1 == 0)) && ((test->param.map[y][x + 1] == '0' || test->param.map[y][x + 1] == 'P') || (test->param.map[y][x + 1] == '1' && x + 1 == test->param.width - 1)) && y == 1)
-// 			{
-// 				if (random_obj == 0)
-// 					draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64 - 32);
-// 				else if (random_obj == 1)
-// 					draw_on_image(test, &test->all.cardboard, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64 - 32 + 10);
-// 				random_obj++;
-// 			}
-// 			else if (test->param.map[y][x] == '1' && test->param.map[y][x + 1] == '1' && x + 1 != test->param.width - 1 && ((test->param.map[y][x-1] == '0' || test->param.map[y][x-1] == 'P') || (test->param.map[y][x-1] == '1' && x - 1 == 0)) && ((test->param.map[y][x + 2] == '0' || test->param.map[y][x + 2] == 'P') || (test->param.map[y][x + 2] == '1' && x + 2 == test->param.width - 1)))
-// 			{
-// 					draw_on_image(test, &test->all.dresser_downleft, 3*64 + (x-1)*64 - (count*64) + 8, 3*64 + (y-1)*64 - 22);
-// 					draw_on_image(test, &test->all.dresser_downright, 3*64 + (x-1)*64 - (count*64) + 64 + 8, 3*64 + (y-1)*64 - 22);
-// 					draw_on_image(test, &test->all.dresser_topleft, 3*64 + (x-1)*64 - (count*64) + 8, 3*64 + (y-1)*64 - 64 - 22);
-// 					draw_on_image(test, &test->all.dresser_topright, 3*64 + (x-1)*64 - (count*64) + 64 + 8, 3*64 + (y-1)*64 - 64 - 22);
-// 			}
-// 			else if (test->param.map[y][x] == '1' && test->param.map[y][x + 1] == '1' && test->param.map[y][x + 2] == '1' && x + 1 != test->param.width - 1 && ((test->param.map[y][x-1] == '0' || test->param.map[y][x-1] == 'P') || (test->param.map[y][x-1] == '1' && x - 1  == 0)) && ((test->param.map[y][x + 3] == '0' || test->param.map[y][x + 3] == 'P') || (test->param.map[y][x + 3] == '1' && x + 3 == test->param.width - 1)))
-// 			{
-// 					if (piano == 0)
-// 					{
-// 							draw_on_image(test, &test->all.piano.downleft, 3*64 + (x-1)*64 - (count*64) + 8, 3*64 + (y-1)*64 - 22);
-// 							draw_on_image(test, &test->all.piano.midleft, 3*64 + (x-1)*64 - (count*64) + 8, 3*64 + (y-1)*64 - 22 - 64);
-// 							draw_on_image(test, &test->all.piano.topleft, 3*64 + (x-1)*64 - (count*64) + 8 + 9, 3*64 + (y-1)*64 - 22 - 128);
-// 							draw_on_image(test, &test->all.piano.downmid, 3*64 + (x-1)*64 - (count*64) + 8 + 64, 3*64 + (y-1)*64 - 22);
-// 							draw_on_image(test, &test->all.piano.midmid, 3*64 + (x-1)*64 - (count*64) + 8 + 64, 3*64 + (y-1)*64 - 22 - 64);
-// 							draw_on_image(test, &test->all.piano.topmid, 3*64 + (x-1)*64 - (count*64) + 8 + 64, 3*64 + (y-1)*64 - 22 - 128);
-// 							draw_on_image(test, &test->all.piano.downright, 3*64 + (x-1)*64 - (count*64) + 8 + 128, 3*64 + (y-1)*64 - 22);
-// 							draw_on_image(test, &test->all.piano.midright, 3*64 + (x-1)*64 - (count*64) + 8 + 128, 3*64 + (y-1)*64 - 22 - 64);
-// 							draw_on_image(test, &test->all.piano.topright, 3*64 + (x-1)*64 - (count*64) + 8 + 128, 3*64 + (y-1)*64 - 22 - 128);
-// 							piano++;
-// 					}
-// 					else
-// 					{
-// 							draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64 - 32);
-// 							draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64) + 64, 3*64 + (y-1)*64 - 32);
-// 							draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64) + 128, 3*64 + (y-1)*64 - 32);
-// 					}
-// 			}
-// 			else if (test->param.map[y][x] == '1' && test->param.map[y][x + 1] == '1' && test->param.map[y][x + 2] == '1' && test->param.map[y][x + 3] == '1')
-// 			{
-// 				i = x;
-// 				while (test->param.map[y][i] == '1')
-// 					i++;
-// 				j = i;
-// 				i = 0;
-// 				while (i + 1 < j - x)
-// 				{
-// 					draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64) + (i * 64), 3*64 + (y-1)*64 - 32);
-// 					i++;
-// 				}
-// 				if (j != test->param.width)
-// 					draw_on_image(test, &test->all.pot, 3*64 + (x-1)*64 - (count*64) + (i * 64), 3*64 + (y-1)*64 - 32);
-// 			}
-// 			x++;
-// 		}
-// 		count++;
-// 		y++;
-// 	}
-// }
 
 void	draw_collectibles(t_test *test)
 {
@@ -299,7 +211,6 @@ void	draw_collectibles(t_test *test)
 	int j;
 	int x;
 	int y;
-
 
 	i = 1;
 	while (test->param.map[i + 1])
@@ -317,7 +228,33 @@ void	draw_collectibles(t_test *test)
 	}
 }
 
-// void draw_collectibles(t_test *test)
+void	draw_exit(t_test *test)
+{
+	int i;
+	int j;
+	int x;
+	int y;
+
+	i = 1;
+	while (test->param.map[i + 1])
+	{
+		j = 1;
+		while (test->param.map[i][j + 1])
+		{
+			x = (64 + (test->param.height - 2 - i)*64 + (j-1)*64);
+			y = (192 + (i-1)*64);
+			if (test->param.map[i][j] == 'E')
+			{
+ 				draw_on_image(test, &test->all.exit_half_right, x + 23, y);
+				draw_on_image(test, &test->all.exit_half_left, x - 64 + 27, y);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+// void	draw_exit(t_test *test)
 // {
 // 	int y;
 // 	int x;
@@ -330,39 +267,17 @@ void	draw_collectibles(t_test *test)
 //     	x = 1;
 // 		while (x + (test->param.width_with_x - test->param.width - count - 1) < test->param.width_with_x - 2 - count)
 // 		{
-// 			if (test->param.map[y][x] == 'C')
-// 				draw_on_image(test, &test->all.newspaper, 3*64 + (x-1)*64 - (count*64), 3*64 + (y-1)*64);
+// 			if (test->param.map[y][x] == 'E')
+// 			{
+// 				draw_on_image(test, &test->all.exit_half_right, 3*64 + (x-1)*64 - (count*64) + 32, 3*64 + (y-1)*64 + 2);
+// 				draw_on_image(test, &test->all.exit_half_left, 3*64 + (x-1)*64 - (count*64) + 32-64 + 4, 3*64 + (y-1)*64 + 2);
+// 			}
 // 			x++;
 // 		}
 // 		count++;
 // 		y++;
 // 	}
 // }
-
-void draw_exit(t_test *test)
-{
-	int y;
-	int x;
-	int count;
-
-	y = 1;	
-	count = 0;
-	while (y + 3 < test->param.height_with_wall - 1)
-	{
-    	x = 1;
-		while (x + (test->param.width_with_x - test->param.width - count - 1) < test->param.width_with_x - 2 - count)
-		{
-			if (test->param.map[y][x] == 'E')
-			{
-				draw_on_image(test, &test->all.exit_half_right, 3*64 + (x-1)*64 - (count*64) + 32, 3*64 + (y-1)*64 + 2);
-				draw_on_image(test, &test->all.exit_half_left, 3*64 + (x-1)*64 - (count*64) + 32-64 + 4, 3*64 + (y-1)*64 + 2);
-			}
-			x++;
-		}
-		count++;
-		y++;
-	}
-}
 
 void	get_pos_player(t_test *test)
 {
