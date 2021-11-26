@@ -211,8 +211,10 @@ void	draw_collectibles(t_test *test)
 	int j;
 	int x;
 	int y;
+	int random;
 
 	i = 1;
+	random = 0;
 	while (test->param.map[i + 1])
 	{
 		j = 1;
@@ -220,8 +222,13 @@ void	draw_collectibles(t_test *test)
 		{
 			x = (64 + (test->param.height - 2 - i)*64 + (j-1)*64);
 			y = (192 + (i-1)*64);
-			if (test->param.map[i][j] == 'C')
-				draw_on_image(test, &test->all.newspaper, x, y);
+			if (test->param.map[i][j] == 'C' && random == 0)
+			{
+				draw_on_image(test, &test->collec.newspaper, x, y);
+				random++;
+			}
+			else if (test->param.map[i][j] == 'C' && random > 0)
+				draw_on_image(test, &test->collec.wanted, x, y);
 			j++;
 		}
 		i++;
@@ -253,31 +260,6 @@ void	draw_exit(t_test *test)
 		i++;
 	}
 }
-
-// void	draw_exit(t_test *test)
-// {
-// 	int y;
-// 	int x;
-// 	int count;
-
-// 	y = 1;	
-// 	count = 0;
-// 	while (y + 3 < test->param.height_with_wall - 1)
-// 	{
-//     	x = 1;
-// 		while (x + (test->param.width_with_x - test->param.width - count - 1) < test->param.width_with_x - 2 - count)
-// 		{
-// 			if (test->param.map[y][x] == 'E')
-// 			{
-// 				draw_on_image(test, &test->all.exit_half_right, 3*64 + (x-1)*64 - (count*64) + 32, 3*64 + (y-1)*64 + 2);
-// 				draw_on_image(test, &test->all.exit_half_left, 3*64 + (x-1)*64 - (count*64) + 32-64 + 4, 3*64 + (y-1)*64 + 2);
-// 			}
-// 			x++;
-// 		}
-// 		count++;
-// 		y++;
-// 	}
-// }
 
 void	get_pos_player(t_test *test)
 {
@@ -467,8 +449,10 @@ int main(int ac, char **av)
     test.all.piano.downleft.addr = mlx_get_data_addr(test.all.piano.downleft.img, &test.all.piano.downleft.bits_per_pixel, &test.all.piano.downleft.line_length, &test.all.piano.downleft.endian);
 /////////////
 
-    test.all.newspaper.img = mlx_xpm_file_to_image(test.mlx, "textures/newspaper.xpm", &test.all.newspaper.x, &test.all.newspaper.y);
-    test.all.newspaper.addr = mlx_get_data_addr(test.all.newspaper.img, &test.all.newspaper.bits_per_pixel, &test.all.newspaper.line_length, &test.all.newspaper.endian);
+    test.collec.newspaper.img = mlx_xpm_file_to_image(test.mlx, "textures/newspaper.xpm", &test.collec.newspaper.x, &test.collec.newspaper.y);
+    test.collec.newspaper.addr = mlx_get_data_addr(test.collec.newspaper.img, &test.collec.newspaper.bits_per_pixel, &test.collec.newspaper.line_length, &test.collec.newspaper.endian);
+	test.collec.wanted.img = mlx_xpm_file_to_image(test.mlx, "textures/wanted.xpm", &test.collec.wanted.x, &test.collec.wanted.y);
+    test.collec.wanted.addr = mlx_get_data_addr(test.collec.wanted.img, &test.collec.wanted.bits_per_pixel, &test.collec.wanted.line_length, &test.collec.wanted.endian);
 
     test.all.exit_half_left.img = mlx_xpm_file_to_image(test.mlx, "textures/ladder_half_left.xpm", &test.all.exit_half_left.x, &test.all.exit_half_left.y);
     test.all.exit_half_left.addr = mlx_get_data_addr(test.all.exit_half_left.img, &test.all.exit_half_left.bits_per_pixel, &test.all.exit_half_left.line_length, &test.all.exit_half_left.endian);

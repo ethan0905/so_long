@@ -103,7 +103,6 @@ typedef struct s_all
     t_data dresser_downright;
     t_data dresser_downleft;
     t_piano piano;
-    t_data newspaper;
     t_data exit_half_right;
     t_data exit_half_left;
     // t_data spike;
@@ -114,6 +113,8 @@ typedef struct s_collec
 	int amount;
 	int count;
 	int exit;
+    t_data newspaper;
+    t_data wanted;
 }		t_collec;
 
 typedef struct s_test
