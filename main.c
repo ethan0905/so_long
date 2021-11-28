@@ -398,7 +398,7 @@ void	draw_button(t_test *test)
     }
 	else if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 1] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 2] == '0' && test->player.pos_j + 1 < test->param.width - 1 && test->param.map[test->player.pos_i - 1][test->player.pos_j - 1] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j - 2] == '0')
 	{
-		if (test->button.time % 2 == 0)
+		if (test->button.time % 2 == 0 && test->player.lock_pos == 0)
 		{
         	draw_on_image(test, &test->button.p_key, test->player.pos_x + 32, test->player.pos_y - 42);
 			usleep(450000);
