@@ -461,14 +461,12 @@ int    render(t_test *test)
 		draw_exit(test);
 		draw_trap(test);
 		if (test->param.rendered == 0)
-		{
 			test->player.side = &test->player.frontside;
-			test->param.rendered = 1;
-		}
 		draw_player(test);
 		mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
 		draw_score(test);
 		draw_button(test);
+		test->param.rendered = 1;
 	}
 	// else if (test->param.rendered == 1)
 	// {
