@@ -37,6 +37,7 @@
 # define C 99
 
 # define BUFFER_SIZE 1
+# define FRAME 250
 
 # define ERROR -1
 # define SUCCESS 1
@@ -109,6 +110,8 @@ typedef struct s_all
     t_data exit_half_right;
     t_data exit_half_left;
     t_data spike;
+    // t_data hole_right;
+    // t_data hole_left;
 }               t_all;
 
 typedef struct s_collec
@@ -132,6 +135,7 @@ typedef struct s_button
 typedef struct s_dialog
 {
     int keep;
+    int event;
     t_data right;
     t_data mid;
     t_data left;

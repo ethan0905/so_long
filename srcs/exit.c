@@ -26,6 +26,8 @@ void	clean_exit(t_test *test)
 	mlx_destroy_image(test->mlx, test->all.dresser_downright.img);
 	mlx_destroy_image(test->mlx, test->all.dresser_downleft.img);
 	mlx_destroy_image(test->mlx, test->all.spike.img);
+	// mlx_destroy_image(test->mlx, test->all.hole_left.img);
+	// mlx_destroy_image(test->mlx, test->all.hole_right.img);
 	mlx_destroy_image(test->mlx, test->collec.newspaper.img);
 	mlx_destroy_image(test->mlx, test->collec.wanted.img);
 	mlx_destroy_image(test->mlx, test->collec.murder_article.img);

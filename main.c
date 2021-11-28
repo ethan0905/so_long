@@ -353,6 +353,8 @@ void	draw_trap(t_test *test)
 			y = (192 + (i-1)*64);
 			if (test->param.map[i][j] == 'T')
 			{
+				// draw_on_image(test, &test->all.hole_left, x-8, y);
+				// draw_on_image(test, &test->all.hole_right, x-8+64, y);
  				draw_on_image(test, &test->all.spike, x+16, y-32-8);
  				draw_on_image(test, &test->all.spike, x+8, y-32);
  				draw_on_image(test, &test->all.spike, x, y-16-8);
@@ -421,17 +423,24 @@ void	draw_button(t_test *test)
 	}
 }
 
-void 	draw_dialog_box(t_test *test, int event)
+void 	draw_dialog_box(t_test *test)
 {
 	draw_on_image(test, &test->dialog_box.left, (test->param.width/2-2) * 64, (test->param.height) * 64);
 	draw_on_image(test, &test->dialog_box.mid, (test->param.width/2-1) * 64, (test->param.height) * 64);
 	draw_on_image(test, &test->dialog_box.mid, (test->param.width/2) * 64, (test->param.height) * 64);
 	draw_on_image(test, &test->dialog_box.mid, (test->param.width/2+1) * 64, (test->param.height) * 64);
 	draw_on_image(test, &test->dialog_box.right, (test->param.width/2+2) * 64, (test->param.height) * 64);
-	if (event == 1)
+	// printf("event = %d\n", test->dialog_box.event);
+	if (test->dialog_box.event == 1)
 	{
 		mlx_string_put(test->mlx, test->win, (test->param.width/2-2) * 64 + 4, (test->param.height) * 64 + 16, 0xf4fefe, "Hmm strange...");
 		mlx_string_put(test->mlx, test->win, (test->param.width/2-2) * 64 + 4, (test->param.height) * 64 + 32, 0xf4fefe, "This piano seems to be perfectly working...");
+		mlx_string_put(test->mlx, test->win, (test->param.width/2+1) * 64 + 8, (test->param.height) * 64 + 32 + 16 + 5, 0xf4fefe, "Press C to continue");
+		test->player.lock_pos = 1;
+	}
+	else if (test->dialog_box.event == 2)
+	{
+		mlx_string_put(test->mlx, test->win, (test->param.width/2-2) * 64 + 4, (test->param.height) * 64 + 16, 0xf4fefe, "You have 1 new item in your inventory!");
 		mlx_string_put(test->mlx, test->win, (test->param.width/2+1) * 64 + 8, (test->param.height) * 64 + 32 + 16 + 5, 0xf4fefe, "Press C to continue");
 		test->player.lock_pos = 1;
 	}
@@ -456,18 +465,18 @@ int    render(t_test *test)
 		draw_button(test);
 		test->param.rendered = 1;
 		if (test->dialog_box.keep == 1)
-			draw_dialog_box(test, 1);
+			draw_dialog_box(test);
 	}
 	return (0);
 }
 
 void	play_piano(t_test *test)
 {
-	if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 1] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 2] == '0' && test->player.pos_j + 1 < test->param.width - 1 && test->param.map[test->player.pos_i - 1][test->player.pos_j - 1] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j - 2] == '0')
+	if (test->player.pos_i != 1 && test->param.map[test->player.pos_i - 1][test->player.pos_j] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 1] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 2] == '0' && test->player.pos_j + 1 < test->param.width - 1 && test->param.map[test->player.pos_i - 1][test->player.pos_j - 1] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j - 2] == '0')
 	{
-		draw_dialog_box(test, 1);
+		test->dialog_box.event = 1;
+		draw_dialog_box(test);
 		test->dialog_box.keep = 1;
-		// ft_putstr_fd("Hmm strange.. This piano seems to be perfectly working...\n", 1);
 	}
 }
 
@@ -475,24 +484,36 @@ void	pick_up_coll(t_test *test)
 {
 	if (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C')
 	{
+		test->dialog_box.event = 2;
+		draw_dialog_box(test);
+		test->dialog_box.keep = 1;
 		test->param.map[test->player.pos_i][test->player.pos_j + 1] = '0';
         test->collec.count++;
         printf("%d object in your inventory\n", test->collec.count);
 	}
 	else if (test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'C')
 	{
+		test->dialog_box.event = 2;
+		draw_dialog_box(test);
+		test->dialog_box.keep = 1;
 		test->param.map[test->player.pos_i][test->player.pos_j - 1] = '0';
         test->collec.count++;
         printf("%d object in your inventory\n", test->collec.count);
 	}
 	else if (test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'C')
 	{
+		test->dialog_box.event = 2;
+		draw_dialog_box(test);
+		test->dialog_box.keep = 1;
 		test->param.map[test->player.pos_i + 1][test->player.pos_j] = '0';
         test->collec.count++;
         printf("%d object in your inventory\n", test->collec.count);
 	}
 	else if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == 'C')
 	{
+		test->dialog_box.event = 2;
+		draw_dialog_box(test);
+		test->dialog_box.keep = 1;
 		test->param.map[test->player.pos_i - 1][test->player.pos_j] = '0';
         test->collec.count++;
         printf("%d object in your inventory\n", test->collec.count);
@@ -626,6 +647,10 @@ int main(int ac, char **av)
 
 	test.all.spike.img = mlx_xpm_file_to_image(test.mlx, "textures/spike.xpm", &test.all.spike.x, &test.all.spike.y);
     test.all.spike.addr = mlx_get_data_addr(test.all.spike.img, &test.all.spike.bits_per_pixel, &test.all.spike.line_length, &test.all.spike.endian);
+	// test.all.hole_left.img = mlx_xpm_file_to_image(test.mlx, "textures/hole_left.xpm", &test.all.hole_left.x, &test.all.hole_left.y);
+    // test.all.hole_left.addr = mlx_get_data_addr(test.all.hole_left.img, &test.all.hole_left.bits_per_pixel, &test.all.hole_left.line_length, &test.all.hole_left.endian);
+	// test.all.hole_right.img = mlx_xpm_file_to_image(test.mlx, "textures/hole_right.xpm", &test.all.hole_right.x, &test.all.hole_right.y);
+    // test.all.hole_right.addr = mlx_get_data_addr(test.all.hole_right.img, &test.all.hole_right.bits_per_pixel, &test.all.hole_right.line_length, &test.all.hole_right.endian);
 	mlx_hook(test.win, 2, 1L << 0, &handle_keypress, &test);
     // render(&test);
 	mlx_loop_hook(test.mlx, render, &test);

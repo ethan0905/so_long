@@ -48,6 +48,10 @@ void	initialize(t_test *test)
 	test->all.dresser_topright.addr = NULL;
 	test->all.spike.img = NULL;
 	test->all.spike.addr = NULL;
+	// test->all.hole_left.img = NULL;
+	// test->all.hole_left.addr = NULL;
+	// test->all.hole_right.img = NULL;
+	// test->all.hole_right.addr = NULL;
 	test->collec.newspaper.img = NULL;
 	test->collec.newspaper.addr = NULL;
 	test->collec.wanted.img = NULL;
