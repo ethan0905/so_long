@@ -17,6 +17,7 @@ void	initialize(t_test *test)
 	test->player.pos_x = 0;
 	test->player.pos_y = 0;
 	test->player.steps = 0;
+	test->player.lock_pos = 0;
 	test->collec.amount = 0;
 	test->collec.count = 0;
 	test->collec.exit = 0;
@@ -64,7 +65,11 @@ void	initialize(t_test *test)
 	test->player.leftside.img = NULL;
 	test->player.leftside.addr = NULL;
 	test->button.time = 0;
-	// test->player.side->img = NULL;
-	write(1, "bonjour\n", 8);
-	// test->player.side->addr = NULL;
+	test->dialog_box.keep = 0;
+	test->dialog_box.right.img = NULL;
+	test->dialog_box.right.addr = NULL;
+	test->dialog_box.mid.img = NULL;
+	test->dialog_box.mid.addr = NULL;
+	test->dialog_box.left.img = NULL;
+	test->dialog_box.left.addr = NULL;
 }

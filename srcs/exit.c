@@ -44,6 +44,9 @@ void	clean_exit(t_test *test)
 	mlx_destroy_image(test->mlx, test->player.backside.img);
 	mlx_destroy_image(test->mlx, test->player.rightside.img);
 	mlx_destroy_image(test->mlx, test->player.leftside.img);
+	mlx_destroy_image(test->mlx, test->dialog_box.right.img);
+	mlx_destroy_image(test->mlx, test->dialog_box.mid.img);
+	mlx_destroy_image(test->mlx, test->dialog_box.left.img);
 	mlx_destroy_window(test->mlx, test->win);
 	test->win = NULL;
 	// mlx_loop_end(test->mlx);

@@ -34,6 +34,7 @@
 # define D 100
 # define E 101
 # define P 112
+# define C 99
 
 # define BUFFER_SIZE 1
 
@@ -70,6 +71,7 @@ typedef struct s_player
     int pos_x;
     int pos_y;
     int steps;
+    int lock_pos;
     t_data frontside;
     t_data backside;
     t_data rightside;
@@ -127,6 +129,14 @@ typedef struct s_button
     t_data p_key;
 }		t_button;
 
+typedef struct s_dialog
+{
+    int keep;
+    t_data right;
+    t_data mid;
+    t_data left;
+}		t_dialog;
+
 typedef struct s_test
 {
 	void *mlx;
@@ -137,6 +147,7 @@ typedef struct s_test
 	t_player player;
 	t_collec collec;
     t_button button;
+    t_dialog dialog_box;
 }               t_test;
 
 char	*get_line(char *save);

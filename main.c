@@ -421,33 +421,21 @@ void	draw_button(t_test *test)
 	}
 }
 
-// void	draw_trap(t_test *test)
-// {
-// 	int i;
-// 	int j;
-// 	int x;
-// 	int y;
-
-// 	i = 1;
-// 	while (test->param.map[i + 1])
-// 	{
-// 		j = 1;
-// 		while (test->param.map[i][j + 1])
-// 		{
-// 			x = (64 + (test->param.height - 2 - i)*64 + (j-1)*64);
-// 			y = (192 + (i-1)*64);
-// 			if (test->param.map[i][j] == 'T')
-// 			{
-//  				draw_on_image(test, &test->all.spike, x+16, y-32-8);
-//  				draw_on_image(test, &test->all.spike, x+8, y-32);
-//  				draw_on_image(test, &test->all.spike, x, y-16-8);
-//  				draw_on_image(test, &test->all.spike, x-8, y-16);
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
+void 	draw_dialog_box(t_test *test, int event)
+{
+	draw_on_image(test, &test->dialog_box.left, (test->param.width/2-2) * 64, (test->param.height) * 64);
+	draw_on_image(test, &test->dialog_box.mid, (test->param.width/2-1) * 64, (test->param.height) * 64);
+	draw_on_image(test, &test->dialog_box.mid, (test->param.width/2) * 64, (test->param.height) * 64);
+	draw_on_image(test, &test->dialog_box.mid, (test->param.width/2+1) * 64, (test->param.height) * 64);
+	draw_on_image(test, &test->dialog_box.right, (test->param.width/2+2) * 64, (test->param.height) * 64);
+	if (event == 1)
+	{
+		mlx_string_put(test->mlx, test->win, (test->param.width/2-2) * 64 + 4, (test->param.height) * 64 + 16, 0xf4fefe, "Hmm strange...");
+		mlx_string_put(test->mlx, test->win, (test->param.width/2-2) * 64 + 4, (test->param.height) * 64 + 32, 0xf4fefe, "This piano seems to be perfectly working...");
+		mlx_string_put(test->mlx, test->win, (test->param.width/2+1) * 64 + 8, (test->param.height) * 64 + 32 + 16 + 5, 0xf4fefe, "Press C to continue");
+		test->player.lock_pos = 1;
+	}
+}
 
 int    render(t_test *test)
 {
@@ -467,21 +455,9 @@ int    render(t_test *test)
 		draw_score(test);
 		draw_button(test);
 		test->param.rendered = 1;
+		if (test->dialog_box.keep == 1)
+			draw_dialog_box(test, 1);
 	}
-	// else if (test->param.rendered == 1)
-	// {
-	// 	draw_background(test);
-	// 	draw_walls(test);
-	// 	draw_floors(test);
-	// 	draw_furnitures(test);
-	// 	draw_collectibles(test);
-	// 	draw_exit(test);
-	// 	draw_trap(test);
-	// 	draw_player(test);
-	// 	mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
-	// 	draw_score(test);
-	// 	draw_button(test);
-	// }
 	return (0);
 }
 
@@ -489,7 +465,9 @@ void	play_piano(t_test *test)
 {
 	if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 1] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 2] == '0' && test->player.pos_j + 1 < test->param.width - 1 && test->param.map[test->player.pos_i - 1][test->player.pos_j - 1] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j - 2] == '0')
 	{
-		ft_putstr_fd("Hmm strange.. This piano seems to be perfectly working...\n", 1);
+		draw_dialog_box(test, 1);
+		test->dialog_box.keep = 1;
+		// ft_putstr_fd("Hmm strange.. This piano seems to be perfectly working...\n", 1);
 	}
 }
 
@@ -521,6 +499,12 @@ void	pick_up_coll(t_test *test)
 	}
 }
 
+void	clean_dialog(t_test *test)
+{
+	test->dialog_box.keep = 0;
+	test->player.lock_pos = 0;
+}
+
 int     handle_keypress(int keysym, t_test *test)
 {	
     if (keysym == ESC)
@@ -537,6 +521,8 @@ int     handle_keypress(int keysym, t_test *test)
 		pick_up_coll(test);
 	else if (keysym == P)
 		play_piano(test);
+	else if (keysym == C)
+		clean_dialog(test);
 	else if (keysym != ESC)
         write(1, &keysym, 1);
     return (0);
@@ -630,6 +616,13 @@ int main(int ac, char **av)
     test.button.e_key.addr = mlx_get_data_addr(test.button.e_key.img, &test.button.e_key.bits_per_pixel, &test.button.e_key.line_length, &test.button.e_key.endian);
 	test.button.p_key.img = mlx_xpm_file_to_image(test.mlx, "textures/key_p.xpm", &test.button.p_key.x, &test.button.p_key.y);
     test.button.p_key.addr = mlx_get_data_addr(test.button.p_key.img, &test.button.p_key.bits_per_pixel, &test.button.p_key.line_length, &test.button.p_key.endian);
+
+	test.dialog_box.right.img = mlx_xpm_file_to_image(test.mlx, "textures/dialog_box_right.xpm", &test.dialog_box.right.x, &test.dialog_box.right.y);
+    test.dialog_box.right.addr = mlx_get_data_addr(test.dialog_box.right.img, &test.dialog_box.right.bits_per_pixel, &test.dialog_box.right.line_length, &test.dialog_box.right.endian);
+	test.dialog_box.mid.img = mlx_xpm_file_to_image(test.mlx, "textures/dialog_box_mid.xpm", &test.dialog_box.mid.x, &test.dialog_box.mid.y);
+    test.dialog_box.mid.addr = mlx_get_data_addr(test.dialog_box.mid.img, &test.dialog_box.mid.bits_per_pixel, &test.dialog_box.mid.line_length, &test.dialog_box.mid.endian);
+	test.dialog_box.left.img = mlx_xpm_file_to_image(test.mlx, "textures/dialog_box_left.xpm", &test.dialog_box.left.x, &test.dialog_box.left.y);
+    test.dialog_box.left.addr = mlx_get_data_addr(test.dialog_box.left.img, &test.dialog_box.left.bits_per_pixel, &test.dialog_box.left.line_length, &test.dialog_box.left.endian);
 
 	test.all.spike.img = mlx_xpm_file_to_image(test.mlx, "textures/spike.xpm", &test.all.spike.x, &test.all.spike.y);
     test.all.spike.addr = mlx_get_data_addr(test.all.spike.img, &test.all.spike.bits_per_pixel, &test.all.spike.line_length, &test.all.spike.endian);
