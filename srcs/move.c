@@ -24,6 +24,17 @@ void move_right(t_test *test)
             test->collec.exit = 1;
             clean_exit(test);
         }
+        else if (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'T')
+        {
+	        test->player.side = &test->player.rightside;
+            test->life.lives--;
+            printf("What a good way to loose life\nlives left : %d\n", test->life.lives);
+            if (test->life.lives == 0)
+            {
+                printf("GAME OVER :(\n");
+                clean_exit(test);
+            }
+        }
         else
         {
             test->param.map[test->player.pos_i][test->player.pos_j] = '0';
@@ -64,6 +75,17 @@ void    move_left(t_test *test)
             printf("Good job! You finished the game \n");
             test->collec.exit = 1;
             clean_exit(test);
+        }
+        else if (test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'T')
+        {
+	        test->player.side = &test->player.leftside;
+            test->life.lives--;
+            printf("What a good way to loose life\nlives left : %d\n", test->life.lives);
+            if (test->life.lives == 0)
+            {
+                printf("GAME OVER :(\n");
+                clean_exit(test);
+            }
         }
         else
         {
@@ -106,6 +128,17 @@ void    move_down(t_test *test)
             test->collec.exit = 1;
             clean_exit(test);
         }
+        else if (test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'T')
+        {
+	        test->player.side = &test->player.frontside;
+            test->life.lives--;
+            printf("What a good way to loose life\nlives left : %d\n", test->life.lives);
+            if (test->life.lives == 0)
+            {
+                printf("GAME OVER :(\n");
+                clean_exit(test);
+            }
+        }
         else
         {
             test->param.map[test->player.pos_i][test->player.pos_j] = '0';
@@ -146,6 +179,17 @@ void    move_up(t_test *test)
             printf("Good job! You finished the game \n");
             test->collec.exit = 1;
             clean_exit(test);
+        }
+        else if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == 'T')
+        {
+		    test->player.side = &test->player.backside;
+            test->life.lives--;
+            printf("What a good way to loose life\nlives left : %d\n", test->life.lives);
+            if (test->life.lives == 0)
+            {
+                printf("GAME OVER :(\n");
+                clean_exit(test);
+            }
         }
         else
         {

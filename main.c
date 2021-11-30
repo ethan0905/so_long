@@ -258,6 +258,8 @@ void	draw_exit(t_test *test)
 			y = (192 + (i-1)*64);
 			if (test->param.map[i][j] == 'E')
 			{
+ 				// draw_on_image(test, &test->all.trapdoor_right, x + 23, y);
+ 				// draw_on_image(test, &test->all.trapdoor_left, x - 64 + 23, y);
  				draw_on_image(test, &test->all.exit_half_right, x + 23, y);
 				draw_on_image(test, &test->all.exit_half_left, x - 64 + 27, y);
 			}
@@ -460,6 +462,24 @@ void 	draw_dialog_box(t_test *test)
 	}
 }
 
+void	draw_life(t_test *test)
+{
+	int i;
+	int j;
+
+	i = test->life.lives;
+	while (i > 0)
+	{
+		j = 0;
+		while (j < i)
+		{
+			draw_on_image(test, &test->life.full_heart, 7 + j * 24, -10);
+			j++;
+		}
+		i--;
+	}
+}
+
 int    render(t_test *test)
 {
 	if (test->param.rendered == 0 || test->param.rendered == 1)
@@ -480,6 +500,7 @@ int    render(t_test *test)
 		test->param.rendered = 1;
 		if (test->dialog_box.keep == 1)
 			draw_dialog_box(test);
+		draw_life(test);
 	}
 	return (0);
 }
@@ -637,6 +658,11 @@ int main(int ac, char **av)
     test.all.exit_half_left.addr = mlx_get_data_addr(test.all.exit_half_left.img, &test.all.exit_half_left.bits_per_pixel, &test.all.exit_half_left.line_length, &test.all.exit_half_left.endian);
 	test.all.exit_half_right.img = mlx_xpm_file_to_image(test.mlx, "textures/ladder_half_right.xpm", &test.all.exit_half_right.x, &test.all.exit_half_right.y);
     test.all.exit_half_right.addr = mlx_get_data_addr(test.all.exit_half_right.img, &test.all.exit_half_right.bits_per_pixel, &test.all.exit_half_right.line_length, &test.all.exit_half_right.endian);
+	// write(1, "bonjour\n", 8);
+	// test.all.trapdoor_right.img = mlx_xpm_file_to_image(test.mlx, "textures/trapdoor_final_right.xpm", &test.all.trapdoor_right.x, &test.all.trapdoor_right.y);
+    // test.all.trapdoor_right.addr = mlx_get_data_addr(test.all.trapdoor_right.img, &test.all.trapdoor_right.bits_per_pixel, &test.all.trapdoor_right.line_length, &test.all.trapdoor_right.endian);
+	// test.all.trapdoor_left.img = mlx_xpm_file_to_image(test.mlx, "textures/trapdoor_persp_left.xpm", &test.all.trapdoor_left.x, &test.all.trapdoor_left.y);
+    // test.all.trapdoor_left.addr = mlx_get_data_addr(test.all.trapdoor_left.img, &test.all.trapdoor_left.bits_per_pixel, &test.all.trapdoor_left.line_length, &test.all.trapdoor_left.endian);
 	
 	test.player.frontside.img = mlx_xpm_file_to_image(test.mlx, "textures/detective_frontside.xpm", &test.player.frontside.x, &test.player.frontside.y);
 	test.player.frontside.addr = mlx_get_data_addr(test.player.frontside.img, &test.player.frontside.bits_per_pixel, &test.player.frontside.line_length, &test.player.frontside.endian);
@@ -658,6 +684,11 @@ int main(int ac, char **av)
     test.dialog_box.mid.addr = mlx_get_data_addr(test.dialog_box.mid.img, &test.dialog_box.mid.bits_per_pixel, &test.dialog_box.mid.line_length, &test.dialog_box.mid.endian);
 	test.dialog_box.left.img = mlx_xpm_file_to_image(test.mlx, "textures/dialog_box_left.xpm", &test.dialog_box.left.x, &test.dialog_box.left.y);
     test.dialog_box.left.addr = mlx_get_data_addr(test.dialog_box.left.img, &test.dialog_box.left.bits_per_pixel, &test.dialog_box.left.line_length, &test.dialog_box.left.endian);
+
+	test.life.full_heart.img = mlx_xpm_file_to_image(test.mlx, "textures/full_heart_2.xpm", &test.life.full_heart.x, &test.life.full_heart.y);
+	test.life.full_heart.addr = mlx_get_data_addr(test.life.full_heart.img, &test.life.full_heart.bits_per_pixel, &test.life.full_heart.line_length, &test.life.full_heart.endian);
+	test.life.empty_heart.img = mlx_xpm_file_to_image(test.mlx, "textures/dark_heart.xpm", &test.life.empty_heart.x, &test.life.empty_heart.y);
+	test.life.empty_heart.addr = mlx_get_data_addr(test.life.empty_heart.img, &test.life.empty_heart.bits_per_pixel, &test.life.empty_heart.line_length, &test.life.empty_heart.endian);
 
 	test.all.spike.img = mlx_xpm_file_to_image(test.mlx, "textures/spike.xpm", &test.all.spike.x, &test.all.spike.y);
     test.all.spike.addr = mlx_get_data_addr(test.all.spike.img, &test.all.spike.bits_per_pixel, &test.all.spike.line_length, &test.all.spike.endian);

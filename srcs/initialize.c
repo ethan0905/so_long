@@ -60,6 +60,10 @@ void	initialize(t_test *test)
 	test->all.exit_half_left.addr = NULL;
 	test->all.exit_half_right.img = NULL;
 	test->all.exit_half_right.addr = NULL;
+	// test->all.trapdoor_left.img = NULL;
+	// test->all.trapdoor_left.addr = NULL;
+	// test->all.trapdoor_right.img = NULL;
+	// test->all.trapdoor_right.addr = NULL; 
 	test->player.frontside.img = NULL;
 	test->player.frontside.addr = NULL;
 	test->player.backside.img = NULL;
@@ -76,4 +80,9 @@ void	initialize(t_test *test)
 	test->dialog_box.mid.addr = NULL;
 	test->dialog_box.left.img = NULL;
 	test->dialog_box.left.addr = NULL;
+	test->life.lives = 3;
+	test->life.full_heart.img = NULL;
+	test->life.full_heart.addr = NULL;
+	test->life.empty_heart.img = NULL;
+	test->life.empty_heart.addr = NULL;
 }

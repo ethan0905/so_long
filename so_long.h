@@ -109,6 +109,8 @@ typedef struct s_all
     t_piano piano;
     t_data exit_half_right;
     t_data exit_half_left;
+    // t_data trapdoor_right;
+    // t_data trapdoor_left;
     t_data spike;
     // t_data hole_right;
     // t_data hole_left;
@@ -141,6 +143,13 @@ typedef struct s_dialog
     t_data left;
 }		t_dialog;
 
+typedef struct s_life
+{
+    int lives;
+    t_data empty_heart;
+    t_data full_heart;
+}		t_life;
+
 typedef struct s_test
 {
 	void *mlx;
@@ -152,6 +161,7 @@ typedef struct s_test
 	t_collec collec;
     t_button button;
     t_dialog dialog_box;
+    t_life life;
 }               t_test;
 
 char	*get_line(char *save);
