@@ -368,12 +368,16 @@ void	draw_trap(t_test *test)
 
 void	draw_button(t_test *test)
 {
+	int i;
+
+	i = 0;
     if ((test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C' || test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'C' || test->param.map[test->player.pos_i - 1][test->player.pos_j] == 'C' || test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'C'))
     {
 		if (test->button.time % 2 == 0)
 		{
         	draw_on_image(test, &test->button.e_key, test->player.pos_x + 32, test->player.pos_y - 42);
-			usleep(450000);
+			while (i < 45000000)
+				i++;
 			test->button.time = 1;
 		}
 		else if (test->button.time % 2 == 1)
@@ -394,7 +398,8 @@ void	draw_button(t_test *test)
 				test->player.side = &test->player.frontside;
 			draw_player(test);
 			draw_score(test);
-			usleep(450000);
+			while (i < 240000000)
+				i++;
 			test->button.time = 0;
 		}
     }
@@ -403,7 +408,8 @@ void	draw_button(t_test *test)
 		if (test->button.time % 2 == 0 && test->player.lock_pos == 0)
 		{
         	draw_on_image(test, &test->button.p_key, test->player.pos_x + 32, test->player.pos_y - 42);
-			usleep(450000);
+			while (i < 45000000)
+				i++;
 			test->button.time = 1;
 		}
 		else if (test->button.time % 2 == 1)
@@ -417,7 +423,8 @@ void	draw_button(t_test *test)
 			test->player.side = &test->player.backside;
 			draw_player(test);
 			draw_score(test);
-			usleep(450000);
+			while (i < 240000000)
+				i++;
 			test->button.time = 0;
 		}
 	}
@@ -433,8 +440,6 @@ void 	draw_dialog_box(t_test *test)
 	// printf("event = %d\n", test->dialog_box.event);
 	if (test->dialog_box.event == 1)
 	{
-		// mlx_string_put(test->mlx, test->win, (test->param.width/2-2) * 64 + 4, (test->param.height) * 64 + 16, 0xf4fefe, "Hmm strange...");
-		// mlx_string_put(test->mlx, test->win, (test->param.width/2-2) * 64 + 4, (test->param.height) * 64 + 32, 0xf4fefe, "This piano seems to be perfectly working...");
 		mlx_string_put(test->mlx, test->win, (test->param.width/2-2) * 64 + 4, (test->param.height) * 64 + 16, 0xf4fefe, "Hmm strange... This piano seems to be perfectly");
 		mlx_string_put(test->mlx, test->win, (test->param.width/2-2) * 64 + 4, (test->param.height) * 64 + 32, 0xf4fefe, "working...");
 		mlx_string_put(test->mlx, test->win, (test->param.width/2+1) * 64 + 8, (test->param.height) * 64 + 32 + 16 + 5, 0xf4fefe, "Press C to continue");

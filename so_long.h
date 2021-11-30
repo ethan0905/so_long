@@ -172,6 +172,8 @@ void	my_mlx_pixel_put(t_test *test, int x, int y, int color);
 void	draw_on_image(t_test *test, t_data *img, int startx, int starty);
 void	draw_on_image_bis(t_test *test, t_data *img, int startx, int starty);
 void    draw_score(t_test *test);
+void 	draw_dialog_box(t_test *test);
+
 //Exit
 void	clean_exit(t_test *test);
 
