@@ -146,8 +146,10 @@ typedef struct s_dialog
 typedef struct s_life
 {
     int lives;
-    t_data empty_heart;
+    int damages;
+    t_data typeface_life;
     t_data full_heart;
+    t_data empty_heart;
 }		t_life;
 
 typedef struct s_test

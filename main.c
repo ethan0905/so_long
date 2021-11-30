@@ -467,14 +467,21 @@ void	draw_life(t_test *test)
 	int i;
 	int j;
 
+	draw_on_image(test, &test->life.typeface_life, 7, 28);
 	i = test->life.lives;
+	test->life.damages = 3 - test->life.lives;
 	while (i > 0)
 	{
 		j = 0;
 		while (j < i)
 		{
-			draw_on_image(test, &test->life.full_heart, 7 + j * 24, -10);
+			draw_on_image(test, &test->life.full_heart, 7 + j * 24, -5);
 			j++;
+		}
+		while (test->life.damages > 0)
+		{
+			draw_on_image(test, &test->life.empty_heart, 7 + ((test->life.damages - 1) + test->life.lives)* 24, -5);
+			test->life.damages--;
 		}
 		i--;
 	}
@@ -685,10 +692,12 @@ int main(int ac, char **av)
 	test.dialog_box.left.img = mlx_xpm_file_to_image(test.mlx, "textures/dialog_box_left.xpm", &test.dialog_box.left.x, &test.dialog_box.left.y);
     test.dialog_box.left.addr = mlx_get_data_addr(test.dialog_box.left.img, &test.dialog_box.left.bits_per_pixel, &test.dialog_box.left.line_length, &test.dialog_box.left.endian);
 
-	test.life.full_heart.img = mlx_xpm_file_to_image(test.mlx, "textures/full_heart_2.xpm", &test.life.full_heart.x, &test.life.full_heart.y);
+	test.life.full_heart.img = mlx_xpm_file_to_image(test.mlx, "textures/white_full_heart.xpm", &test.life.full_heart.x, &test.life.full_heart.y);
 	test.life.full_heart.addr = mlx_get_data_addr(test.life.full_heart.img, &test.life.full_heart.bits_per_pixel, &test.life.full_heart.line_length, &test.life.full_heart.endian);
-	test.life.empty_heart.img = mlx_xpm_file_to_image(test.mlx, "textures/dark_heart.xpm", &test.life.empty_heart.x, &test.life.empty_heart.y);
+	test.life.empty_heart.img = mlx_xpm_file_to_image(test.mlx, "textures/white_empty_heart.xpm", &test.life.empty_heart.x, &test.life.empty_heart.y);
 	test.life.empty_heart.addr = mlx_get_data_addr(test.life.empty_heart.img, &test.life.empty_heart.bits_per_pixel, &test.life.empty_heart.line_length, &test.life.empty_heart.endian);
+	test.life.typeface_life.img = mlx_xpm_file_to_image(test.mlx, "textures/typeface_life_2.xpm", &test.life.typeface_life.x, &test.life.typeface_life.y);
+	test.life.typeface_life.addr = mlx_get_data_addr(test.life.typeface_life.img, &test.life.typeface_life.bits_per_pixel, &test.life.typeface_life.line_length, &test.life.typeface_life.endian);
 
 	test.all.spike.img = mlx_xpm_file_to_image(test.mlx, "textures/spike.xpm", &test.all.spike.x, &test.all.spike.y);
     test.all.spike.addr = mlx_get_data_addr(test.all.spike.img, &test.all.spike.bits_per_pixel, &test.all.spike.line_length, &test.all.spike.endian);

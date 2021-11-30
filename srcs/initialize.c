@@ -81,6 +81,9 @@ void	initialize(t_test *test)
 	test->dialog_box.left.img = NULL;
 	test->dialog_box.left.addr = NULL;
 	test->life.lives = 3;
+	test->life.damages = 0;
+	test->life.typeface_life.img = NULL;
+	test->life.typeface_life.addr = NULL;
 	test->life.full_heart.img = NULL;
 	test->life.full_heart.addr = NULL;
 	test->life.empty_heart.img = NULL;
