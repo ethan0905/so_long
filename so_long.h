@@ -97,11 +97,19 @@ typedef struct s_piano
 typedef struct s_exit
 {
     int opened;
+    t_data exit_half_right;
+    t_data exit_half_left;
     t_data trapdoor_right;
     t_data trapdoor_left;
     t_data open_t_right;
     t_data open_t_left;
 }              t_exit;
+
+typedef struct s_chimney
+{
+    t_data bottom;
+    t_data top;
+}              t_chimney;
 
 typedef struct s_all
 {
@@ -116,13 +124,11 @@ typedef struct s_all
     t_data dresser_topleft;
     t_data dresser_downright;
     t_data dresser_downleft;
+    t_data babolex_painting;
+    t_chimney chimney;
     t_piano piano;
-    t_data exit_half_right;
-    t_data exit_half_left;
     t_exit exit;
     t_data spike;
-    // t_data hole_right;
-    // t_data hole_left;
 }               t_all;
 
 typedef struct s_collec

@@ -25,9 +25,8 @@ void	clean_exit(t_test *test)
 	mlx_destroy_image(test->mlx, test->all.dresser_topleft.img);
 	mlx_destroy_image(test->mlx, test->all.dresser_downright.img);
 	mlx_destroy_image(test->mlx, test->all.dresser_downleft.img);
+	mlx_destroy_image(test->mlx, test->all.babolex_painting.img);
 	mlx_destroy_image(test->mlx, test->all.spike.img);
-	// mlx_destroy_image(test->mlx, test->all.hole_left.img);
-	// mlx_destroy_image(test->mlx, test->all.hole_right.img);
 	mlx_destroy_image(test->mlx, test->collec.newspaper.img);
 	mlx_destroy_image(test->mlx, test->collec.wanted.img);
 	mlx_destroy_image(test->mlx, test->collec.murder_article.img);
@@ -40,12 +39,14 @@ void	clean_exit(t_test *test)
 	mlx_destroy_image(test->mlx, test->all.piano.topleft.img);
 	mlx_destroy_image(test->mlx, test->all.piano.topmid.img);
 	mlx_destroy_image(test->mlx, test->all.piano.topright.img);
-	mlx_destroy_image(test->mlx, test->all.exit_half_right.img);
-	mlx_destroy_image(test->mlx, test->all.exit_half_left.img);
+	mlx_destroy_image(test->mlx, test->all.exit.exit_half_right.img);
+	mlx_destroy_image(test->mlx, test->all.exit.exit_half_left.img);
 	mlx_destroy_image(test->mlx, test->all.exit.trapdoor_right.img);
 	mlx_destroy_image(test->mlx, test->all.exit.trapdoor_left.img);
 	mlx_destroy_image(test->mlx, test->all.exit.open_t_right.img);
 	mlx_destroy_image(test->mlx, test->all.exit.open_t_left.img);
+	mlx_destroy_image(test->mlx, test->all.chimney.bottom.img);
+	mlx_destroy_image(test->mlx, test->all.chimney.top.img);
 	mlx_destroy_image(test->mlx, test->player.frontside.img);
 	mlx_destroy_image(test->mlx, test->player.backside.img);
 	mlx_destroy_image(test->mlx, test->player.rightside.img);
