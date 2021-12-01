@@ -363,8 +363,6 @@ void	draw_trap(t_test *test)
 			y = (192 + (i-1)*64);
 			if (test->param.map[i][j] == 'T')
 			{
-				// draw_on_image(test, &test->all.hole_left, x-8, y);
-				// draw_on_image(test, &test->all.hole_right, x-8+64, y);
  				draw_on_image(test, &test->all.spike, x+16, y-32-8);
  				draw_on_image(test, &test->all.spike, x+8, y-32);
  				draw_on_image(test, &test->all.spike, x, y-16-8);
@@ -396,7 +394,6 @@ void	draw_button(t_test *test)
 			draw_floors(test);
 			draw_furnitures(test);
 			draw_collectibles(test);
-			draw_exit(test);
 			draw_trap(test);
 			if (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C')
 				test->player.side = &test->player.rightside;
@@ -406,7 +403,11 @@ void	draw_button(t_test *test)
 				test->player.side = &test->player.backside;
 			else if (test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'C')
 				test->player.side = &test->player.frontside;
+			if (test->all.exit.opened == 1)
+				draw_exit(test);
 			draw_player(test);
+			if (test->all.exit.opened == 0)
+				draw_exit(test);
 			draw_score(test);
 			while (i < 240000000)
 				i++;
@@ -428,10 +429,13 @@ void	draw_button(t_test *test)
 			draw_floors(test);
 			draw_furnitures(test);
 			draw_collectibles(test);
-			draw_exit(test);
 			draw_trap(test);
 			test->player.side = &test->player.backside;
+			if (test->all.exit.opened == 1)
+				draw_exit(test);
 			draw_player(test);
+			if (test->all.exit.opened == 0)
+				draw_exit(test);
 			draw_score(test);
 			while (i < 240000000)
 				i++;
@@ -454,9 +458,12 @@ void	draw_button(t_test *test)
 			draw_floors(test);
 			draw_furnitures(test);
 			draw_collectibles(test);
-			draw_exit(test);
 			draw_trap(test);
+			if (test->all.exit.opened == 1)
+				draw_exit(test);
 			draw_player(test);
+			if (test->all.exit.opened == 0)
+				draw_exit(test);
 			draw_score(test);
 			while (i < 240000000)
 				i++;
@@ -529,11 +536,14 @@ int    render(t_test *test)
 		draw_floors(test);
 		draw_furnitures(test);
 		draw_collectibles(test);
-		draw_exit(test);
 		draw_trap(test);
 		if (test->param.rendered == 0)
 			test->player.side = &test->player.frontside;
+		if (test->all.exit.opened == 1)
+			draw_exit(test);
 		draw_player(test);
+		if (test->all.exit.opened == 0)
+			draw_exit(test);
 		mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
 		draw_score(test);
 		draw_button(test);
