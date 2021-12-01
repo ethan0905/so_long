@@ -258,10 +258,12 @@ void	draw_exit(t_test *test)
 			y = (192 + (i-1)*64);
 			if (test->param.map[i][j] == 'E')
 			{
- 				// draw_on_image(test, &test->all.exit.trapdoor_right, x + 23, y);
- 				// draw_on_image(test, &test->all.exit.trapdoor_left, x - 64 + 23, y);
  				draw_on_image(test, &test->all.exit_half_right, x + 23, y);
 				draw_on_image(test, &test->all.exit_half_left, x - 64 + 27, y);
+ 				draw_on_image(test, &test->all.exit.trapdoor_right, x + 23, y);
+ 				draw_on_image(test, &test->all.exit.trapdoor_left, x - 64 + 23, y);
+ 				draw_on_image(test, &test->all.exit.open_t_right, x + 23 + 64 - 8, y-64 + 12);
+ 				draw_on_image(test, &test->all.exit.open_t_left, x - 64 + 23 + 64 - 8, y-64 + 12);
 			}
 			j++;
 		}
@@ -666,10 +668,14 @@ int main(int ac, char **av)
 	test.all.exit_half_right.img = mlx_xpm_file_to_image(test.mlx, "textures/CUT_ladder_right.xpm", &test.all.exit_half_right.x, &test.all.exit_half_right.y);
     test.all.exit_half_right.addr = mlx_get_data_addr(test.all.exit_half_right.img, &test.all.exit_half_right.bits_per_pixel, &test.all.exit_half_right.line_length, &test.all.exit_half_right.endian);
 	// write(1, "bonjour\n", 8);
-	test.all.exit.trapdoor_right.img = mlx_xpm_file_to_image(test.mlx, "textures/trapdoor_cut_right.xpm", &test.all.exit.trapdoor_right.x, &test.all.exit.trapdoor_right.y);
+	test.all.exit.trapdoor_right.img = mlx_xpm_file_to_image(test.mlx, "textures/FINAL2_right.xpm", &test.all.exit.trapdoor_right.x, &test.all.exit.trapdoor_right.y);
     test.all.exit.trapdoor_right.addr = mlx_get_data_addr(test.all.exit.trapdoor_right.img, &test.all.exit.trapdoor_right.bits_per_pixel, &test.all.exit.trapdoor_right.line_length, &test.all.exit.trapdoor_right.endian);
-	test.all.exit.trapdoor_left.img = mlx_xpm_file_to_image(test.mlx, "textures/trapdoor_cut_left.xpm", &test.all.exit.trapdoor_left.x, &test.all.exit.trapdoor_left.y);
+	test.all.exit.trapdoor_left.img = mlx_xpm_file_to_image(test.mlx, "textures/FINAL2_left.xpm", &test.all.exit.trapdoor_left.x, &test.all.exit.trapdoor_left.y);
     test.all.exit.trapdoor_left.addr = mlx_get_data_addr(test.all.exit.trapdoor_left.img, &test.all.exit.trapdoor_left.bits_per_pixel, &test.all.exit.trapdoor_left.line_length, &test.all.exit.trapdoor_left.endian);
+	test.all.exit.open_t_right.img = mlx_xpm_file_to_image(test.mlx, "textures/trapdoor_on_floor_right.xpm", &test.all.exit.open_t_right.x, &test.all.exit.open_t_right.y);
+    test.all.exit.open_t_right.addr = mlx_get_data_addr(test.all.exit.open_t_right.img, &test.all.exit.open_t_right.bits_per_pixel, &test.all.exit.open_t_right.line_length, &test.all.exit.open_t_right.endian);
+	test.all.exit.open_t_left.img = mlx_xpm_file_to_image(test.mlx, "textures/trapdoor_on_floor_left.xpm", &test.all.exit.open_t_left.x, &test.all.exit.open_t_left.y);
+    test.all.exit.open_t_left.addr = mlx_get_data_addr(test.all.exit.open_t_left.img, &test.all.exit.open_t_left.bits_per_pixel, &test.all.exit.open_t_left.line_length, &test.all.exit.open_t_left.endian);
 	
 	test.player.frontside.img = mlx_xpm_file_to_image(test.mlx, "textures/detective_frontside.xpm", &test.player.frontside.x, &test.player.frontside.y);
 	test.player.frontside.addr = mlx_get_data_addr(test.player.frontside.img, &test.player.frontside.bits_per_pixel, &test.player.frontside.line_length, &test.player.frontside.endian);

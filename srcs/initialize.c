@@ -64,7 +64,11 @@ void	initialize(t_test *test)
 	test->all.exit.trapdoor_left.img = NULL;
 	test->all.exit.trapdoor_left.addr = NULL;
 	test->all.exit.trapdoor_right.img = NULL;
-	test->all.exit.trapdoor_right.addr = NULL; 
+	test->all.exit.trapdoor_right.addr = NULL;
+	test->all.exit.open_t_left.img = NULL;
+	test->all.exit.open_t_left.addr = NULL; 
+	test->all.exit.open_t_right.img = NULL;
+	test->all.exit.open_t_right.addr = NULL; 
 	test->player.frontside.img = NULL;
 	test->player.frontside.addr = NULL;
 	test->player.backside.img = NULL;

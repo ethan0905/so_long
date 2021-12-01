@@ -97,6 +97,8 @@ typedef struct s_exit
 {
     t_data trapdoor_right;
     t_data trapdoor_left;
+    t_data open_t_right;
+    t_data open_t_left;
 }              t_exit;
 
 typedef struct s_all

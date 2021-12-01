@@ -44,6 +44,8 @@ void	clean_exit(t_test *test)
 	mlx_destroy_image(test->mlx, test->all.exit_half_left.img);
 	mlx_destroy_image(test->mlx, test->all.exit.trapdoor_right.img);
 	mlx_destroy_image(test->mlx, test->all.exit.trapdoor_left.img);
+	mlx_destroy_image(test->mlx, test->all.exit.open_t_right.img);
+	mlx_destroy_image(test->mlx, test->all.exit.open_t_left.img);
 	mlx_destroy_image(test->mlx, test->player.frontside.img);
 	mlx_destroy_image(test->mlx, test->player.backside.img);
 	mlx_destroy_image(test->mlx, test->player.rightside.img);
