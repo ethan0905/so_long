@@ -260,10 +260,16 @@ void	draw_exit(t_test *test)
 			{
  				draw_on_image(test, &test->all.exit_half_right, x + 23, y);
 				draw_on_image(test, &test->all.exit_half_left, x - 64 + 27, y);
- 				draw_on_image(test, &test->all.exit.trapdoor_right, x + 23, y);
- 				draw_on_image(test, &test->all.exit.trapdoor_left, x - 64 + 23, y);
- 				draw_on_image(test, &test->all.exit.open_t_right, x + 23 + 64 - 8, y-64 + 12);
- 				draw_on_image(test, &test->all.exit.open_t_left, x - 64 + 23 + 64 - 8, y-64 + 12);
+				if (test->all.exit.opened == 0)
+				{
+ 					draw_on_image(test, &test->all.exit.trapdoor_right, x + 23, y);
+ 					draw_on_image(test, &test->all.exit.trapdoor_left, x - 64 + 23, y);
+				}
+				else if (test->all.exit.opened == 1)
+				{
+ 					draw_on_image(test, &test->all.exit.open_t_right, x + 23 + 64 - 8, y-64 + 12);
+ 					draw_on_image(test, &test->all.exit.open_t_left, x - 64 + 23 + 64 - 8, y-64 + 12);
+				}
 			}
 			j++;
 		}
@@ -432,6 +438,31 @@ void	draw_button(t_test *test)
 			test->button.time = 0;
 		}
 	}
+	else if (test->collec.exit == 1 && test->all.exit.opened == 0)
+	{
+		if (test->button.time % 2 == 0)
+		{
+        	draw_on_image(test, &test->button.o_key, test->player.pos_x + 32, test->player.pos_y - 42);
+			while (i < 45000000)
+				i++;
+			test->button.time = 1;
+			test->player.lock_pos = 1;
+		}
+		else if (test->button.time % 2 == 1)
+		{
+			draw_walls(test);
+			draw_floors(test);
+			draw_furnitures(test);
+			draw_collectibles(test);
+			draw_exit(test);
+			draw_trap(test);
+			draw_player(test);
+			draw_score(test);
+			while (i < 240000000)
+				i++;
+			test->button.time = 0;
+		}
+	}
 }
 
 void 	draw_dialog_box(t_test *test)
@@ -570,6 +601,12 @@ void	clean_dialog(t_test *test)
 	test->player.lock_pos = 0;
 }
 
+void	open_trapdoor(t_test *test)
+{
+	test->all.exit.opened = 1;
+	test->player.lock_pos = 0;
+}
+
 int     handle_keypress(int keysym, t_test *test)
 {	
     if (keysym == ESC)
@@ -588,6 +625,8 @@ int     handle_keypress(int keysym, t_test *test)
 		play_piano(test);
 	else if (keysym == C)
 		clean_dialog(test);
+	else if (keysym == O)
+		open_trapdoor(test);
 	else if (keysym != ESC)
         write(1, &keysym, 1);
     return (0);
@@ -690,6 +729,8 @@ int main(int ac, char **av)
     test.button.e_key.addr = mlx_get_data_addr(test.button.e_key.img, &test.button.e_key.bits_per_pixel, &test.button.e_key.line_length, &test.button.e_key.endian);
 	test.button.p_key.img = mlx_xpm_file_to_image(test.mlx, "textures/key_p.xpm", &test.button.p_key.x, &test.button.p_key.y);
     test.button.p_key.addr = mlx_get_data_addr(test.button.p_key.img, &test.button.p_key.bits_per_pixel, &test.button.p_key.line_length, &test.button.p_key.endian);
+	test.button.o_key.img = mlx_xpm_file_to_image(test.mlx, "textures/key_o.xpm", &test.button.o_key.x, &test.button.o_key.y);
+    test.button.o_key.addr = mlx_get_data_addr(test.button.o_key.img, &test.button.o_key.bits_per_pixel, &test.button.o_key.line_length, &test.button.o_key.endian);
 
 	test.dialog_box.right.img = mlx_xpm_file_to_image(test.mlx, "textures/dialog_box_right.xpm", &test.dialog_box.right.x, &test.dialog_box.right.y);
     test.dialog_box.right.addr = mlx_get_data_addr(test.dialog_box.right.img, &test.dialog_box.right.bits_per_pixel, &test.dialog_box.right.line_length, &test.dialog_box.right.endian);

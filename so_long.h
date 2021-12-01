@@ -35,6 +35,7 @@
 # define E 101
 # define P 112
 # define C 99
+# define O 111
 
 # define BUFFER_SIZE 1
 # define FRAME 250
@@ -95,6 +96,7 @@ typedef struct s_piano
 
 typedef struct s_exit
 {
+    int opened;
     t_data trapdoor_right;
     t_data trapdoor_left;
     t_data open_t_right;
@@ -139,6 +141,7 @@ typedef struct s_button
     int time;
     t_data e_key;
     t_data p_key;
+    t_data o_key;
 }		t_button;
 
 typedef struct s_dialog

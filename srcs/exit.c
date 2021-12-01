@@ -60,6 +60,7 @@ void	clean_exit(t_test *test)
 	mlx_destroy_image(test->mlx, test->stats.step.img);
 	mlx_destroy_image(test->mlx, test->button.e_key.img);
 	mlx_destroy_image(test->mlx, test->button.p_key.img);
+	mlx_destroy_image(test->mlx, test->button.o_key.img);
 
 	mlx_destroy_window(test->mlx, test->win);
 	test->win = NULL;

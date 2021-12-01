@@ -68,7 +68,8 @@ void	initialize(t_test *test)
 	test->all.exit.open_t_left.img = NULL;
 	test->all.exit.open_t_left.addr = NULL; 
 	test->all.exit.open_t_right.img = NULL;
-	test->all.exit.open_t_right.addr = NULL; 
+	test->all.exit.open_t_right.addr = NULL;
+	test->all.exit.opened = 0;
 	test->player.frontside.img = NULL;
 	test->player.frontside.addr = NULL;
 	test->player.backside.img = NULL;
@@ -78,6 +79,12 @@ void	initialize(t_test *test)
 	test->player.leftside.img = NULL;
 	test->player.leftside.addr = NULL;
 	test->button.time = 0;
+	test->button.e_key.img = NULL;
+	test->button.e_key.addr = NULL;
+	test->button.p_key.img = NULL;
+	test->button.p_key.addr = NULL;
+	test->button.o_key.img = NULL;
+	test->button.o_key.addr = NULL;
 	test->dialog_box.keep = 0;
 	test->dialog_box.right.img = NULL;
 	test->dialog_box.right.addr = NULL;

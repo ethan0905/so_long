@@ -20,9 +20,10 @@ void move_right(t_test *test)
         else if (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'E' && test->collec.count == test->collec.amount)
         {
 	        test->player.side = &test->player.rightside;
-            printf("Good job! You finished the game \n");
+            // printf("Good job! You finished the game\n");
             test->collec.exit = 1;
-            clean_exit(test);
+            if (test->all.exit.opened == 1)
+                clean_exit(test);
         }
         else if (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'T')
         {
@@ -74,7 +75,8 @@ void    move_left(t_test *test)
 	        test->player.side = &test->player.leftside;
             printf("Good job! You finished the game \n");
             test->collec.exit = 1;
-            clean_exit(test);
+            if (test->all.exit.opened == 1)
+                clean_exit(test);
         }
         else if (test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'T')
         {
@@ -126,7 +128,8 @@ void    move_down(t_test *test)
 	        test->player.side = &test->player.frontside;
             printf("Good job! You finished the game \n");
             test->collec.exit = 1;
-            clean_exit(test);
+            if (test->all.exit.opened == 1)
+                clean_exit(test);
         }
         else if (test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'T')
         {
@@ -178,7 +181,8 @@ void    move_up(t_test *test)
 		    test->player.side = &test->player.backside;
             printf("Good job! You finished the game \n");
             test->collec.exit = 1;
-            clean_exit(test);
+            if (test->all.exit.opened == 1)
+                clean_exit(test);
         }
         else if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == 'T')
         {
