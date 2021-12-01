@@ -317,18 +317,18 @@ void	draw_score(t_test *test)
 	steps = ft_itoa(test->player.steps);
 	if (!steps)
 		clean_exit(test);
-	mlx_string_put(test->mlx, test->win, 10, 12, 0xf4fefe, "Total steps :");
-	mlx_string_put(test->mlx, test->win, 92, 13, 0xf4fefe, steps);
+	mlx_string_put(test->mlx, test->win, 25 - 3 - ft_strlen(steps), 20 + 10, 0xf4fefe, steps);
+	draw_on_image(test, &test->stats.step, 40 - 8, -10);
 	collec = ft_itoa(test->collec.count);
 	if (!collec)
 		clean_exit(test);
 	amount = ft_itoa(test->collec.amount);
 	if (!amount)
 		clean_exit(test);
-	mlx_string_put(test->mlx, test->win, 10, 24, 0xfefefe, "Collectibles collected :");
-	mlx_string_put(test->mlx, test->win, 158, 25, 0xfefefe, collec);
-	mlx_string_put(test->mlx, test->win, 166 + (ft_strlen(collec) - 1) * 6, 25, 0xfefefe, "/");
-	mlx_string_put(test->mlx, test->win, 173 + (ft_strlen(collec) - 1) * 7, 25, 0xfefefe, amount);
+	mlx_string_put(test->mlx, test->win, 158 - 100 - 32 - 10, 25 + 32 - 7 + 20, 0xfefefe, collec);
+	mlx_string_put(test->mlx, test->win, 166 - 100 - 32 - 10 + (ft_strlen(collec) - 1) * 6, 25 + 32 - 7 + 20, 0xfefefe, "/");
+	mlx_string_put(test->mlx, test->win, 173 - 100 - 32 - 10 + (ft_strlen(collec) - 1) * 7, 25 + 32 - 7 + 20, 0xfefefe, amount);
+	draw_on_image(test, &test->stats.glass, 173 - 100 - 32 - 10 + (ft_strlen(collec) - 1) * 7, 15 + 20);
 
 	free(steps);
 	steps = NULL;
@@ -467,21 +467,21 @@ void	draw_life(t_test *test)
 	int i;
 	int j;
 
-	draw_on_image(test, &test->life.typeface_life, 7, 28);
-	i = test->life.lives;
-	test->life.damages = 3 - test->life.lives;
+	draw_on_image(test, &test->stats.typeface_life, 7, 28 + 64);
+	i = test->stats.lives;
+	test->stats.damages = 3 - test->stats.lives;
 	while (i > 0)
 	{
 		j = 0;
 		while (j < i)
 		{
-			draw_on_image(test, &test->life.full_heart, 7 + j * 24, -5);
+			draw_on_image(test, &test->stats.full_heart, 7 + j * 24, -5 + 64);
 			j++;
 		}
-		while (test->life.damages > 0)
+		while (test->stats.damages > 0)
 		{
-			draw_on_image(test, &test->life.empty_heart, 7 + ((test->life.damages - 1) + test->life.lives)* 24, -5);
-			test->life.damages--;
+			draw_on_image(test, &test->stats.empty_heart, 7 + ((test->stats.damages - 1) + test->stats.lives)* 24, -5 + 64);
+			test->stats.damages--;
 		}
 		i--;
 	}
@@ -692,12 +692,16 @@ int main(int ac, char **av)
 	test.dialog_box.left.img = mlx_xpm_file_to_image(test.mlx, "textures/dialog_box_left.xpm", &test.dialog_box.left.x, &test.dialog_box.left.y);
     test.dialog_box.left.addr = mlx_get_data_addr(test.dialog_box.left.img, &test.dialog_box.left.bits_per_pixel, &test.dialog_box.left.line_length, &test.dialog_box.left.endian);
 
-	test.life.full_heart.img = mlx_xpm_file_to_image(test.mlx, "textures/white_full_heart.xpm", &test.life.full_heart.x, &test.life.full_heart.y);
-	test.life.full_heart.addr = mlx_get_data_addr(test.life.full_heart.img, &test.life.full_heart.bits_per_pixel, &test.life.full_heart.line_length, &test.life.full_heart.endian);
-	test.life.empty_heart.img = mlx_xpm_file_to_image(test.mlx, "textures/white_empty_heart.xpm", &test.life.empty_heart.x, &test.life.empty_heart.y);
-	test.life.empty_heart.addr = mlx_get_data_addr(test.life.empty_heart.img, &test.life.empty_heart.bits_per_pixel, &test.life.empty_heart.line_length, &test.life.empty_heart.endian);
-	test.life.typeface_life.img = mlx_xpm_file_to_image(test.mlx, "textures/typeface_life_2.xpm", &test.life.typeface_life.x, &test.life.typeface_life.y);
-	test.life.typeface_life.addr = mlx_get_data_addr(test.life.typeface_life.img, &test.life.typeface_life.bits_per_pixel, &test.life.typeface_life.line_length, &test.life.typeface_life.endian);
+	test.stats.full_heart.img = mlx_xpm_file_to_image(test.mlx, "textures/white_full_heart.xpm", &test.stats.full_heart.x, &test.stats.full_heart.y);
+	test.stats.full_heart.addr = mlx_get_data_addr(test.stats.full_heart.img, &test.stats.full_heart.bits_per_pixel, &test.stats.full_heart.line_length, &test.stats.full_heart.endian);
+	test.stats.empty_heart.img = mlx_xpm_file_to_image(test.mlx, "textures/white_empty_heart.xpm", &test.stats.empty_heart.x, &test.stats.empty_heart.y);
+	test.stats.empty_heart.addr = mlx_get_data_addr(test.stats.empty_heart.img, &test.stats.empty_heart.bits_per_pixel, &test.stats.empty_heart.line_length, &test.stats.empty_heart.endian);
+	test.stats.typeface_life.img = mlx_xpm_file_to_image(test.mlx, "textures/typeface_life_2.xpm", &test.stats.typeface_life.x, &test.stats.typeface_life.y);
+	test.stats.typeface_life.addr = mlx_get_data_addr(test.stats.typeface_life.img, &test.stats.typeface_life.bits_per_pixel, &test.stats.typeface_life.line_length, &test.stats.typeface_life.endian);
+	test.stats.glass.img = mlx_xpm_file_to_image(test.mlx, "textures/glass_rotated.xpm", &test.stats.glass.x, &test.stats.glass.y);
+	test.stats.glass.addr = mlx_get_data_addr(test.stats.glass.img, &test.stats.glass.bits_per_pixel, &test.stats.glass.line_length, &test.stats.glass.endian);
+	test.stats.step.img = mlx_xpm_file_to_image(test.mlx, "textures/shoes.xpm", &test.stats.step.x, &test.stats.step.y);
+	test.stats.step.addr = mlx_get_data_addr(test.stats.step.img, &test.stats.step.bits_per_pixel, &test.stats.step.line_length, &test.stats.step.endian);
 
 	test.all.spike.img = mlx_xpm_file_to_image(test.mlx, "textures/spike.xpm", &test.all.spike.x, &test.all.spike.y);
     test.all.spike.addr = mlx_get_data_addr(test.all.spike.img, &test.all.spike.bits_per_pixel, &test.all.spike.line_length, &test.all.spike.endian);

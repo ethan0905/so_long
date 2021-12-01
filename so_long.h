@@ -143,14 +143,16 @@ typedef struct s_dialog
     t_data left;
 }		t_dialog;
 
-typedef struct s_life
+typedef struct s_stats
 {
     int lives;
     int damages;
     t_data typeface_life;
     t_data full_heart;
     t_data empty_heart;
-}		t_life;
+    t_data glass;
+    t_data step;
+}		t_stats;
 
 typedef struct s_test
 {
@@ -163,7 +165,7 @@ typedef struct s_test
 	t_collec collec;
     t_button button;
     t_dialog dialog_box;
-    t_life life;
+    t_stats stats;
 }               t_test;
 
 char	*get_line(char *save);

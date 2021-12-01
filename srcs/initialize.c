@@ -80,12 +80,16 @@ void	initialize(t_test *test)
 	test->dialog_box.mid.addr = NULL;
 	test->dialog_box.left.img = NULL;
 	test->dialog_box.left.addr = NULL;
-	test->life.lives = 3;
-	test->life.damages = 0;
-	test->life.typeface_life.img = NULL;
-	test->life.typeface_life.addr = NULL;
-	test->life.full_heart.img = NULL;
-	test->life.full_heart.addr = NULL;
-	test->life.empty_heart.img = NULL;
-	test->life.empty_heart.addr = NULL;
+	test->stats.lives = 3;
+	test->stats.damages = 0;
+	test->stats.typeface_life.img = NULL;
+	test->stats.typeface_life.addr = NULL;
+	test->stats.full_heart.img = NULL;
+	test->stats.full_heart.addr = NULL;
+	test->stats.empty_heart.img = NULL;
+	test->stats.empty_heart.addr = NULL;
+	test->stats.glass.img = NULL;
+	test->stats.glass.addr = NULL;
+	test->stats.step.img = NULL;
+	test->stats.step.addr = NULL;
 }

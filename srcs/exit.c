@@ -50,9 +50,11 @@ void	clean_exit(t_test *test)
 	mlx_destroy_image(test->mlx, test->dialog_box.right.img);
 	mlx_destroy_image(test->mlx, test->dialog_box.mid.img);
 	mlx_destroy_image(test->mlx, test->dialog_box.left.img);
-	mlx_destroy_image(test->mlx, test->life.full_heart.img);
-	mlx_destroy_image(test->mlx, test->life.empty_heart.img);
-	mlx_destroy_image(test->mlx, test->life.typeface_life.img);
+	mlx_destroy_image(test->mlx, test->stats.full_heart.img);
+	mlx_destroy_image(test->mlx, test->stats.empty_heart.img);
+	mlx_destroy_image(test->mlx, test->stats.typeface_life.img);
+	mlx_destroy_image(test->mlx, test->stats.glass.img);
+	mlx_destroy_image(test->mlx, test->stats.step.img);
 	mlx_destroy_window(test->mlx, test->win);
 	test->win = NULL;
 	// mlx_loop_end(test->mlx);
