@@ -22,6 +22,7 @@ void	initialize(t_test *test)
 	test->collec.count = 0;
 	test->collec.exit = 0;
 	test->collec.random = 0;
+	test->stats.lives = 3;
 	test->data.img = NULL;
 	test->data.addr = NULL;
 	test->all.wall.img = NULL;
@@ -60,10 +61,10 @@ void	initialize(t_test *test)
 	test->all.exit_half_left.addr = NULL;
 	test->all.exit_half_right.img = NULL;
 	test->all.exit_half_right.addr = NULL;
-	// test->all.trapdoor_left.img = NULL;
-	// test->all.trapdoor_left.addr = NULL;
-	// test->all.trapdoor_right.img = NULL;
-	// test->all.trapdoor_right.addr = NULL; 
+	test->all.exit.trapdoor_left.img = NULL;
+	test->all.exit.trapdoor_left.addr = NULL;
+	test->all.exit.trapdoor_right.img = NULL;
+	test->all.exit.trapdoor_right.addr = NULL; 
 	test->player.frontside.img = NULL;
 	test->player.frontside.addr = NULL;
 	test->player.backside.img = NULL;
@@ -80,7 +81,6 @@ void	initialize(t_test *test)
 	test->dialog_box.mid.addr = NULL;
 	test->dialog_box.left.img = NULL;
 	test->dialog_box.left.addr = NULL;
-	test->stats.lives = 3;
 	test->stats.damages = 0;
 	test->stats.typeface_life.img = NULL;
 	test->stats.typeface_life.addr = NULL;

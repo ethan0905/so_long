@@ -93,6 +93,12 @@ typedef struct s_piano
     t_data downleft;
 }              t_piano;
 
+typedef struct s_exit
+{
+    t_data trapdoor_right;
+    t_data trapdoor_left;
+}              t_exit;
+
 typedef struct s_all
 {
     t_data wall;
@@ -109,8 +115,7 @@ typedef struct s_all
     t_piano piano;
     t_data exit_half_right;
     t_data exit_half_left;
-    // t_data trapdoor_right;
-    // t_data trapdoor_left;
+    t_exit exit;
     t_data spike;
     // t_data hole_right;
     // t_data hole_left;

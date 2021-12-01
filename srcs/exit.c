@@ -42,7 +42,8 @@ void	clean_exit(t_test *test)
 	mlx_destroy_image(test->mlx, test->all.piano.topright.img);
 	mlx_destroy_image(test->mlx, test->all.exit_half_right.img);
 	mlx_destroy_image(test->mlx, test->all.exit_half_left.img);
-	// mlx_destroy_image(test->mlx, test->all.trapdoor_right.img);
+	mlx_destroy_image(test->mlx, test->all.exit.trapdoor_right.img);
+	mlx_destroy_image(test->mlx, test->all.exit.trapdoor_left.img);
 	mlx_destroy_image(test->mlx, test->player.frontside.img);
 	mlx_destroy_image(test->mlx, test->player.backside.img);
 	mlx_destroy_image(test->mlx, test->player.rightside.img);
@@ -55,6 +56,9 @@ void	clean_exit(t_test *test)
 	mlx_destroy_image(test->mlx, test->stats.typeface_life.img);
 	mlx_destroy_image(test->mlx, test->stats.glass.img);
 	mlx_destroy_image(test->mlx, test->stats.step.img);
+	mlx_destroy_image(test->mlx, test->button.e_key.img);
+	mlx_destroy_image(test->mlx, test->button.p_key.img);
+
 	mlx_destroy_window(test->mlx, test->win);
 	test->win = NULL;
 	// mlx_loop_end(test->mlx);
