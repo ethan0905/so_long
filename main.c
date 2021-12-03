@@ -339,9 +339,28 @@ void draw_player(t_test *test)
 	{
 		test->player.lock_pos = 1;
         if (test->frame < 17)
-		    test->player.side = &test->player.dmg_front;
-        else if (test->frame >= 17)
-		    test->player.side = &test->player.frontside;
+		{
+			if (test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'T')
+		    	test->player.side = &test->player.dmg_front;
+			else if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == 'T')
+		    	test->player.side = &test->player.dmg_back;
+			else if (test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'T')
+		    	test->player.side = &test->player.dmg_left;
+			else if (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'T')
+		    	test->player.side = &test->player.dmg_right;
+		}
+		else if (test->frame >= 17)
+		{
+			//choisir si le player change d'angle de vue en cas de degat ou non
+			if (test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'T')
+		    	test->player.side = &test->player.frontside;
+			else if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == 'T')
+		    	test->player.side = &test->player.backside;
+			else if (test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'T')
+		    	test->player.side = &test->player.leftside;
+			else if (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'T')
+		    	test->player.side = &test->player.rightside;
+		}
 		if (test->frame == 31)
 			test->loop++;
 		if (test->loop == 4)
