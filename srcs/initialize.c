@@ -4,6 +4,8 @@ void	initialize(t_test *test)
 {
 	test->mlx = NULL;
 	test->win = NULL;
+	test->frame = 0;
+	test->loop = 1;
 	test->param.map = NULL;
 	test->param.height = 0;
 	test->param.height_with_wall = 0;
@@ -12,6 +14,7 @@ void	initialize(t_test *test)
 	test->param.rendered = 0;
 	test->player.pos_i = 0;
 	test->player.lastpos_i = 0;
+	test->player.hurt = 0;
 	test->player.pos_j = 0;
 	test->player.lastpos_j = 0;
 	test->player.pos_x = 0;
@@ -47,14 +50,46 @@ void	initialize(t_test *test)
 	test->all.dresser_topleft.addr = NULL;   
 	test->all.dresser_topright.img = NULL;
 	test->all.dresser_topright.addr = NULL;
+	test->all.babo = 0;
 	test->all.babolex_painting.img = NULL;
 	test->all.babolex_painting.addr = NULL;
 	test->all.spike.img = NULL;
 	test->all.spike.addr = NULL;
-	test->all.chimney.bottom.img = NULL;
-	test->all.chimney.bottom.addr = NULL;
-	test->all.chimney.top.img = NULL;
-	test->all.chimney.top.addr = NULL;
+	test->all.chimney.bottom_right.img = NULL;
+	test->all.chimney.bottom_right.addr = NULL;
+	test->all.chimney.bottom_left.img = NULL;
+	test->all.chimney.bottom_left.addr = NULL;
+	test->all.chimney.mid_right.img = NULL;
+	test->all.chimney.mid_right.addr = NULL;
+	test->all.chimney.mid_left.img = NULL;
+	test->all.chimney.mid_left.addr = NULL;
+	test->all.chimney.top_right.img = NULL;
+	test->all.chimney.top_right.addr = NULL;
+	test->all.chimney.top_left.img = NULL;
+	test->all.chimney.top_left.addr = NULL;
+	// int i = 0;
+	// while (i < 8)
+	// {
+	// 	test->all.fire[i].img = NULL;
+	// 	test->all.fire[i].addr = NULL;
+	// 	i++;
+	// }
+	test->all.fire.frame_one.img = NULL;
+	test->all.fire.frame_one.addr = NULL;
+	test->all.fire.frame_two.img = NULL;
+	test->all.fire.frame_two.addr = NULL;
+	test->all.fire.frame_three.img = NULL;
+	test->all.fire.frame_three.addr = NULL;
+	test->all.fire.frame_four.img = NULL;
+	test->all.fire.frame_four.addr = NULL;
+	test->all.fire.frame_five.img = NULL;
+	test->all.fire.frame_five.addr = NULL;
+	test->all.fire.frame_six.img = NULL;
+	test->all.fire.frame_six.addr = NULL;
+	test->all.fire.frame_seven.img = NULL;
+	test->all.fire.frame_seven.addr = NULL;
+	test->all.fire.frame_eight.img = NULL;
+	test->all.fire.frame_eight.addr = NULL;
 	test->collec.newspaper.img = NULL;
 	test->collec.newspaper.addr = NULL;
 	test->collec.wanted.img = NULL;
@@ -80,6 +115,14 @@ void	initialize(t_test *test)
 	test->player.rightside.addr = NULL;
 	test->player.leftside.img = NULL;
 	test->player.leftside.addr = NULL;
+	test->player.dmg_front.img = NULL;
+	test->player.dmg_front.addr = NULL;
+	test->player.dmg_back.img = NULL;
+	test->player.dmg_back.addr = NULL;
+	test->player.dmg_right.img = NULL;
+	test->player.dmg_right.addr = NULL;
+	test->player.dmg_left.img = NULL;
+	test->player.dmg_left.addr = NULL;
 	test->button.time = 0;
 	test->button.e_key.img = NULL;
 	test->button.e_key.addr = NULL;

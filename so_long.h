@@ -74,10 +74,15 @@ typedef struct s_player
     int pos_y;
     int steps;
     int lock_pos;
+    int hurt;
     t_data frontside;
     t_data backside;
     t_data rightside;
     t_data leftside;
+    t_data dmg_front;
+    t_data dmg_back;
+    t_data dmg_right;
+    t_data dmg_left;
     t_data *side;
 }              t_player;
 
@@ -107,12 +112,30 @@ typedef struct s_exit
 
 typedef struct s_chimney
 {
-    t_data bottom;
-    t_data top;
+    t_data bottom_right;
+    t_data bottom_left;
+    t_data mid_right;
+    t_data mid_left;
+    t_data top_right;
+    t_data top_left;
 }              t_chimney;
+
+typedef struct s_fire
+{
+    t_data frame_one;
+    t_data frame_two;
+    t_data frame_three;
+    t_data frame_four;
+    t_data frame_five;
+    t_data frame_six;
+    t_data frame_seven;
+    t_data frame_eight;
+    t_data *frame;
+}              t_fire;
 
 typedef struct s_all
 {
+    int babo;
     t_data wall;
     t_data floor;
     t_data floor_half_right;
@@ -126,6 +149,7 @@ typedef struct s_all
     t_data dresser_downleft;
     t_data babolex_painting;
     t_chimney chimney;
+    t_fire fire;
     t_piano piano;
     t_exit exit;
     t_data spike;
@@ -174,6 +198,8 @@ typedef struct s_test
 {
 	void *mlx;
 	void *win;
+    int frame;
+    int loop;
 	t_param param;
 	t_data data;
 	t_all all;

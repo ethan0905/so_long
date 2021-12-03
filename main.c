@@ -31,8 +31,6 @@ void	draw_on_image(t_test *test, t_data *img, int startx, int starty)
 			tex_x = (int)((double)x * ratio_x);
 			if (get_pixel(img, tex_x, tex_y) != (int)0xFF000000)
 				my_mlx_pixel_put(test, x + startx, y + starty, get_pixel(img, tex_x, tex_y));
-			// printf("seg ici \n");
-			// fflush(stdout);
 			x++;
 		}
 		y++;
@@ -58,8 +56,6 @@ void	draw_on_image_bis(t_test *test, t_data *img, int startx, int starty)
 			tex_x = (int)((double)x * ratio_x);
 			if (get_pixel(img, tex_x, tex_y) != (int)0xFF000000)
 				my_mlx_pixel_put(test, x + startx, y + starty, get_pixel(img, tex_x, tex_y));
-			// printf("seg ici \n");
-			// fflush(stdout);
 			x++;
 		}
 		y++;
@@ -128,7 +124,12 @@ void draw_floors(t_test *test)
         y++;
     }
 }
-//ATTENTION VRAI FT EN DESSOUS
+
+void	draw_flames(t_test *test, int x, int y)
+{
+	draw_on_image(test, test->all.fire.frame, x, y);
+}
+
 void draw_furnitures(t_test *test)
 {
 	int i;
@@ -137,10 +138,14 @@ void draw_furnitures(t_test *test)
 	int y;
 	int random_obj;
 	int piano;
+	// int iter;
+	// t_data *ptr;
+	// char frame[8] = {&test->all.fire.frame_one, &test->all.fire.frame_two, &test->all.fire.frame_three, &test->all.fire.frame_four, &test->all.fire.frame_five, &test->all.fire.frame_six, &test->all.fire.frame_seven, &test->all.fire.frame_eight, NULL};
 
 	i = 1;
 	piano = 0;
 	random_obj = 0;
+	// iter = 0;
 	while (test->param.map[i + 1])
 	{
 		j = 1;
@@ -155,22 +160,36 @@ void draw_furnitures(t_test *test)
 				if (random_obj == 0)
 				{
 					draw_on_image(test, &test->all.pot, x, y - 32);
-					draw_on_image(test, &test->all.babolex_painting, x + 32, y-128);
+					if (test->all.babo == 0)
+					{
+						draw_on_image(test, &test->all.babolex_painting, x + 32, y-128);
+						test->all.babo = 1;
+					}
 					random_obj = 1;
-				}
-				else if (random_obj == 1)
-				{
-					draw_on_image(test, &test->all.chimney.bottom, x, y - 32 - 16);
-					draw_on_image(test, &test->all.chimney.top, x, y - 32 - 64 - 16);
-					random_obj = 0;
 				}
 			}
 			else if (test->param.map[i][j] == '1' && test->param.map[i][j + 1] == '1' && j + 1 != test->param.width - 1 && ((test->param.map[i][j - 1] == '0' || test->param.map[i][j - 1] == 'P') || (test->param.map[i][j - 1] == '1' && j - 1 == 0)) && ((test->param.map[i][j + 2] == '0' || test->param.map[i][j + 2] == 'P') || (test->param.map[i][j + 2] == '1' && j + 2 == test->param.width - 1)))
 			{
+				if (random_obj == 0)
+				{
 					draw_on_image(test, &test->all.dresser_downleft, x, y - 24);
 					draw_on_image(test, &test->all.dresser_downright, x + 64, y - 24);
 					draw_on_image(test, &test->all.dresser_topleft, x, y - 64 - 24);
 					draw_on_image(test, &test->all.dresser_topright, x + 64, y - 64 - 24);
+					random_obj = 1;
+				}
+				else if (random_obj == 1)
+				{
+					draw_on_image(test, &test->all.chimney.bottom_left, x, y - 32 - 16 + 8);
+					draw_on_image(test, &test->all.chimney.bottom_right, x + 64, y - 32 - 16 + 8);
+					draw_on_image(test, &test->all.chimney.mid_left, x, y - 32 - 16 - 64 + 8);
+					draw_on_image(test, &test->all.chimney.mid_right, x + 64, y - 32 - 16 - 64 + 8);
+					draw_on_image(test, &test->all.chimney.top_left, x, y - 32 - 16 - 128 + 8);
+					draw_on_image(test, &test->all.chimney.top_right, x + 64, y - 32 - 16 - 128 + 8);
+					test->all.fire.frame = &test->all.fire.frame_one;
+					draw_flames(test, x + 16, y - 51);
+					random_obj = 0;
+				}
 			}
 			else if (test->param.map[i][j] == '1' && test->param.map[i][j + 1] == '1' && test->param.map[i][j + 2] == '1' && j + 1 != test->param.width - 1 && ((test->param.map[i][j - 1] == '0' || test->param.map[i][j - 1] == 'P') || (test->param.map[i][j - 1] == '1' && j - 1  == 0)) && ((test->param.map[i][j + 3] == '0' || test->param.map[i][j + 3] == 'P') || (test->param.map[i][j + 3] == '1' && j + 3 == test->param.width - 1)))
 			{
@@ -205,6 +224,7 @@ void draw_furnitures(t_test *test)
 		}
 		i++;
 	}
+	test->all.babo = 0;
 }
 
 void	draw_collectibles(t_test *test)
@@ -315,7 +335,26 @@ void	get_pos_player(t_test *test)
 void draw_player(t_test *test)
 {
 	get_pos_player(test);
-	draw_on_image_bis(test, test->player.side, test->player.pos_x, test->player.pos_y);
+	if (test->player.hurt == 1)
+	{
+		test->player.lock_pos = 1;
+        if (test->frame < 17)
+		    test->player.side = &test->player.dmg_front;
+        else if (test->frame >= 17)
+		    test->player.side = &test->player.frontside;
+		if (test->frame == 31)
+			test->loop++;
+		if (test->loop == 4)
+		{
+			test->player.hurt = 0;
+			test->loop = 0;
+			test->player.lock_pos = 0;
+			test->player.side = &test->player.frontside;
+		}
+		draw_on_image_bis(test, test->player.side, test->player.pos_x, test->player.pos_y);
+	}
+	else if (test->player.hurt == 0)
+		draw_on_image_bis(test, test->player.side, test->player.pos_x, test->player.pos_y);
 }
 
 void	draw_score(t_test *test)
@@ -554,6 +593,10 @@ int    render(t_test *test)
 			draw_dialog_box(test);
 		draw_life(test);
 	}
+	test->frame++;
+	if (test->frame % 40 / 32 == 1)
+		test->frame = 0;
+	// printf("%d\n", test->frame);
 	return (0);
 }
 
@@ -709,10 +752,35 @@ int main(int ac, char **av)
     test.all.piano.downleft.addr = mlx_get_data_addr(test.all.piano.downleft.img, &test.all.piano.downleft.bits_per_pixel, &test.all.piano.downleft.line_length, &test.all.piano.downleft.endian);
 ///////CHIMNEY//////
 
-	test.all.chimney.bottom.img = mlx_xpm_file_to_image(test.mlx, "textures/chimney_bottom.xpm", &test.all.chimney.bottom.x, &test.all.chimney.bottom.y);
-    test.all.chimney.bottom.addr = mlx_get_data_addr(test.all.chimney.bottom.img, &test.all.chimney.bottom.bits_per_pixel, &test.all.chimney.bottom.line_length, &test.all.chimney.bottom.endian);
-	test.all.chimney.top.img = mlx_xpm_file_to_image(test.mlx, "textures/chimney_top.xpm", &test.all.chimney.top.x, &test.all.chimney.top.y);
-    test.all.chimney.top.addr = mlx_get_data_addr(test.all.chimney.top.img, &test.all.chimney.top.bits_per_pixel, &test.all.chimney.top.line_length, &test.all.chimney.top.endian);
+	test.all.chimney.bottom_right.img = mlx_xpm_file_to_image(test.mlx, "textures/chimney_br.xpm", &test.all.chimney.bottom_right.x, &test.all.chimney.bottom_right.y);
+    test.all.chimney.bottom_right.addr = mlx_get_data_addr(test.all.chimney.bottom_right.img, &test.all.chimney.bottom_right.bits_per_pixel, &test.all.chimney.bottom_right.line_length, &test.all.chimney.bottom_right.endian);
+	test.all.chimney.bottom_left.img = mlx_xpm_file_to_image(test.mlx, "textures/chimney_bl.xpm", &test.all.chimney.bottom_left.x, &test.all.chimney.bottom_left.y);
+    test.all.chimney.bottom_left.addr = mlx_get_data_addr(test.all.chimney.bottom_left.img, &test.all.chimney.bottom_left.bits_per_pixel, &test.all.chimney.bottom_left.line_length, &test.all.chimney.bottom_left.endian);
+	test.all.chimney.mid_right.img = mlx_xpm_file_to_image(test.mlx, "textures/chimney_mr.xpm", &test.all.chimney.mid_right.x, &test.all.chimney.mid_right.y);
+    test.all.chimney.mid_right.addr = mlx_get_data_addr(test.all.chimney.mid_right.img, &test.all.chimney.mid_right.bits_per_pixel, &test.all.chimney.mid_right.line_length, &test.all.chimney.mid_right.endian);
+	test.all.chimney.mid_left.img = mlx_xpm_file_to_image(test.mlx, "textures/chimney_ml.xpm", &test.all.chimney.mid_left.x, &test.all.chimney.mid_left.y);
+    test.all.chimney.mid_left.addr = mlx_get_data_addr(test.all.chimney.mid_left.img, &test.all.chimney.mid_left.bits_per_pixel, &test.all.chimney.mid_left.line_length, &test.all.chimney.mid_left.endian);
+	test.all.chimney.top_right.img = mlx_xpm_file_to_image(test.mlx, "textures/chimney_tr.xpm", &test.all.chimney.top_right.x, &test.all.chimney.top_right.y);
+    test.all.chimney.top_right.addr = mlx_get_data_addr(test.all.chimney.top_right.img, &test.all.chimney.top_right.bits_per_pixel, &test.all.chimney.top_right.line_length, &test.all.chimney.top_right.endian);
+	test.all.chimney.top_left.img = mlx_xpm_file_to_image(test.mlx, "textures/chimney_tl.xpm", &test.all.chimney.top_left.x, &test.all.chimney.top_left.y);
+    test.all.chimney.top_left.addr = mlx_get_data_addr(test.all.chimney.top_left.img, &test.all.chimney.top_left.bits_per_pixel, &test.all.chimney.top_left.line_length, &test.all.chimney.top_left.endian);
+
+	test.all.fire.frame_one.img = mlx_xpm_file_to_image(test.mlx, "textures/flame_1.xpm", &test.all.fire.frame_one.x, &test.all.fire.frame_one.y);
+    test.all.fire.frame_one.addr = mlx_get_data_addr(test.all.fire.frame_one.img, &test.all.fire.frame_one.bits_per_pixel, &test.all.fire.frame_one.line_length, &test.all.fire.frame_one.endian);
+	test.all.fire.frame_two.img = mlx_xpm_file_to_image(test.mlx, "textures/flame_2.xpm", &test.all.fire.frame_two.x, &test.all.fire.frame_two.y);
+    test.all.fire.frame_two.addr = mlx_get_data_addr(test.all.fire.frame_two.img, &test.all.fire.frame_two.bits_per_pixel, &test.all.fire.frame_two.line_length, &test.all.fire.frame_two.endian);
+	test.all.fire.frame_three.img = mlx_xpm_file_to_image(test.mlx, "textures/flame_3.xpm", &test.all.fire.frame_three.x, &test.all.fire.frame_three.y);
+    test.all.fire.frame_three.addr = mlx_get_data_addr(test.all.fire.frame_three.img, &test.all.fire.frame_three.bits_per_pixel, &test.all.fire.frame_three.line_length, &test.all.fire.frame_three.endian);
+	test.all.fire.frame_four.img = mlx_xpm_file_to_image(test.mlx, "textures/flame_4.xpm", &test.all.fire.frame_four.x, &test.all.fire.frame_four.y);
+    test.all.fire.frame_four.addr = mlx_get_data_addr(test.all.fire.frame_four.img, &test.all.fire.frame_four.bits_per_pixel, &test.all.fire.frame_four.line_length, &test.all.fire.frame_four.endian);
+	test.all.fire.frame_five.img = mlx_xpm_file_to_image(test.mlx, "textures/flame_5.xpm", &test.all.fire.frame_five.x, &test.all.fire.frame_five.y);
+    test.all.fire.frame_five.addr = mlx_get_data_addr(test.all.fire.frame_five.img, &test.all.fire.frame_five.bits_per_pixel, &test.all.fire.frame_five.line_length, &test.all.fire.frame_five.endian);
+	test.all.fire.frame_six.img = mlx_xpm_file_to_image(test.mlx, "textures/flame_6.xpm", &test.all.fire.frame_six.x, &test.all.fire.frame_six.y);
+    test.all.fire.frame_six.addr = mlx_get_data_addr(test.all.fire.frame_six.img, &test.all.fire.frame_six.bits_per_pixel, &test.all.fire.frame_six.line_length, &test.all.fire.frame_six.endian);
+	test.all.fire.frame_seven.img = mlx_xpm_file_to_image(test.mlx, "textures/flame_7.xpm", &test.all.fire.frame_seven.x, &test.all.fire.frame_seven.y);
+    test.all.fire.frame_seven.addr = mlx_get_data_addr(test.all.fire.frame_seven.img, &test.all.fire.frame_seven.bits_per_pixel, &test.all.fire.frame_seven.line_length, &test.all.fire.frame_seven.endian);
+	test.all.fire.frame_eight.img = mlx_xpm_file_to_image(test.mlx, "textures/flame_8.xpm", &test.all.fire.frame_eight.x, &test.all.fire.frame_eight.y);
+    test.all.fire.frame_eight.addr = mlx_get_data_addr(test.all.fire.frame_eight.img, &test.all.fire.frame_eight.bits_per_pixel, &test.all.fire.frame_eight.line_length, &test.all.fire.frame_eight.endian);
 
 ////////////
 
@@ -745,6 +813,14 @@ int main(int ac, char **av)
 	test.player.rightside.addr = mlx_get_data_addr(test.player.rightside.img, &test.player.rightside.bits_per_pixel, &test.player.rightside.line_length, &test.player.rightside.endian);
 	test.player.leftside.img = mlx_xpm_file_to_image(test.mlx, "textures/detective_sideleft.xpm", &test.player.leftside.x, &test.player.leftside.y);
 	test.player.leftside.addr = mlx_get_data_addr(test.player.leftside.img, &test.player.leftside.bits_per_pixel, &test.player.leftside.line_length, &test.player.leftside.endian);
+	test.player.dmg_front.img = mlx_xpm_file_to_image(test.mlx, "textures/damages_front.xpm", &test.player.dmg_front.x, &test.player.dmg_front.y);
+	test.player.dmg_front.addr = mlx_get_data_addr(test.player.dmg_front.img, &test.player.dmg_front.bits_per_pixel, &test.player.dmg_front.line_length, &test.player.dmg_front.endian);
+	test.player.dmg_back.img = mlx_xpm_file_to_image(test.mlx, "textures/damages_back.xpm", &test.player.dmg_back.x, &test.player.dmg_back.y);
+	test.player.dmg_back.addr = mlx_get_data_addr(test.player.dmg_back.img, &test.player.dmg_back.bits_per_pixel, &test.player.dmg_back.line_length, &test.player.dmg_back.endian);
+	test.player.dmg_right.img = mlx_xpm_file_to_image(test.mlx, "textures/damages_sideright.xpm", &test.player.dmg_right.x, &test.player.dmg_right.y);
+	test.player.dmg_right.addr = mlx_get_data_addr(test.player.dmg_right.img, &test.player.dmg_right.bits_per_pixel, &test.player.dmg_right.line_length, &test.player.dmg_right.endian);
+	test.player.dmg_left.img = mlx_xpm_file_to_image(test.mlx, "textures/damages_sideleft.xpm", &test.player.dmg_left.x, &test.player.dmg_left.y);
+	test.player.dmg_left.addr = mlx_get_data_addr(test.player.dmg_left.img, &test.player.dmg_left.bits_per_pixel, &test.player.dmg_left.line_length, &test.player.dmg_left.endian);
 	
     test.button.e_key.img = mlx_xpm_file_to_image(test.mlx, "textures/key_e.xpm", &test.button.e_key.x, &test.button.e_key.y);
     test.button.e_key.addr = mlx_get_data_addr(test.button.e_key.img, &test.button.e_key.bits_per_pixel, &test.button.e_key.line_length, &test.button.e_key.endian);
@@ -773,10 +849,6 @@ int main(int ac, char **av)
 
 	test.all.spike.img = mlx_xpm_file_to_image(test.mlx, "textures/spike.xpm", &test.all.spike.x, &test.all.spike.y);
     test.all.spike.addr = mlx_get_data_addr(test.all.spike.img, &test.all.spike.bits_per_pixel, &test.all.spike.line_length, &test.all.spike.endian);
-	// test.all.hole_left.img = mlx_xpm_file_to_image(test.mlx, "textures/hole_left.xpm", &test.all.hole_left.x, &test.all.hole_left.y);
-    // test.all.hole_left.addr = mlx_get_data_addr(test.all.hole_left.img, &test.all.hole_left.bits_per_pixel, &test.all.hole_left.line_length, &test.all.hole_left.endian);
-	// test.all.hole_right.img = mlx_xpm_file_to_image(test.mlx, "textures/hole_right.xpm", &test.all.hole_right.x, &test.all.hole_right.y);
-    // test.all.hole_right.addr = mlx_get_data_addr(test.all.hole_right.img, &test.all.hole_right.bits_per_pixel, &test.all.hole_right.line_length, &test.all.hole_right.endian);
 	mlx_hook(test.win, 2, 1L << 0, &handle_keypress, &test);
     // render(&test);
 	mlx_loop_hook(test.mlx, render, &test);

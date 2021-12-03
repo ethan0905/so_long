@@ -28,6 +28,7 @@ void move_right(t_test *test)
         else if (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'T')
         {
 	        test->player.side = &test->player.rightside;
+            test->player.hurt = 1;
             test->stats.lives--;
             printf("What a good way to loose stats\nlives left : %d\n", test->stats.lives);
             if (test->stats.lives == 0)
@@ -81,6 +82,7 @@ void    move_left(t_test *test)
         else if (test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'T')
         {
 	        test->player.side = &test->player.leftside;
+            test->player.hurt = 1;
             test->stats.lives--;
             printf("What a good way to loose stats\nlives left : %d\n", test->stats.lives);
             if (test->stats.lives == 0)
@@ -134,6 +136,7 @@ void    move_down(t_test *test)
         else if (test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'T')
         {
 	        test->player.side = &test->player.frontside;
+            test->player.hurt = 1;
             test->stats.lives--;
             printf("What a good way to loose stats\nlives left : %d\n", test->stats.lives);
             if (test->stats.lives == 0)
@@ -187,6 +190,7 @@ void    move_up(t_test *test)
         else if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == 'T')
         {
 		    test->player.side = &test->player.backside;
+            test->player.hurt = 1;
             test->stats.lives--;
             printf("What a good way to loose stats\nlives left : %d\n", test->stats.lives);
             if (test->stats.lives == 0)
