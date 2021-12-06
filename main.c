@@ -792,6 +792,13 @@ int     handle_keypress(int keysym, t_test *test)
     return (0);
 }
 
+int	close_win_cross(t_test *test)
+{
+	mlx_loop_end (test->mlx);
+	clean_exit(test);
+	return (0);
+}
+
 int main(int ac, char **av)
 {
     t_test test;
@@ -966,6 +973,7 @@ int main(int ac, char **av)
 	mlx_hook(test.win, 2, 1L << 0, &handle_keypress, &test);
     // render(&test);
 	mlx_loop_hook(test.mlx, render, &test);
+	mlx_hook(test.win, 17, 1L << 0, &close_win_cross, &test);
     mlx_loop(test.mlx);
     return (0);
 }
