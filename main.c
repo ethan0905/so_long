@@ -813,7 +813,7 @@ int main(int ac, char **av)
 	test.intro.three.addr = mlx_get_data_addr(test.intro.three.img, &test.intro.three.bits_per_pixel, &test.intro.three.line_length, &test.intro.three.endian);
 	test.intro.four.img = mlx_xpm_file_to_image(test.mlx, "textures/working_desk_960.xpm", &test.intro.four.x, &test.intro.four.y);
 	test.intro.four.addr = mlx_get_data_addr(test.intro.four.img, &test.intro.four.bits_per_pixel, &test.intro.four.line_length, &test.intro.four.endian);
-	test.intro.five.img = mlx_xpm_file_to_image(test.mlx, "textures/960_448.xpm", &test.intro.five.x, &test.intro.five.y);
+	test.intro.five.img = mlx_xpm_file_to_image(test.mlx, "textures/house_960.xpm", &test.intro.five.x, &test.intro.five.y);
 	test.intro.five.addr = mlx_get_data_addr(test.intro.five.img, &test.intro.five.bits_per_pixel, &test.intro.five.line_length, &test.intro.five.endian);
 
     test.all.wall.img = mlx_xpm_file_to_image(test.mlx, "textures/wall.xpm", &test.all.wall.x, &test.all.wall.y);
