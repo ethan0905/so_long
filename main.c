@@ -572,34 +572,36 @@ void	draw_button(t_test *test)
 	}
 }
 
-void 	draw_dialog_box(t_test *test)
+void	print_box(t_test *test)
 {
 	draw_on_image(test, &test->dialog_box.left, (test->param.width/2-2) * 64, (test->param.height) * 64);
 	draw_on_image(test, &test->dialog_box.mid, (test->param.width/2-1) * 64, (test->param.height) * 64);
 	draw_on_image(test, &test->dialog_box.mid, (test->param.width/2) * 64, (test->param.height) * 64);
 	draw_on_image(test, &test->dialog_box.mid, (test->param.width/2+1) * 64, (test->param.height) * 64);
 	draw_on_image(test, &test->dialog_box.right, (test->param.width/2+2) * 64, (test->param.height) * 64);
-	// printf("event = %d\n", test->dialog_box.event);
+}
+
+void 	draw_dialog_box(t_test *test)
+{
+	print_box(test);
 	if (test->dialog_box.event == 1)
 	{
 		mlx_string_put(test->mlx, test->win, (test->param.width/2-2) * 64 + 4, (test->param.height) * 64 + 16, 0xf4fefe, "Hmm strange... This piano seems to be perfectly");
 		mlx_string_put(test->mlx, test->win, (test->param.width/2-2) * 64 + 4, (test->param.height) * 64 + 32, 0xf4fefe, "working...");
-		mlx_string_put(test->mlx, test->win, (test->param.width/2+1) * 64 + 8, (test->param.height) * 64 + 32 + 16 + 5, 0xf4fefe, "Press C to continue");
 		test->player.lock_pos = 1;
 	}
 	else if (test->dialog_box.event == 2)
 	{
 		mlx_string_put(test->mlx, test->win, (test->param.width/2-2) * 64 + 4, (test->param.height) * 64 + 16, 0xf4fefe, "You have 1 new item in your inventory!");
-		mlx_string_put(test->mlx, test->win, (test->param.width/2+1) * 64 + 8, (test->param.height) * 64 + 32 + 16 + 5, 0xf4fefe, "Press C to continue");
 		test->player.lock_pos = 1;
 	}
 	else if (test->dialog_box.event == 3)
 	{
 		mlx_string_put(test->mlx, test->win, (test->param.width/2-2) * 64 + 4, (test->param.height) * 64 + 16, 0xf4fefe, "I should take all the newspaper reports with me");
 		mlx_string_put(test->mlx, test->win, (test->param.width/2-2) * 64 + 4, (test->param.height) * 64 + 32, 0xf4fefe, "before I go further..");
-		mlx_string_put(test->mlx, test->win, (test->param.width/2+1) * 64 + 8, (test->param.height) * 64 + 32 + 16 + 5, 0xf4fefe, "Press C to continue");
 		test->player.lock_pos = 1;
 	}
+	mlx_string_put(test->mlx, test->win, (test->param.width/2+1) * 64 + 8, (test->param.height) * 64 + 32 + 16 + 5, 0xf4fefe, "Press C to continue");
 }
 
 void	draw_life(t_test *test)
@@ -627,61 +629,56 @@ void	draw_life(t_test *test)
 	}
 }
 
+void	make_intro(t_test *test)
+{
+	if (test->intro_or_not == 1)
+		draw_on_image_intro(test, &test->intro.one, 0, 0);
+	else if (test->intro_or_not == 2)
+		draw_on_image_intro(test, &test->intro.two, 0, 0);
+	else if (test->intro_or_not == 3)
+		draw_on_image_intro(test, &test->intro.three, 0, 0);
+	else if (test->intro_or_not == 4)
+		draw_on_image_intro(test, &test->intro.four, 0, 0);
+	else if (test->intro_or_not == 5)
+		draw_on_image_intro(test, &test->intro.five, 0, 0);
+	mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
+}
+
+void 	draw_all_together(t_test *test)
+{
+	draw_background(test);
+	draw_walls(test);
+	draw_floors(test);
+	draw_furnitures(test);
+	draw_collectibles(test);
+	draw_trap(test);
+	if (test->param.rendered == 0)
+		test->player.side = &test->player.frontside;
+	if (test->all.exit.opened == 1)
+		draw_exit(test);
+	draw_player(test);
+	if (test->all.exit.opened == 0)
+		draw_exit(test);
+	mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
+	draw_score(test);
+	draw_button(test);
+	test->param.rendered = 1;
+	if (test->dialog_box.keep == 1)
+		draw_dialog_box(test);
+	draw_life(test);
+}
 int    render(t_test *test)
 {
-	if (test->intro_or_not == 1 && test->param.width_with_x*64-(2*64) == 960 && (test->param.height-2)*64+3*64 == 448)
-	{
-		draw_on_image_intro(test, &test->intro.one, 0, 0);
-		mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
-	}
-	else if (test->intro_or_not == 2 && test->param.width_with_x*64-(2*64) == 960 && (test->param.height-2)*64+3*64 == 448)
-	{
-		draw_on_image_intro(test, &test->intro.two, 0, 0);
-		mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
-	}
-	else if (test->intro_or_not == 3 && test->param.width_with_x*64-(2*64) == 960 && (test->param.height-2)*64+3*64 == 448)
-	{
-		draw_on_image_intro(test, &test->intro.three, 0, 0);
-		mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
-	}
-	else if (test->intro_or_not == 4 && test->param.width_with_x*64-(2*64) == 960 && (test->param.height-2)*64+3*64 == 448)
-	{
-		draw_on_image_intro(test, &test->intro.four, 0, 0);
-		mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
-	}
-	else if (test->intro_or_not == 5 && test->param.width_with_x*64-(2*64) == 960 && (test->param.height-2)*64+3*64 == 448)
-	{
-		draw_on_image_intro(test, &test->intro.five, 0, 0);
-		mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
-	}
+	if ((test->intro_or_not == 1 || test->intro_or_not == 2 || test->intro_or_not == 3 || test->intro_or_not == 4 || test->intro_or_not == 5) && test->param.width_with_x*64-(2*64) == 960 && (test->param.height-2)*64+3*64 == 448)
+		make_intro(test);
 	else if (test->param.rendered == 0 || test->param.rendered == 1)
 	{
-		draw_background(test);
-		draw_walls(test);
-		draw_floors(test);
-		draw_furnitures(test);
-		draw_collectibles(test);
-		draw_trap(test);
-		if (test->param.rendered == 0)
-			test->player.side = &test->player.frontside;
-		if (test->all.exit.opened == 1)
-			draw_exit(test);
-		draw_player(test);
-		if (test->all.exit.opened == 0)
-			draw_exit(test);
-		mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
-		draw_score(test);
-		draw_button(test);
-		test->param.rendered = 1;
-		if (test->dialog_box.keep == 1)
-			draw_dialog_box(test);
-		draw_life(test);
-		test->frame++;
-		if (test->frame % 40 / 32 == 1)
-			test->frame = 0;
+		draw_all_together(test);
 		test->intro_or_not = 0;
 	}
-	// printf("%d\n", test->frame);
+	test->frame++;
+	if (test->frame % 40 / 32 == 1)
+		test->frame = 0;
 	return (0);
 }
 
