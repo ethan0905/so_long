@@ -28,6 +28,7 @@
 # include "./mlx/mlx.h"
 
 # define ESC 65307
+# define SPACE 32
 # define W 119
 # define A 97
 # define S 115
@@ -53,6 +54,12 @@ typedef struct s_data
     int x;
     int y;
 }               t_data;
+
+typedef struct s_intro
+{
+    // t_data one;
+    t_data two;
+}              t_intro;
 
 typedef struct s_param
 {
@@ -200,6 +207,7 @@ typedef struct s_test
 	void *win;
     int frame;
     int loop;
+    int intro_or_not;
 	t_param param;
 	t_data data;
 	t_all all;
@@ -208,6 +216,7 @@ typedef struct s_test
     t_button button;
     t_dialog dialog_box;
     t_stats stats;
+    t_intro intro;
 }               t_test;
 
 char	*get_line(char *save);
@@ -227,6 +236,7 @@ int	get_pixel(t_data *img, int x, int y);
 void	my_mlx_pixel_put(t_test *test, int x, int y, int color);
 void	draw_on_image(t_test *test, t_data *img, int startx, int starty);
 void	draw_on_image_bis(t_test *test, t_data *img, int startx, int starty);
+void	draw_on_image_intro(t_test *test, t_data *img, int startx, int starty);
 void    draw_score(t_test *test);
 void 	draw_dialog_box(t_test *test);
 

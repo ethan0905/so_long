@@ -62,6 +62,31 @@ void	draw_on_image_bis(t_test *test, t_data *img, int startx, int starty)
 	}
 }
 
+void	draw_on_image_intro(t_test *test, t_data *img, int startx, int starty)
+{
+	int tex_x = 0;
+	int tex_y = 0;
+	int	x, y = 0;
+	double ratio_x;
+	double ratio_y;
+
+	ratio_x = 1.0f;
+	ratio_y = 1.0f;
+	while (y < 448)
+	{
+		tex_y = (int)((double)y * ratio_y);
+		x = 0;
+		while (x < 960)
+		{
+			tex_x = (int)((double)x * ratio_x);
+			// if (get_pixel(img, tex_x, tex_y) != (int)0xFF000000)
+			my_mlx_pixel_put(test, x + startx, y + starty, get_pixel(img, tex_x, tex_y));
+			x++;
+		}
+		y++;
+	}
+}
+
 void draw_background(t_test *test)
 {
     int y;
@@ -186,7 +211,14 @@ void draw_furnitures(t_test *test)
 					draw_on_image(test, &test->all.chimney.mid_right, x + 64, y - 32 - 16 - 64 + 8);
 					draw_on_image(test, &test->all.chimney.top_left, x, y - 32 - 16 - 128 + 8);
 					draw_on_image(test, &test->all.chimney.top_right, x + 64, y - 32 - 16 - 128 + 8);
-					test->all.fire.frame = &test->all.fire.frame_one;
+					if (test->frame < 8)
+						test->all.fire.frame = &test->all.fire.frame_one;
+					else if (test->frame < 16 && test->frame >= 8)
+						test->all.fire.frame = &test->all.fire.frame_three;
+					else if (test->frame < 24 && test->frame >= 16)
+						test->all.fire.frame = &test->all.fire.frame_five;
+					else if (test->frame >= 24)
+						test->all.fire.frame = &test->all.fire.frame_seven;
 					draw_flames(test, x + 16, y - 51);
 					random_obj = 0;
 				}
@@ -327,7 +359,7 @@ void	get_pos_player(t_test *test)
 			else if (test->param.map[i][j] == 'C' && test->param.rendered == 0)
 				test->collec.amount++;
 			j++;
-		}
+		}	
 		i++;
 	}
 }
@@ -589,7 +621,16 @@ void	draw_life(t_test *test)
 
 int    render(t_test *test)
 {
-	if (test->param.rendered == 0 || test->param.rendered == 1)
+	if (test->intro_or_not == 1 && test->param.width_with_x*64-(2*64) == 960 && (test->param.height-2)*64+3*64 == 448)
+	{
+		draw_on_image_intro(test, &test->intro.two, 0, 0);
+		mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
+	}
+	// else if (test->intro_or_not == 1 && test->param.width_with_x*64-(2*64) != 960 && (test->param.height-2)*64+3*64 != 448)
+	// {
+	// 	test->intro_or_not = 0;
+	// }
+	else if (/*test->intro_or_not == 0 && */(test->param.rendered == 0 || test->param.rendered == 1))
 	{
 		draw_background(test);
 		draw_walls(test);
@@ -611,10 +652,13 @@ int    render(t_test *test)
 		if (test->dialog_box.keep == 1)
 			draw_dialog_box(test);
 		draw_life(test);
+		test->frame++;
+		if (test->frame % 40 / 32 == 1)
+			test->frame = 0;
+		// if (test->param.width_with_x*64-(2*64) != 960 && (test->param.height-2)*64+3*64 != 448)
+		test->intro_or_not = 0;
 	}
-	test->frame++;
-	if (test->frame % 40 / 32 == 1)
-		test->frame = 0;
+
 	// printf("%d\n", test->frame);
 	return (0);
 }
@@ -682,27 +726,41 @@ void	open_trapdoor(t_test *test)
 }
 
 int     handle_keypress(int keysym, t_test *test)
-{	
-    if (keysym == ESC)
-	    clean_exit(test);
-    else if (keysym == D)
-	    move_right(test);
-    else if (keysym == A)
-	    move_left(test);
-    else if (keysym == W)
-	    move_up(test);
-    else if (keysym == S)
-	    move_down(test);
-	else if (keysym == E)
-		pick_up_coll(test);
-	else if (keysym == P)
-		play_piano(test);
-	else if (keysym == C)
-		clean_dialog(test);
-	else if (keysym == O)
-		open_trapdoor(test);
-	else if (keysym != ESC)
-        write(1, &keysym, 1);
+{
+	if (test->intro_or_not == 0)
+	{
+    	if (keysym == ESC)
+	   		clean_exit(test);
+    	else if (keysym == D)
+	    	move_right(test);
+    	else if (keysym == A)
+	    	move_left(test);
+    	else if (keysym == W)
+	    	move_up(test);
+   		else if (keysym == S)
+	    	move_down(test);
+		else if (keysym == E)
+			pick_up_coll(test);
+		else if (keysym == P)
+			play_piano(test);
+		else if (keysym == C)
+			clean_dialog(test);
+		else if (keysym == O)
+			open_trapdoor(test);
+		else if (keysym != ESC)
+        	write(1, &keysym, 1);
+	}
+	else
+	{
+		if (keysym == SPACE && test->intro_or_not == 1)
+			test->intro_or_not = 0;
+		// else if (keysym == SPACE && test->intro_or_not == 2)
+		// 	test->intro_or_not = 0;
+		else if (keysym == ESC)
+	   		clean_exit(test);
+		else
+        	write(1, &keysym, 1);
+	}
     return (0);
 }
 
@@ -714,11 +772,13 @@ int main(int ac, char **av)
 	get_map(&test, ac, av);
 
 ///////////////
-
     test.mlx = mlx_init();
-    test.win = mlx_new_window(test.mlx, test.param.width_with_x*64-(2*64), (test.param.height-2)*64+3*64, "so_short for now");
+    test.win = mlx_new_window(test.mlx, test.param.width_with_x*64-(2*64), (test.param.height-2)*64+3*64, "so_short on time!");
     test.data.img = mlx_new_image(test.mlx, test.param.width_with_x*64-(2*64), (test.param.height-2)*64+3*64);
     test.data.addr = mlx_get_data_addr(test.data.img, &test.data.bits_per_pixel, &test.data.line_length, &test.data.endian);
+
+	test.intro.two.img = mlx_xpm_file_to_image(test.mlx, "textures/960_448.xpm", &test.intro.two.x, &test.intro.two.y);
+	test.intro.two.addr = mlx_get_data_addr(test.intro.two.img, &test.intro.two.bits_per_pixel, &test.intro.two.line_length, &test.intro.two.endian);
 
     test.all.wall.img = mlx_xpm_file_to_image(test.mlx, "textures/wall.xpm", &test.all.wall.x, &test.all.wall.y);
     test.all.wall.addr = mlx_get_data_addr(test.all.wall.img, &test.all.wall.bits_per_pixel, &test.all.wall.line_length, &test.all.wall.endian);

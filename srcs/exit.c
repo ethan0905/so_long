@@ -14,6 +14,8 @@
 
 void	clean_exit(t_test *test)
 {
+	// mlx_destroy_image(test->mlx, test->intro.one.img);
+	mlx_destroy_image(test->mlx, test->intro.two.img);
 	mlx_destroy_image(test->mlx, test->all.wall.img);
 	mlx_destroy_image(test->mlx, test->all.floor.img);
 	mlx_destroy_image(test->mlx, test->all.floor_half_left.img);

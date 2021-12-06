@@ -6,6 +6,7 @@ void	initialize(t_test *test)
 	test->win = NULL;
 	test->frame = 0;
 	test->loop = 1;
+	test->intro_or_not = 1;
 	test->param.map = NULL;
 	test->param.height = 0;
 	test->param.height_with_wall = 0;
@@ -28,6 +29,10 @@ void	initialize(t_test *test)
 	test->stats.lives = 3;
 	test->data.img = NULL;
 	test->data.addr = NULL;
+	// test->intro.two.img = NULL;
+	// test->intro.two.addr = NULL; 
+	test->intro.two.img = NULL;
+	test->intro.two.addr = NULL; 
 	test->all.wall.img = NULL;
 	test->all.wall.addr = NULL;
 	test->all.floor.img = NULL;
