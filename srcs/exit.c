@@ -14,8 +14,11 @@
 
 void	clean_exit(t_test *test)
 {
-	// mlx_destroy_image(test->mlx, test->intro.one.img);
+	mlx_destroy_image(test->mlx, test->intro.one.img);
 	mlx_destroy_image(test->mlx, test->intro.two.img);
+	mlx_destroy_image(test->mlx, test->intro.three.img);
+	mlx_destroy_image(test->mlx, test->intro.four.img);
+	mlx_destroy_image(test->mlx, test->intro.five.img);
 	mlx_destroy_image(test->mlx, test->all.wall.img);
 	mlx_destroy_image(test->mlx, test->all.floor.img);
 	mlx_destroy_image(test->mlx, test->all.floor_half_left.img);
@@ -45,8 +48,8 @@ void	clean_exit(t_test *test)
 	mlx_destroy_image(test->mlx, test->all.exit.exit_half_left.img);
 	mlx_destroy_image(test->mlx, test->all.exit.trapdoor_right.img);
 	mlx_destroy_image(test->mlx, test->all.exit.trapdoor_left.img);
-	mlx_destroy_image(test->mlx, test->all.exit.open_t_right.img);
-	mlx_destroy_image(test->mlx, test->all.exit.open_t_left.img);
+	mlx_destroy_image(test->mlx, test->all.exit.open_to_right.img);
+	mlx_destroy_image(test->mlx, test->all.exit.open_to_left.img);
 	mlx_destroy_image(test->mlx, test->all.chimney.bottom_right.img);
 	mlx_destroy_image(test->mlx, test->all.chimney.bottom_left.img);
 	mlx_destroy_image(test->mlx, test->all.chimney.mid_right.img);

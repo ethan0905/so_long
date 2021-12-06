@@ -57,8 +57,11 @@ typedef struct s_data
 
 typedef struct s_intro
 {
-    // t_data one;
+    t_data one;
     t_data two;
+    t_data three;
+    t_data four;
+    t_data five;
 }              t_intro;
 
 typedef struct s_param
@@ -113,8 +116,8 @@ typedef struct s_exit
     t_data exit_half_left;
     t_data trapdoor_right;
     t_data trapdoor_left;
-    t_data open_t_right;
-    t_data open_t_left;
+    t_data open_to_right;
+    t_data open_to_left;
 }              t_exit;
 
 typedef struct s_chimney
