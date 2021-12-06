@@ -227,15 +227,25 @@ int    get_map(t_test *test, int ac, char **av);
 
 //Init
 void	initialize(t_test *test);
+void    init_stats(t_test *test);
+void	init_event(t_test *test);
+void	init_param(t_test *test);
+void	init_intro(t_test *test);
+void	init_player(t_test *test);
+void	init_player_pos(t_test *test);
+void	init_chimney_dresser(t_test *test);
+void	init_collec_exit(t_test *test);
+void	init_all_remain(t_test *test);
 
 //MOVE
 void	move_right(t_test *test);
+void    exec_right(t_test *test);
 void	move_left(t_test *test);
 void	move_up(t_test *test);
 void	move_down(t_test *test);
 
 //Utils
-int	get_pixel(t_data *img, int x, int y);
+int     get_pixel(t_data *img, int x, int y);
 void	my_mlx_pixel_put(t_test *test, int x, int y, int color);
 void	draw_on_image(t_test *test, t_data *img, int startx, int starty);
 void	draw_on_image_bis(t_test *test, t_data *img, int startx, int starty);
@@ -245,5 +255,10 @@ void 	draw_dialog_box(t_test *test);
 
 //Exit
 void	clean_exit(t_test *test);
+void	destroy_collec_floor_wall(t_test *test);
+void    destroy_event_img(t_test *test);
+void    destroy_obj_img(t_test *test);
+void	destroy_fire_img(t_test *test);
+void	destroy_player_img(t_test *test);
 
 #endif
