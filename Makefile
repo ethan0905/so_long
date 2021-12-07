@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 22:58:48 by mahautlat         #+#    #+#              #
-#    Updated: 2021/11/30 17:58:26 by esafar           ###   ########.fr        #
+#    Updated: 2021/12/07 19:06:43 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ SRCS =	main.c \
 		./get_next_line/get_next_line.c \
 		./get_next_line/get_next_line_utils.c \
 		./libft/ft_strdup.c \
+		./libft/ft_putchar_fd.c \
 		./libft/ft_putstr_fd.c \
+		./libft/ft_putnbr_fd.c \
 		./libft/ft_strlen.c \
 		./libft/ft_strjoin.c \
 		./libft/ft_itoa.c \
@@ -22,6 +24,12 @@ SRCS =	main.c \
 		./srcs/ft_putpixel.c \
 		./srcs/get_map.c \
 		./srcs/move.c \
+		./srcs/draw_on_images.c \
+		./srcs/draw_map.c \
+		./srcs/draw_stats.c \
+		./srcs/draw_collectibles.c \
+		./srcs/get_images.c \
+		./srcs/get_images2.c \
 		./srcs/initialize.c
 
 

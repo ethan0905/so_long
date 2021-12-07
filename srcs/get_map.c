@@ -79,11 +79,6 @@ int    get_map(t_test *test, int ac, char **av)
 	test->param.map[put_x] = NULL;
 	close(fd);
 	test->param.height_with_wall = test->param.height + 3;
-	printf("\nlargeur avec x = %d\n", test->param.width_with_x);
-	printf("largeur = %d\n", test->param.width);
-	printf("hauteur = %d\n", test->param.height);
-	printf("hauteur avec murs = %d\n", test->param.height_with_wall);
-	printf("window size : %d * %d\n\n", test->param.width_with_x*64-(2*64), (test->param.height-2)*64+3*64);
 
 	i = 0;
 	int j = 0;

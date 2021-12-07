@@ -225,7 +225,7 @@ typedef struct s_test
 char	*get_line(char *save);
 int    get_map(t_test *test, int ac, char **av);
 
-//Init
+//INIT
 void	initialize(t_test *test);
 void    init_stats(t_test *test);
 void	init_event(t_test *test);
@@ -237,6 +237,16 @@ void	init_chimney_dresser(t_test *test);
 void	init_collec_exit(t_test *test);
 void	init_all_remain(t_test *test);
 
+void	get_fire(t_test *test);
+void	get_player(t_test *test);
+void	get_event(t_test *test);
+void	get_stats(t_test *test);
+void	get_exit(t_test *test);
+void	get_chimney_and_dresser(t_test *test);
+void	get_piano(t_test *test);
+void	get_collec(t_test *test);
+void	get_remain(t_test *test);
+
 //MOVE
 void	move_right(t_test *test);
 void    exec_right(t_test *test);
@@ -244,16 +254,31 @@ void	move_left(t_test *test);
 void	move_up(t_test *test);
 void	move_down(t_test *test);
 
-//Utils
+//DRAW
+void	draw_on_image(t_test *test, t_data *img, int startx, int starty);
+void	draw_on_image_bis(t_test *test, t_data *img, int startx, int starty);
+void	draw_on_image_intro(t_test *test, t_data *img, int startx, int starty);
+
+void    draw_background(t_test *test);
+void    draw_walls(t_test *test);
+void    draw_floors(t_test *test);
+
+void	draw_collectibles(t_test *test);
+void	check_which_collectible(t_test *test, int i, int x, int y);
+
+void	draw_life(t_test *test);
+void	draw_score(t_test *test);
+void	free_string(char *steps, char *collec, char *amount);
+void 	draw_dialog_box(t_test *test);
+
+//UTILS
 int     get_pixel(t_data *img, int x, int y);
 void	my_mlx_pixel_put(t_test *test, int x, int y, int color);
 void	draw_on_image(t_test *test, t_data *img, int startx, int starty);
 void	draw_on_image_bis(t_test *test, t_data *img, int startx, int starty);
 void	draw_on_image_intro(t_test *test, t_data *img, int startx, int starty);
-void    draw_score(t_test *test);
-void 	draw_dialog_box(t_test *test);
 
-//Exit
+//EXIT
 void	clean_exit(t_test *test);
 void	destroy_collec_floor_wall(t_test *test);
 void    destroy_event_img(t_test *test);
