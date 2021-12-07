@@ -101,6 +101,13 @@ void	destroy_player_img(t_test *test)
 	mlx_destroy_image(test->mlx, test->player.dmg_left.img);
 }
 
+int	close_win_cross(t_test *test)
+{
+	mlx_loop_end (test->mlx);
+	clean_exit(test);
+	return (0);
+}
+
 void	clean_exit(t_test *test)
 {
 	destroy_event_img(test);

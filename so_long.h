@@ -146,6 +146,8 @@ typedef struct s_fire
 typedef struct s_all
 {
     int babo;
+    int random_obj;
+    int ispiano;
     t_data wall;
     t_data floor;
     t_data floor_half_right;
@@ -204,6 +206,14 @@ typedef struct s_stats
     t_data step;
 }		t_stats;
 
+typedef struct s_iter
+{
+    int i;
+    int j;
+    int x;
+    int y;
+}		t_iter;
+
 typedef struct s_test
 {
 	void *mlx;
@@ -220,6 +230,7 @@ typedef struct s_test
     t_dialog dialog_box;
     t_stats stats;
     t_intro intro;
+    t_iter iter;
 }               t_test;
 
 char	*get_line(char *save);
@@ -263,13 +274,43 @@ void    draw_background(t_test *test);
 void    draw_walls(t_test *test);
 void    draw_floors(t_test *test);
 
+void    draw_furnitures(t_test *test);
+int		draw_chimney(t_test *test, int random_obj, int x, int y);
+void	draw_dresser(t_test *test, int x, int y);
+void	draw_flames(t_test *test, int x, int y);
+int	    draw_piano(t_test *test, int piano, int x, int y);
+void	draw_pot(t_test *test, int random_obj, int x, int y);
+void	four_pot_line(t_test *test, int x, int y);
+
 void	draw_collectibles(t_test *test);
 void	check_which_collectible(t_test *test, int i, int x, int y);
+
+void    draw_player(t_test *test);
+void	choose_player_image(t_test *test);
+void	get_pos_player(t_test *test);
+
+void	draw_exit(t_test *test);
+void	check_how_to_draw_exit(t_test *test);
+
+void	draw_trap(t_test *test);
 
 void	draw_life(t_test *test);
 void	draw_score(t_test *test);
 void	free_string(char *steps, char *collec, char *amount);
 void 	draw_dialog_box(t_test *test);
+void	print_box(t_test *test);
+
+//EVENT
+void	pick_up_coll(t_test *test);
+void	pick_up_coll_event(t_test *test);
+void	play_piano(t_test *test);
+void	open_trapdoor(t_test *test);
+void	clean_dialog(t_test *test);
+
+//KEYPRESS
+int     handle_keypress(int keysym, t_test *test);
+void	check_intro_keypress(t_test *test, int keysym);
+void	check_game_keypress(t_test *test, int keysym);
 
 //UTILS
 int     get_pixel(t_data *img, int x, int y);
@@ -280,6 +321,7 @@ void	draw_on_image_intro(t_test *test, t_data *img, int startx, int starty);
 
 //EXIT
 void	clean_exit(t_test *test);
+int     close_win_cross(t_test *test);
 void	destroy_collec_floor_wall(t_test *test);
 void    destroy_event_img(t_test *test);
 void    destroy_obj_img(t_test *test);

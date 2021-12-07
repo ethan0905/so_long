@@ -5,12 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 18:25:56 by esafar            #+#    #+#             */
-/*   Updated: 2021/12/07 18:26:07 by esafar           ###   ########.fr       */
+/*   Created: 2021/12/07 20:07:14 by esafar            #+#    #+#             */
+/*   Updated: 2021/12/07 20:07:24 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	draw_flames(t_test *test, int x, int y)
+{
+	draw_on_image(test, test->all.fire.frame, x, y);
+}
 
 void	draw_dresser(t_test *test, int x, int y)
 {
@@ -46,80 +51,29 @@ int		draw_chimney(t_test *test, int random_obj, int x, int y)
 	return (random_obj);
 }
 
-int	draw_piano(t_test *test, int piano, int x, int y)
-{
-	if (piano == 0)
-	{
-		draw_on_image(test, &test->all.piano.downleft, x, y - 26);
-		draw_on_image(test, &test->all.piano.midleft, x, y - 64 - 26);
-		draw_on_image(test, &test->all.piano.topleft, x + 9, y - 128 - 26);
-		draw_on_image(test, &test->all.piano.downmid, x + 64, y - 26);
-		draw_on_image(test, &test->all.piano.midmid, x + 64, y - 64 - 26);
-		draw_on_image(test, &test->all.piano.topmid, x + 64, y - 128 - 26);
-		draw_on_image(test, &test->all.piano.downright, x + 128, y - 26);
-		draw_on_image(test, &test->all.piano.midright, x + 128, y - 64 - 26);
-		draw_on_image(test, &test->all.piano.topright, x + 128, y - 128 - 26);
-		piano++;
-	}
-	else
-	{
-		draw_on_image(test, &test->all.pot, x, y - 32);
-		draw_on_image(test, &test->all.pot, x + 64, y - 32);
-		draw_on_image(test, &test->all.pot, x + 128, y - 32);
-	}
-	return (piano);
-}
-
-void	draw_pot(t_test *test, int random_obj, int x, int y)
-{
-	if (random_obj == 0)
-	{
-		draw_on_image(test, &test->all.pot, x, y - 32);
-		if (test->all.babo == 0)
-		{
-			draw_on_image(test, &test->all.babolex_painting, x + 32, y-128);
-			test->all.babo = 1;
-		}
-	}
-}
-
 void draw_furnitures(t_test *test)
 {
-	int i;
-	int j;
-	int x;
-	int y;
-	int random_obj;
-	int piano;
-
-	i = 1;
-	piano = 0;
-	random_obj = 0;
-	while (test->param.map[i + 1])
+	test->iter.i = 0;
+	while (test->param.map[++test->iter.i + 1])
 	{
-		j = 1;
-		while (test->param.map[i][j + 1])
+		test->iter.j = 0;
+		while (test->param.map[test->iter.i][++test->iter.j + 1])
 		{
-			x = (64 + (test->param.height - 2 - i)*64 + (j-1)*64);
-			y = (192 + (i-1)*64);
-			if (test->param.map[i][j] == '1' && i != 1)
-				draw_on_image(test, &test->all.box, x, y);
-			else if (test->param.map[i][j] == '1' && ((test->param.map[i][j - 1] == '0' || test->param.map[i][j - 1] == 'P') || (test->param.map[i][j - 1] == '1' && j - 1 == 0)) && ((test->param.map[i][j + 1] == '0' || test->param.map[i][j + 1] == 'P') || (test->param.map[i][j + 1] == '1' && j + 1 == test->param.width - 1)) && i == 1)
-				draw_pot(test, random_obj, x, y);
-			else if (test->param.map[i][j] == '1' && test->param.map[i][j + 1] == '1' && j + 1 != test->param.width - 1 && ((test->param.map[i][j - 1] == '0' || test->param.map[i][j - 1] == 'P') || (test->param.map[i][j - 1] == '1' && j - 1 == 0)) && ((test->param.map[i][j + 2] == '0' || test->param.map[i][j + 2] == 'P') || (test->param.map[i][j + 2] == '1' && j + 2 == test->param.width - 1)))
-				random_obj = draw_chimney(test, random_obj, x, y);
-			else if (test->param.map[i][j] == '1' && test->param.map[i][j + 1] == '1' && test->param.map[i][j + 2] == '1' && j + 1 != test->param.width - 1 && ((test->param.map[i][j - 1] == '0' || test->param.map[i][j - 1] == 'P') || (test->param.map[i][j - 1] == '1' && j - 1  == 0)) && ((test->param.map[i][j + 3] == '0' || test->param.map[i][j + 3] == 'P') || (test->param.map[i][j + 3] == '1' && j + 3 == test->param.width - 1)))
-				piano = draw_piano(test, piano, x, y);
-			else if (i == 1 && j != test->param.width - 4 && test->param.map[i][j] == '1' && test->param.map[i][j + 1] == '1' && test->param.map[i][j + 2] == '1' && test->param.map[i][j + 3] == '1')
-			{
-				draw_on_image(test, &test->all.pot, x, y - 32);
-				draw_on_image(test, &test->all.pot, x + 64, y - 32);
-				draw_on_image(test, &test->all.pot, x + 128, y - 32);
-				draw_on_image(test, &test->all.pot, x + 192, y - 32);
-			}
-			j++;
+			test->iter.x = (64 + (test->param.height - 2 - test->iter.i)*64 + (test->iter.j-1)*64);
+			test->iter.y = (192 + (test->iter.i-1)*64);
+			if (test->param.map[test->iter.i][test->iter.j] == '1' && test->iter.i != 1)
+				draw_on_image(test, &test->all.box, test->iter.x, test->iter.y);
+			else if (test->param.map[test->iter.i][test->iter.j] == '1' && ((test->param.map[test->iter.i][test->iter.j - 1] == '0' || test->param.map[test->iter.i][test->iter.j - 1] == 'P') || (test->param.map[test->iter.i][test->iter.j - 1] == '1' && test->iter.j - 1 == 0)) && ((test->param.map[test->iter.i][test->iter.j + 1] == '0' || test->param.map[test->iter.i][test->iter.j + 1] == 'P') || (test->param.map[test->iter.i][test->iter.j + 1] == '1' && test->iter.j + 1 == test->param.width - 1)) && test->iter.i == 1)
+				draw_pot(test, test->all.random_obj, test->iter.x, test->iter.y);
+			else if (test->param.map[test->iter.i][test->iter.j] == '1' && test->param.map[test->iter.i][test->iter.j + 1] == '1' && test->iter.j + 1 != test->param.width - 1 && ((test->param.map[test->iter.i][test->iter.j - 1] == '0' || test->param.map[test->iter.i][test->iter.j - 1] == 'P') || (test->param.map[test->iter.i][test->iter.j - 1] == '1' && test->iter.j - 1 == 0)) && ((test->param.map[test->iter.i][test->iter.j + 2] == '0' || test->param.map[test->iter.i][test->iter.j + 2] == 'P') || (test->param.map[test->iter.i][test->iter.j + 2] == '1' && test->iter.j + 2 == test->param.width - 1)))
+				test->all.random_obj = draw_chimney(test, test->all.random_obj, test->iter.x, test->iter.y);
+			else if (test->param.map[test->iter.i][test->iter.j] == '1' && test->param.map[test->iter.i][test->iter.j + 1] == '1' && test->param.map[test->iter.i][test->iter.j + 2] == '1' && test->iter.j + 1 != test->param.width - 1 && ((test->param.map[test->iter.i][test->iter.j - 1] == '0' || test->param.map[test->iter.i][test->iter.j - 1] == 'P') || (test->param.map[test->iter.i][test->iter.j - 1] == '1' && test->iter.j - 1  == 0)) && ((test->param.map[test->iter.i][test->iter.j + 3] == '0' || test->param.map[test->iter.i][test->iter.j + 3] == 'P') || (test->param.map[test->iter.i][test->iter.j + 3] == '1' && test->iter.j + 3 == test->param.width - 1)))
+				test->all.ispiano = draw_piano(test, test->all.ispiano, test->iter.x, test->iter.y);
+			else if (test->iter.i == 1 && test->iter.j != test->param.width - 4 && test->param.map[test->iter.i][test->iter.j] == '1' && test->param.map[test->iter.i][test->iter.j + 1] == '1' && test->param.map[test->iter.i][test->iter.j + 2] == '1' && test->param.map[test->iter.i][test->iter.j + 3] == '1')
+				four_pot_line(test, test->iter.x, test->iter.y);
 		}
-		i++;
 	}
 	test->all.babo = 0;
+	test->all.ispiano = 0;
+	test->all.random_obj = 0;
 }

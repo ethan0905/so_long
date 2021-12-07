@@ -177,6 +177,8 @@ void	init_all_remain(t_test *test)
 	test->all.cardboard.img = NULL;
 	test->all.cardboard.addr = NULL; 
 	test->all.babo = 0;
+	test->all.ispiano = 0;
+	test->all.random_obj = 0;
 	test->all.babolex_painting.img = NULL;
 	test->all.babolex_painting.addr = NULL;
 	test->all.spike.img = NULL;
