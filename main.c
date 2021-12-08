@@ -27,7 +27,7 @@ void	make_intro(t_test *test)
 	mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
 }
 
-void 	draw_all_together(t_test *test)
+void	draw_all_together(t_test *test)
 {
 	draw_background(test);
 	draw_walls(test);
@@ -51,9 +51,9 @@ void 	draw_all_together(t_test *test)
 	draw_life(test);
 }
 
-int    render(t_test *test)
+int	render(t_test *test)
 {
-	if ((test->intro_or_not == 1 || test->intro_or_not == 2 || test->intro_or_not == 3 || test->intro_or_not == 4 || test->intro_or_not == 5) && test->param.width_with_x*64-(2*64) == 960 && (test->param.height-2)*64+3*64 == 448)
+	if ((test->intro_or_not == 1 || test->intro_or_not == 2 || test->intro_or_not == 3 || test->intro_or_not == 4 || test->intro_or_not == 5) && test->param.width_with_x * 64 - (2 * 64) == 960 && (test->param.height - 2) * 64 + 3 * 64 == 448)
 		make_intro(test);
 	else if ((test->param.rendered == 0 || test->param.rendered == 1) && test->stats.lives != 0)
 	{
@@ -79,19 +79,19 @@ void	get_all_images_and_addresses(t_test *test)
 	get_exit(test);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    t_test test;
+	t_test	test;
 
 	get_map(&test, ac, av);
-    test.mlx = mlx_init();
-    test.win = mlx_new_window(test.mlx, test.param.width_with_x*64-(2*64), (test.param.height-2)*64+3*64, "so_short on time!");
-    test.data.img = mlx_new_image(test.mlx, test.param.width_with_x*64-(2*64), (test.param.height-2)*64+3*64);
-    test.data.addr = mlx_get_data_addr(test.data.img, &test.data.bits_per_pixel, &test.data.line_length, &test.data.endian);
+	test.mlx = mlx_init();
+	test.win = mlx_new_window(test.mlx, test.param.width_with_x * 64 - (2 * 64), (test.param.height - 2) * 64 + 3 * 64, "so_short on time!");
+	test.data.img = mlx_new_image(test.mlx, test.param.width_with_x * 64 - (2 * 64), (test.param.height - 2) * 64 + 3 * 64);
+	test.data.addr = mlx_get_data_addr(test.data.img, &test.data.bits_per_pixel, &test.data.line_length, &test.data.endian);
 	get_all_images_and_addresses(&test);
 	mlx_hook(test.win, 2, 1L << 0, &handle_keypress, &test);
 	mlx_loop_hook(test.mlx, render, &test);
 	mlx_hook(test.win, 17, 1L << 0, &close_win_cross, &test);
-    mlx_loop(test.mlx);
-    return (0);
+	mlx_loop(test.mlx);
+	return (0);
 }
