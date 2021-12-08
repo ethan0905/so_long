@@ -299,6 +299,11 @@ void	draw_score(t_test *test);
 void	free_string(char *steps, char *collec, char *amount);
 void 	draw_dialog_box(t_test *test);
 void	print_box(t_test *test);
+void	draw_button(t_test *test);
+void	make_exit_key_event(t_test *test);
+void	make_piano_key_event(t_test *test);
+void	make_collec_key_event(t_test *test);
+void	check_which_player_side(t_test *test);
 
 //EVENT
 void	pick_up_coll(t_test *test);
