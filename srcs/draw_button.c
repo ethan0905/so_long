@@ -37,15 +37,12 @@ void	make_collec_key_event(t_test *test)
 	{
 		draw_walls(test);
 		draw_floors(test);
+		draw_trap(test);
+		draw_exit(test);
 		draw_furnitures(test);
 		draw_collectibles(test);
-		draw_trap(test);
 		check_which_player_side(test);
-		if (test->all.exit.opened == 1)
-			draw_exit(test);
 		draw_player(test);
-		if (test->all.exit.opened == 0)
-			draw_exit(test);
 		draw_score(test);
 		while (test->iter.i < 240000000)
 			test->iter.i++;
@@ -66,15 +63,12 @@ void	make_piano_key_event(t_test *test)
 	{
 		draw_walls(test);
 		draw_floors(test);
+		draw_trap(test);
+		draw_exit(test);
 		draw_furnitures(test);
 		draw_collectibles(test);
-		draw_trap(test);
 		test->player.side = &test->player.backside;
-		if (test->all.exit.opened == 1)
-			draw_exit(test);
 		draw_player(test);
-		if (test->all.exit.opened == 0)
-			draw_exit(test);
 		draw_score(test);
 		while (test->iter.i < 240000000)
 			test->iter.i++;
@@ -96,14 +90,11 @@ void	make_exit_key_event(t_test *test)
 	{
 		draw_walls(test);
 		draw_floors(test);
+		draw_trap(test);
+		draw_exit(test);
 		draw_furnitures(test);
 		draw_collectibles(test);
-		draw_trap(test);
-		if (test->all.exit.opened == 1)
-			draw_exit(test);
 		draw_player(test);
-		if (test->all.exit.opened == 0)
-			draw_exit(test);
 		draw_score(test);
 		while (test->iter.i < 240000000)
 			test->iter.i++;

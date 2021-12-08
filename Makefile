@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 22:58:48 by mahautlat         #+#    #+#              #
-#    Updated: 2021/12/08 09:55:05 by esafar           ###   ########.fr        #
+#    Updated: 2021/12/08 11:22:24 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,12 @@ SRCS =	main.c \
 		./libft/ft_strjoin.c \
 		./libft/ft_itoa.c \
 		./srcs/exit.c \
+		./srcs/clean_images.c \
 		./srcs/ft_putpixel.c \
 		./srcs/get_map.c \
 		./srcs/move.c \
+		./srcs/exec_moves.c \
+		./srcs/exec_events.c \
 		./srcs/draw_on_images.c \
 		./srcs/draw_map.c \
 		./srcs/draw_stats.c \
@@ -39,7 +42,9 @@ SRCS =	main.c \
 		./srcs/get_images2.c \
 		./srcs/handle_event.c \
 		./srcs/handle_keypress.c \
-		./srcs/initialize.c
+		./srcs/initialize.c \
+		./srcs/initialize_functionnalities.c \
+		./srcs/initialize_objects.c
 
 
 OBJS 		= ${SRCS:.c=.o}

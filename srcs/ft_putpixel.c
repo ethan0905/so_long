@@ -14,13 +14,15 @@
 
 int	get_pixel(t_data *img, int x, int y)
 {
-    return (*(int *)(img->addr + (y * img->line_length + (x * (img->bits_per_pixel / 8)))));
+	return (*(int *)(img->addr + (y * img->line_length
+			+ (x * (img->bits_per_pixel / 8)))));
 }
 
 void	my_mlx_pixel_put(t_test *test, int x, int y, int color)
 {
 	char	*dest;
 
-	dest = test->data.addr + (y * test->data.line_length + x * (test->data.bits_per_pixel / 8));
+	dest = test->data.addr + (y * test->data.line_length + x
+			* (test->data.bits_per_pixel / 8));
 	*(unsigned int *)dest = color;
 }

@@ -32,16 +32,13 @@ void	draw_all_together(t_test *test)
 	draw_background(test);
 	draw_walls(test);
 	draw_floors(test);
+	draw_trap(test);
+	draw_exit(test);
 	draw_furnitures(test);
 	draw_collectibles(test);
-	draw_trap(test);
 	if (test->param.rendered == 0)
 		test->player.side = &test->player.frontside;
-	if (test->all.exit.opened == 1)
-		draw_exit(test);
 	draw_player(test);
-	if (test->all.exit.opened == 0)
-		draw_exit(test);
 	mlx_put_image_to_window(test->mlx, test->win, test->data.img, 0, 0);
 	draw_score(test);
 	draw_button(test);

@@ -245,6 +245,7 @@ void	init_intro(t_test *test);
 void	init_player(t_test *test);
 void	init_player_pos(t_test *test);
 void	init_chimney_dresser(t_test *test);
+void	init_fire(t_test *test);
 void	init_collec_exit(t_test *test);
 void	init_all_remain(t_test *test);
 
