@@ -262,8 +262,14 @@ void	get_remain(t_test *test);
 void	move_right(t_test *test);
 void	exec_right(t_test *test);
 void	move_left(t_test *test);
+void	exec_left(t_test *test);
 void	move_up(t_test *test);
+void	exec_up(t_test *test);
 void	move_down(t_test *test);
+void	exec_down(t_test *test);
+void	exec_trap(t_test *test, int direction);
+void	exec_exit(t_test *test, int direction);
+void	exec_not_all_items(t_test *test, int direction);
 
 //DRAW
 void	draw_on_image(t_test *test, t_data *img, int startx, int starty);
