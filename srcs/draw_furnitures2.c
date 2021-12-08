@@ -36,6 +36,14 @@ int	draw_piano(t_test *test, int piano, int x, int y)
 	return (piano);
 }
 
+void	draw_dresser(t_test *test, int x, int y)
+{
+	draw_on_image(test, &test->all.dresser_downleft, x, y - 24);
+	draw_on_image(test, &test->all.dresser_downright, x + 64, y - 24);
+	draw_on_image(test, &test->all.dresser_topleft, x, y - 64 - 24);
+	draw_on_image(test, &test->all.dresser_topright, x + 64, y - 64 - 24);
+}
+
 void	draw_pot(t_test *test, int random_obj, int x, int y)
 {
 	if (random_obj == 0)
@@ -43,7 +51,8 @@ void	draw_pot(t_test *test, int random_obj, int x, int y)
 		draw_on_image(test, &test->all.pot, x, y - 32);
 		if (test->all.babo == 0)
 		{
-			draw_on_image(test, &test->all.babolex_painting, x + 32, y-128);
+			draw_on_image(test, &test->all.babolex_painting,
+				x + 32, y - 128);
 			test->all.babo = 1;
 		}
 	}
@@ -52,7 +61,7 @@ void	draw_pot(t_test *test, int random_obj, int x, int y)
 void	four_pot_line(t_test *test, int x, int y)
 {
 	draw_on_image(test, &test->all.pot, x, y - 32);
-	draw_on_image(test, &test->all.pot, x + 64, y - 32);	
+	draw_on_image(test, &test->all.pot, x + 64, y - 32);
 	draw_on_image(test, &test->all.pot, x + 128, y - 32);
 	draw_on_image(test, &test->all.pot, x + 192, y - 32);
 }

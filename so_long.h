@@ -282,6 +282,12 @@ void	draw_walls(t_test *test);
 void	draw_floors(t_test *test);
 
 void	draw_furnitures(t_test *test);
+int		isvpcte(t_test *test, int i, int j);
+int		cond1(t_test *test);
+int		cond2(t_test *test);
+int		cond3(t_test *test);
+int		cond4(t_test *test);
+
 int		draw_chimney(t_test *test, int random_obj, int x, int y);
 void	draw_dresser(t_test *test, int x, int y);
 void	draw_flames(t_test *test, int x, int y);
@@ -305,7 +311,12 @@ void	draw_life(t_test *test);
 void	draw_score(t_test *test);
 void	free_string(char *steps, char *collec, char *amount);
 void	draw_dialog_box(t_test *test);
+void	write_piano_event(t_test *test);
+void	write_newspaper_event(t_test *test);
+void	write_new_item_event(t_test *test);
+void	write_press_c_event(t_test *test);
 void	print_box(t_test *test);
+
 void	draw_button(t_test *test);
 void	make_exit_key_event(t_test *test);
 void	make_piano_key_event(t_test *test);
