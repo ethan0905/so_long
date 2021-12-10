@@ -26,7 +26,15 @@ void	open_trapdoor(t_test *test)
 
 void	play_piano(t_test *test)
 {
-	if (test->player.pos_i != 1 && test->param.map[test->player.pos_i - 1][test->player.pos_j] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 1] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 2] == '0' && test->player.pos_j + 1 < test->param.width - 1 && test->param.map[test->player.pos_i - 1][test->player.pos_j - 1] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j - 2] == '0')
+	if (test->player.pos_i != 1 && test->param.map[test->player.pos_i
+			- 1][test->player.pos_j] == '1' && \
+			test->param.map[test->player.pos_i - 1][test->player.pos_j
+			+ 1] == '1' && test->param.map[test->player.pos_i - \
+			1][test->player.pos_j + 2] == '0' && test->player.pos_j + 1
+			< test->param.width - 1 && test->param.map[test->player.pos_i
+			- 1][test->player.pos_j - 1] == '1' && \
+			test->param.map[test->player.pos_i - 1][test->player.pos_j
+			- 2] == '0')
 	{
 		test->dialog_box.event = 1;
 		draw_dialog_box(test);
@@ -36,12 +44,12 @@ void	play_piano(t_test *test)
 
 void	pick_up_coll_event(t_test *test)
 {
-		test->dialog_box.event = 2;
-		draw_dialog_box(test);
-		test->dialog_box.keep = 1;
-        test->collec.count++;
-		ft_putnbr_fd(test->collec.count, 1);
-        ft_putstr_fd(" object in your inventory\n", 1);
+	test->dialog_box.event = 2;
+	draw_dialog_box(test);
+	test->dialog_box.keep = 1;
+	test->collec.count++;
+	ft_putnbr_fd(test->collec.count, 1);
+	ft_putstr_fd(" object in your inventory\n", 1);
 }
 
 void	pick_up_coll(t_test *test)

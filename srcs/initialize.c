@@ -64,4 +64,8 @@ void	initialize(t_test *test)
 	init_chimney_dresser(test);
 	init_collec_exit(test);
 	init_all_remain(test);
+	test->tex.tex_x = 0;
+	test->tex.tex_y = 0;
+	test->tex.ratio_x = 1.0f;
+	test->tex.ratio_y = 1.0f;
 }

@@ -22,10 +22,10 @@ void	check_which_collectible(t_test *test, int i, int x, int y)
 
 void	draw_collectibles(t_test *test)
 {
-	int i;
-	int j;
-	int x;
-	int y;
+	int	i;
+	int	j;
+	int	x;
+	int	y;
 
 	i = 1;
 	while (test->param.map[i + 1])
@@ -33,8 +33,8 @@ void	draw_collectibles(t_test *test)
 		j = 1;
 		while (test->param.map[i][j + 1])
 		{
-			x = (64 + (test->param.height - 2 - i)*64 + (j-1)*64);
-			y = (192 + (i-1)*64);
+			x = (64 + (test->param.height - 2 - i) * 64 + (j - 1) * 64);
+			y = (192 + (i - 1) * 64);
 			if (test->param.map[i][j] == 'C' && j % 2 == 0)
 				check_which_collectible(test, i, x, y);
 			else if (test->param.map[i][j] == 'C' && j % 2 == 1)

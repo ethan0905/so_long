@@ -15,15 +15,15 @@
 void	check_game_keypress(t_test *test, int keysym)
 {
 	if (keysym == ESC)
-	   	clean_exit(test);
-    else if (keysym == D)
-	    move_right(test);
-    else if (keysym == A)
-    	move_left(test);
-   	else if (keysym == W)
-	   	move_up(test);
-   	else if (keysym == S)
-	   	move_down(test);
+		clean_exit(test);
+	else if (keysym == D)
+		move_right(test);
+	else if (keysym == A)
+		move_left(test);
+	else if (keysym == W)
+		move_up(test);
+	else if (keysym == S)
+		move_down(test);
 	else if (keysym == E)
 		pick_up_coll(test);
 	else if (keysym == P)
@@ -33,7 +33,7 @@ void	check_game_keypress(t_test *test, int keysym)
 	else if (keysym == O && test->collec.count == test->collec.amount)
 		open_trapdoor(test);
 	else if (keysym != ESC)
-       	write(1, &keysym, 1);
+		write(1, &keysym, 1);
 }
 
 void	check_intro_keypress(t_test *test, int keysym)
@@ -51,13 +51,14 @@ void	check_intro_keypress(t_test *test, int keysym)
 	else if (keysym == ESC)
 		clean_exit(test);
 	else
-    	write(1, &keysym, 1);
+		write(1, &keysym, 1);
 }
+
 int	handle_keypress(int keysym, t_test *test)
 {
 	if (test->intro_or_not == 0)
 		check_game_keypress(test, keysym);
 	else
 		check_intro_keypress(test, keysym);
-    return (0);
+	return (0);
 }

@@ -78,10 +78,21 @@ void	get_event(t_test *test)
     test->dialog_box.left.addr = mlx_get_data_addr(test->dialog_box.left.img, &test->dialog_box.left.bits_per_pixel, &test->dialog_box.left.line_length, &test->dialog_box.left.endian);
 }
 
+void	init_img1(t_test *test)
+{
+	test->stats.full_heart.img = mlx_xpm_file_to_image(test->mlx, \
+		"textures/white_full_heart.xpm", &test->stats.full_heart.x, \
+		&test->stats.full_heart.y);
+	test->stats.full_heart.addr = mlx_get_data_addr(test->stats.full_heart.img, \
+		&test->stats.full_heart.bits_per_pixel, \
+		&test->stats.full_heart.line_length, &test->stats.full_heart.endian);
+}
+
 void	get_stats(t_test *test)
 {
-	test->stats.full_heart.img = mlx_xpm_file_to_image(test->mlx, "textures/white_full_heart.xpm", &test->stats.full_heart.x, &test->stats.full_heart.y);
-	test->stats.full_heart.addr = mlx_get_data_addr(test->stats.full_heart.img, &test->stats.full_heart.bits_per_pixel, &test->stats.full_heart.line_length, &test->stats.full_heart.endian);
+	init_img1(test);
+	// test->stats.full_heart.img = mlx_xpm_file_to_image(test->mlx, "textures/white_full_heart.xpm", &test->stats.full_heart.x, &test->stats.full_heart.y);
+	// test->stats.full_heart.addr = mlx_get_data_addr(test->stats.full_heart.img, &test->stats.full_heart.bits_per_pixel, &test->stats.full_heart.line_length, &test->stats.full_heart.endian);
 	test->stats.empty_heart.img = mlx_xpm_file_to_image(test->mlx, "textures/white_empty_heart.xpm", &test->stats.empty_heart.x, &test->stats.empty_heart.y);
 	test->stats.empty_heart.addr = mlx_get_data_addr(test->stats.empty_heart.img, &test->stats.empty_heart.bits_per_pixel, &test->stats.empty_heart.line_length, &test->stats.empty_heart.endian);
 	test->stats.typeface_life.img = mlx_xpm_file_to_image(test->mlx, "textures/typeface_life_2.xpm", &test->stats.typeface_life.x, &test->stats.typeface_life.y);
