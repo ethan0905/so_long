@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 22:58:48 by mahautlat         #+#    #+#              #
-#    Updated: 2021/12/08 11:22:24 by esafar           ###   ########.fr        #
+#    Updated: 2021/12/08 17:22:13 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,12 @@ SRCS =	main.c \
 		./srcs/draw_map.c \
 		./srcs/draw_stats.c \
 		./srcs/draw_dialogbox.c \
+		./srcs/write_event.c \
 		./srcs/draw_button.c \
 		./srcs/draw_collectibles.c \
 		./srcs/draw_furnitures.c \
 		./srcs/draw_furnitures2.c \
+		./srcs/draw_furnitures_cond.c \
 		./srcs/draw_player.c \
 		./srcs/draw_exit.c \
 		./srcs/draw_trap.c \

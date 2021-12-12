@@ -214,6 +214,14 @@ typedef struct s_iter
 	int	y;
 }				t_iter;
 
+typedef struct s_tex
+{
+	int	tex_x;
+	int tex_y;
+	double	ratio_x;
+	double	ratio_y;
+}				t_tex;
+
 typedef struct s_test
 {
 	void		*mlx;
@@ -231,6 +239,7 @@ typedef struct s_test
 	t_stats		stats;
 	t_intro		intro;
 	t_iter		iter;
+	t_tex		tex;
 }				t_test;
 
 char	*get_line(char *save);
