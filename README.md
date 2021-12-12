@@ -1,10 +1,10 @@
 # so_long
 ## Subject
-#### You must create a small 2D game where a dolphin
-#### escapes earth after eating some fish. Or any hero
-#### collects any valuables before leaving the place.
-#### You will use 2d view (top-down or profile)
-###### read more [here](https://cdn.intra.42.fr/pdf/pdf/34601/en.subject.pdf)
+You must create a small 2D game where a dolphin
+escapes earth after eating some fish. Or any hero
+collects any valuables before leaving the place.
+You will use 2d view (top-down or profile)
+###### Read more [here](https://cdn.intra.42.fr/pdf/pdf/34601/en.subject.pdf)
 
 ## Examples
 ![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/subject.png?raw=true)
