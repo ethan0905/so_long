@@ -6,7 +6,7 @@ collects any valuables before leaving the place.
 You will use 2d view (top-down or profile)
 
 ## Goal
-![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/wanted.png?raw=true)
+![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/subject.png?raw=true)
 
 ## Map parsing
 In order to create the isometric effect, I implemented this trick to create a 45 angle:
