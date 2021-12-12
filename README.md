@@ -5,7 +5,7 @@ escapes earth after eating some fish. Or any hero
 collects any valuables before leaving the place.
 You will use 2d view (top-down or profile)
 
-## Goal
+## Examples
 ![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/subject.png?raw=true)
 
 ## Map parsing
