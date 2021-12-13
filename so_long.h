@@ -216,8 +216,8 @@ typedef struct s_iter
 
 typedef struct s_tex
 {
-	int	tex_x;
-	int tex_y;
+	int		tex_x;
+	int		tex_y;
 	double	ratio_x;
 	double	ratio_y;
 }				t_tex;
