@@ -42,6 +42,10 @@ SRCS =	main.c \
 		./srcs/draw_trap.c \
 		./srcs/get_images.c \
 		./srcs/get_images2.c \
+		./srcs/norme1.c \
+		./srcs/norme2.c \
+		./srcs/norme3.c \
+		./srcs/norme4.c \
 		./srcs/handle_event.c \
 		./srcs/handle_keypress.c \
 		./srcs/initialize.c \

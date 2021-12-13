@@ -257,6 +257,7 @@ void	init_chimney_dresser(t_test *test);
 void	init_fire(t_test *test);
 void	init_collec_exit(t_test *test);
 void	init_all_remain(t_test *test);
+void	init_img1(t_test *test);
 
 void	get_fire(t_test *test);
 void	get_player(t_test *test);
@@ -267,6 +268,23 @@ void	get_chimney_and_dresser(t_test *test);
 void	get_piano(t_test *test);
 void	get_collec(t_test *test);
 void	get_remain(t_test *test);
+
+void	norme1(t_test *test);
+void	norme2(t_test *test);
+void	norme3(t_test *test);
+void	norme4(t_test *test);
+void	norme5(t_test *test);
+void	norme6(t_test *test);
+void	norme7(t_test *test);
+void	norme8(t_test *test);
+void	norme9(t_test *test);
+void	norme10(t_test *test);
+void	norme11(t_test *test);
+void	norme12(t_test *test);
+void	norme13(t_test *test);
+void	norme14(t_test *test);
+void	norme15(t_test *test);
+void	norme16(t_test *test);
 
 //MOVE
 void	move_right(t_test *test);

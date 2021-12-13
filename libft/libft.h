@@ -48,7 +48,7 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t n);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
 char	*ft_itoa(int num);
 void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
+int		ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 char	*ft_strjoin(char *s1, char *s2);
