@@ -30,6 +30,17 @@ X1000000001XXXX
 ```
 From last line, I
 
+## Functionnalities
+I implemented basic game mechanics that you can find on traditionnal games.  
+* Press key to start an event  
+* Open a dialog-box  
+* Animated sprites
+* Intro story
+
+I managed to generate differents furnitures, depending on how the walls are placed inside the map playable zone.  
+
+I also managed to display differents collectibles with pseudo-randomizer algorithm. (Because randomness does'nt really exist)  
+
 ## Story
 I added a story extension if you use a specific map size. You can discover it by copy pasting this map size sample :
 ```
@@ -42,10 +53,3 @@ I added a story extension if you use a specific map size. You can discover it by
 ```
 ![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/preview_story.png?raw=true)
 ##### (Press Space to get to the next frame)
-
-## Functionnalities
-I implemented basic game mechanics that you can find on traditionnal games.  
-* Press key to start an event  
-* Open a dialog-box  
-* Animated sprites
-* Intro story
