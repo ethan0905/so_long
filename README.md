@@ -45,5 +45,7 @@ I added a story extension if you use a specific map size. You can discover it by
 
 ## Functionnalities
 I implemented basic game mechanics that you can find on traditionnal games.  
-* Press key to take object  
-* Press key to open a dialogbox  
+* Press key to start an event  
+* Open a dialog-box  
+* Animated sprites
+* Story
