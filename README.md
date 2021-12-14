@@ -40,3 +40,5 @@ I added a story extension if you use a specific map size. You can discover it by
 1P01100000E1
 111111111111
 ```
+![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/preview_story.png?raw=true)
+
