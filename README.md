@@ -7,7 +7,7 @@ You will use 2d view (top-down or profile)
 ###### Read more [here](https://cdn.intra.42.fr/pdf/pdf/34601/en.subject.pdf)
 
 ## Examples
-![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/subject.png?raw=true)
+![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/preview_dialogbox.png?raw=true)
 
 ## Map parsing
 In order to create the isometric effect, I transformed my map:
