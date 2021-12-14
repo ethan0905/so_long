@@ -39,15 +39,14 @@ Printing images directly by using mlx_put_image_to_window() function from the mi
 support the transparency. If you are doing a 2d top-view(for example), you can counter this problem by pasting your texture on top of your floor  
 texture. But because of the perspective, I couldnt use this method, so I managed to recode a function from the minilibx, mlx_pixel_put(), to  
 make it more efficient and faster, to have a really smooth result.  
-
+```
 void	my_mlx_pixel_put(t_test *test, int x, int y, int color)
 {
 	char	*dest;
-
 	dest = test->data.addr + (y * test->data.line_length + x * (test->data.bits_per_pixel / 8));
 	*(unsigned int *)dest = color;
 }
-
+```
 ## Functionnalities
 I implemented basic game mechanics that you can find on traditionnal games.  
 * Press key to start an event  
