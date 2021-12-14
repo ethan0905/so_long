@@ -34,16 +34,27 @@ X1000000001XXXX
 ```
 * Step 3: I use this new 2d_map to print my textures in the right place.
 
-## How I print my textures ?
+## How do I print my textures ?
 Printing images directly by using mlx_put_image_to_window() function from the minilibx is from far easier, but the .xpm format does not  
 support the transparency. If you are doing a 2d top-view(for example), you can counter this problem by pasting your texture on top of your floor  
-texture.
+texture. But because of the perspective, I couldnt use this method, so I managed to recode a function from the minilibx, mlx_pixel_put(), to  
+make it more efficient and faster, to have a really smooth result.  
+
+void	my_mlx_pixel_put(t_test *test, int x, int y, int color)
+{
+	char	*dest;
+
+	dest = test->data.addr + (y * test->data.line_length + x * (test->data.bits_per_pixel / 8));
+	*(unsigned int *)dest = color;
+}
 
 ## Functionnalities
 I implemented basic game mechanics that you can find on traditionnal games.  
 * Press key to start an event  
 * Open a dialog-box  
 * Animated sprites
+* Inventory
+* Life bar
 * Intro story
 
 I managed to generate differents furnitures, depending on how the walls are placed inside the map playable zone.  
