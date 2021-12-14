@@ -10,7 +10,9 @@ You will use 2d view (top-down or profile)
 ![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/preview_dialogbox.png?raw=true)
 
 ## Map parsing
-In order to create the isometric effect, I transformed my map:
+In this project, I decided to use a 2d isometric view.  
+In order to create the isometric effect, here are the steps :
+* Step 1: I parse my map to get all my elements into a 2 dimensional array of char (char **)  
 ```
 1111111111
 1000000001
@@ -19,7 +21,9 @@ In order to create the isometric effect, I transformed my map:
 1000000001
 1111111111
 ```
-
+* Step 2: From last line, I moving up in my array, and for each line I am moving up, I am gonna add one more X at the begining of my line.  
+This has for effect to create my 45 angle view. I finish by completing each of my line with X's in order to get a squared map that will perfectly fit  
+inside my window.
 ```
 XXXXX1111111111
 XXXX1000000001X
