@@ -41,4 +41,5 @@ I added a story extension if you use a specific map size. You can discover it by
 111111111111
 ```
 ![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/preview_story.png?raw=true)
+##### (Press Space to get to the next frame)
 
