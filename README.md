@@ -31,3 +31,12 @@ X1000000001XXXX
 From last line, I
 
 ## Story
+I added a story extension if you use a specific map size. You can discover it by copy pasting this map size sample :
+```
+111111111111
+1011101C11T1
+1T00000000C1
+1000000CC001
+1P01100000E1
+111111111111
+```
