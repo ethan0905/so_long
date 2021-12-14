@@ -43,3 +43,7 @@ I added a story extension if you use a specific map size. You can discover it by
 ![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/preview_story.png?raw=true)
 ##### (Press Space to get to the next frame)
 
+## Functionnalities
+I implemented basic game mechanics that you can find on traditionnal games.
+*Press key to take object
+*Press key to open a dialogbox
