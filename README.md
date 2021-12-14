@@ -48,4 +48,4 @@ I implemented basic game mechanics that you can find on traditionnal games.
 * Press key to start an event  
 * Open a dialog-box  
 * Animated sprites
-* Story
+* Intro story
