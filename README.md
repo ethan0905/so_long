@@ -32,7 +32,12 @@ XX1000000001XXX
 X1000000001XXXX
 1111111111XXXXX
 ```
-From last line, I
+* Step 3: I use this new 2d_map to print my textures in the right place.
+
+## How I print my textures ?
+Printing images directly by using mlx_put_image_to_window() function from the minilibx is from far easier, but the .xpm format does not  
+support the transparency. If you are doing a 2d top-view(for example), you can counter this problem by pasting your texture on top of your floor  
+texture.
 
 ## Functionnalities
 I implemented basic game mechanics that you can find on traditionnal games.  
