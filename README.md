@@ -55,8 +55,9 @@ I implemented basic game mechanics that you can find on traditionnal games.
 * Intro story
 
 I managed to generate differents furnitures, depending on how the walls are placed inside the map playable zone.  
-
+[FILL THIS SPACE]
 I also managed to display differents collectibles with pseudo-randomizer algorithm. (Because randomness does'nt really exist)  
+[FILL THIS SPACE]
 
 ## Story
 I added a story extension if you use a specific map size. You can discover it by copy pasting this map size sample :
