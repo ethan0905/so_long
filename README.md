@@ -21,9 +21,7 @@ In order to create the isometric effect, here are the steps :
 1000000001
 1111111111
 ```
-* Step 2: From last line, I moving up in my array, and for each line I am moving up, I am gonna add one more X at the begining of my line.  
-This has for effect to create my 45 angle view. I finish by completing each of my line with X's in order to get a squared map that will perfectly fit  
-inside my window.
+* Step 2: From last line, I moving up in my array, and for each line I am moving up, I am gonna add one more X at the begining of my line. This has for effect to create my 45 angle view. I finish by completing each of my line with X's in order to get a squared map that will perfectly fit inside my window.
 ```
 XXXXX1111111111
 XXXX1000000001X
@@ -35,10 +33,8 @@ X1000000001XXXX
 * Step 3: I use this new 2d_map to print my textures in the right place.
 
 ## How do I print my textures ?
-Printing images directly by using mlx_put_image_to_window() function from the minilibx is from far easier, but the .xpm format does not  
-support the transparency. If you are doing a 2d top-view(for example), you can counter this problem by pasting your texture on top of your floor  
-texture. But because of the perspective, I couldnt use this method, so I managed to recode a function from the minilibx, mlx_pixel_put(), to  
-make it more efficient and faster, to have a really smooth result.  
+Printing images directly by using mlx_put_image_to_window() function from the minilibx is from far easier, but the .xpm format does not support the transparency. If you are doing a 2d top-view(for example), you can counter this problem by pasting your texture on top of your floor texture. But because of the perspective, I couldnt use this method, so I managed to recode a function from the minilibx, mlx_pixel_put(), to  
+make it more efficient and faster, to have a really smooth result.
 ```
 void	my_mlx_pixel_put(t_test *test, int x, int y, int color)
 {
