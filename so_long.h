@@ -14,7 +14,6 @@
 # define SO_LONG_H
 
 # include <unistd.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <sys/types.h>
 # include <sys/uio.h>
@@ -245,6 +244,16 @@ typedef struct s_test
 char	*get_line(char *save);
 int		get_map(t_test *test, int ac, char **av);
 
+//CHECK ERRORS
+int		check_error(t_test *test, char **av);
+void	which_error_msg_to_print(t_test *test, int event);
+int		ft_check_extension(char *map_name);
+int		check_chars(t_test *test);
+int		map_surounded_by_walls(t_test *test, char **map);
+int		min_one_collectible(t_test *test);
+int		only_one(t_test *test, char to_check);
+int		map_is_rectangular(t_test *test);
+
 //INIT
 void	initialize(t_test *test);
 void	init_stats(t_test *test);
@@ -350,6 +359,8 @@ void	make_piano_key_event(t_test *test);
 void	make_collec_key_event(t_test *test);
 void	check_which_player_side(t_test *test);
 
+void	print_map(t_test *test);
+
 //EVENT
 void	pick_up_coll(t_test *test);
 void	pick_up_coll_event(t_test *test);
@@ -372,6 +383,7 @@ void	draw_on_image_intro(t_test *test, t_data *img, int startx, int starty);
 //EXIT
 void	clean_exit(t_test *test);
 int		close_win_cross(t_test *test);
+void	free_map(t_test *test);
 void	destroy_collec_floor_wall(t_test *test);
 void	destroy_event_img(t_test *test);
 void	destroy_obj_img(t_test *test);

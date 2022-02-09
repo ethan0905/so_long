@@ -31,8 +31,20 @@ int	close_win_cross(t_test *test)
 	return (0);
 }
 
+void	free_map(t_test *test)
+{
+	test->iter.i = 0;
+	while (test->param.map[test->iter.i])
+	{
+		free(test->param.map[test->iter.i]);
+		test->iter.i++;
+	}
+	free(test->param.map);
+}
+
 void	clean_exit(t_test *test)
 {
+	mlx_destroy_image(test->mlx, test->data.img);
 	destroy_event_img(test);
 	destroy_obj_img(test);
 	destroy_fire_img(test);
@@ -43,12 +55,6 @@ void	clean_exit(t_test *test)
 	mlx_loop_end(test->mlx);
 	mlx_destroy_display(test->mlx);
 	free(test->mlx);
-	test->iter.i = 0;
-	while (test->param.map[test->iter.i])
-	{
-		free(test->param.map[test->iter.i]);
-		test->iter.i++;
-	}
-	free(test->param.map);
+	free_map(test);
 	exit(0);
 }

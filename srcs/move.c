@@ -21,7 +21,7 @@ void	move_right(t_test *test)
 		if (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C')
 		{
 			test->player.side = &test->player.rightside;
-			printf("Press E to take the item\n");
+			ft_putstr_fd("Press E to take the item\n", 1);
 		}
 		else if (test->param.map[test->player.pos_i][test->player.pos_j + 1]
 			== 'E' && test->collec.count != test->collec.amount)
@@ -49,7 +49,7 @@ void	move_left(t_test *test)
 		if (test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'C')
 		{
 			test->player.side = &test->player.leftside;
-			printf("Press E to take the item\n");
+			ft_putstr_fd("Press E to take the item\n", 1);
 		}
 		else if (test->param.map[test->player.pos_i][test->player.pos_j - 1]
 			== 'E' && test->collec.count != test->collec.amount)
@@ -77,7 +77,7 @@ void	move_down(t_test *test)
 		if (test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'C')
 		{
 			test->player.side = &test->player.frontside;
-			printf("Press E to take the item\n");
+			ft_putstr_fd("Press E to take the item\n", 1);
 		}
 		else if (test->param.map[test->player.pos_i + 1][test->player.pos_j]
 			== 'E' && test->collec.count != test->collec.amount)
@@ -105,7 +105,7 @@ void	move_up(t_test *test)
 		if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == 'C')
 		{
 			test->player.side = &test->player.backside;
-			printf("Press E to take the item\n");
+			ft_putstr_fd("Press E to take the item\n", 1);
 		}
 		else if (test->param.map[test->player.pos_i - 1][test->player.pos_j]
 			== 'E' && test->collec.count != test->collec.amount)

@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 22:58:48 by mahautlat         #+#    #+#              #
-#    Updated: 2022/02/09 13:10:09 by esafar           ###   ########.fr        #
+#    Updated: 2021/12/14 12:14:15 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ SRCS =	main.c \
 		./libft/ft_strlen.c \
 		./libft/ft_strjoin.c \
 		./libft/ft_itoa.c \
+		./srcs/check_errors.c \
+		./srcs/check_map_elem.c \
 		./srcs/exit.c \
 		./srcs/clean_images.c \
 		./srcs/ft_putpixel.c \
@@ -56,7 +58,6 @@ SRCS =	main.c \
 OBJS 		= ${SRCS:.c=.o}
 
 UNAME		:= $(shell uname)
-
 
 PATH_MLX	= mlx
 CC 			= gcc

@@ -36,7 +36,7 @@ int	count_lines(t_test *test, int fd, char *line)
 	int	count;
 
 	count = 0;
-	while (get_next_line(fd, &line) != 0)
+	while (get_next_line(fd, &line, 0) == 1)
 	{
 		count++;
 		test->param.width = ft_strlen(line);
@@ -47,26 +47,36 @@ int	count_lines(t_test *test, int fd, char *line)
 	return (count);
 }
 
+void	operation(t_test *test, int fd, char *line, int key)
+{
+	test->iter.j = 0;
+	if (key == 0)
+		get_next_line(fd, &line, 0);
+	else if (key == 1)
+		get_next_line(fd, &line, 1);
+	while (line[test->iter.j] != '\0')
+		test->iter.j++;
+	test->param.map[test->iter.i] = get_line(line);
+	test->param.map[test->iter.i][test->iter.j] = '\0';
+	if (test->iter.i == 0)
+		test->param.width_with_x = test->iter.j + test->iter.x - 1;
+	test->iter.j = 1;
+	test->iter.i++;
+	free(line);
+}
+
 void	get_line_and_param(t_test *test, char *line, int fd)
 {
 	test->param.map = (char **)malloc(sizeof(char *) * (test->iter.x + 1));
 	test->param.height = test->iter.x;
 	test->iter.i = 0;
-	while (test->iter.x > 0)
+	while (test->iter.x > 1)
 	{
-		test->iter.j = 0;
-		get_next_line(fd, &line);
-		while (line[test->iter.j] != '\0')
-			test->iter.j++;
-		test->param.map[test->iter.i] = get_line(line);
-		test->param.map[test->iter.i][test->iter.j] = '\0';
-		if (test->iter.i == 0)
-			test->param.width_with_x = test->iter.j + test->iter.x - 1;
-		test->iter.j = 1;
+		operation(test, fd, line, 0);
 		test->iter.x--;
-		test->iter.i++;
-		free(line);
 	}
+	operation(test, fd, line, 1);
+	test->iter.x--;
 }
 
 int	get_map(t_test *test, int ac, char **av)
@@ -79,17 +89,16 @@ int	get_map(t_test *test, int ac, char **av)
 		ft_putstr_fd("Error\n", 2);
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
-		return (ft_putstr_fd("Error\n", 2));
+		exit(ft_putstr_fd("Error. Map file not found.\n", 2));
 	initialize(test);
 	test->iter.x = count_lines(test, fd, line);
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
-		return (ft_putstr_fd("Error\n", 2));
+		exit(ft_putstr_fd("Error. Map file not found.\n", 2));
 	get_line_and_param(test, line, fd);
 	test->param.map[test->iter.i] = NULL;
 	close(fd);
 	test->param.height_with_wall = test->param.height + 3;
-	print_map(test);
 	return (0);
 }
 

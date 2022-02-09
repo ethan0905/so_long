@@ -27,9 +27,6 @@ void	get_pos_player(t_test *test)
 			{
 				test->player.pos_i = i;
 				test->player.pos_j = j;
-				//(j-1)*64 + 12 -> set the position according to the j value in the tab. (+12 is only for more logical player positioning)
-				//+(test.data.height - 3) * 64 -> allow you to adjust the player on the x axis depending on the height of the map (every + 1 will need to add 64px to pos_x)
-				//-(i-1)*64 -> allow you to adjust the player depending of the y value the player spawn (every +1 will need to remove 64px to print the player closer to the left border) 
 				test->player.pos_x = (j - 1) * 64 + 30 + \
 					(test->param.height - 3) * 64 - (i - 1) * 64;
 				test->player.pos_y = 3 * 64 + (i - 1) * 64 - \

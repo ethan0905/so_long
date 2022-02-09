@@ -24,10 +24,12 @@ void	exec_trap(t_test *test, int direction)
 		test->player.side = &test->player.frontside;
 	test->player.hurt = 1;
 	test->stats.lives--;
-	printf("This hurt....\nlives left : %d\n", test->stats.lives);
+	ft_putstr_fd("This hurt....\nlives left : ", 1);
+	ft_putnbr_fd(test->stats.lives, 1);
+	ft_putstr_fd("\n", 1);
 	if (test->stats.lives == 0)
 	{
-		printf("GAME OVER :(\n");
+		ft_putstr_fd("GAME OVER :(\n", 1);
 		clean_exit(test);
 	}
 }
@@ -45,7 +47,7 @@ void	exec_exit(t_test *test, int direction)
 	test->collec.exit = 1;
 	if (test->all.exit.opened == 1)
 	{
-		printf("Good job! You finished the game\n");
+		ft_putstr_fd("Good job! You finished the game\n", 1);
 		clean_exit(test);
 	}
 }
@@ -60,7 +62,7 @@ void	exec_not_all_items(t_test *test, int direction)
 		test->player.side = &test->player.backside;
 	if (direction == 4)
 		test->player.side = &test->player.frontside;
-	printf("Not enought items to go out.\n");
+	ft_putstr_fd("Not enought items to go out.\n", 1);
 	test->dialog_box.event = 3;
 	draw_dialog_box(test);
 	test->dialog_box.keep = 1;

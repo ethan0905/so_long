@@ -64,7 +64,16 @@ char	*get_line(char *save)
 	return (line);
 }
 
-int	get_next_line(int fd, char **line)
+int	end_gnl(char *save, int key, int ret)
+{
+	if (key == 1)
+		free(save);
+	if (ret == 0)
+		return (0);
+	return (1);
+}
+
+int	get_next_line(int fd, char **line, int key)
 {
 	int			ret;
 	char		*buff;
@@ -87,12 +96,8 @@ int	get_next_line(int fd, char **line)
 	free(buff);
 	*line = get_line(save);
 	save = after_newline(save);
-	if (ret == 0)
-	{
-		free(save);
-		save = NULL;
+	if (end_gnl(save, key, ret) == 0)
 		return (0);
-	}
 	return (1);
 }
 
