@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 22:58:48 by mahautlat         #+#    #+#              #
-#    Updated: 2021/12/08 17:22:13 by esafar           ###   ########.fr        #
+#    Updated: 2022/02/09 13:10:09 by esafar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRCS =	main.c \
 OBJS 		= ${SRCS:.c=.o}
 
 UNAME		:= $(shell uname)
+
 
 PATH_MLX	= mlx
 CC 			= gcc
