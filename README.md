@@ -1,4 +1,4 @@
-# so_long 🎮 [![esafar's 42 stats](https://badge42.vercel.app/api/v2/cl6l739qg00490gialxmtgsrk/stats?cursusId=21&coalitionId=45)](https://github.com/JaeSeoKim/badge42)
+# so_long 🎮 [![esafar's 42 so_long Score](https://badge42.vercel.app/api/v2/cl6l739qg00490gialxmtgsrk/project/2392663)](https://github.com/JaeSeoKim/badge42)
 ## Subject
 You must create a small 2D game where a dolphin
 escapes earth after eating some fish. Or any hero
