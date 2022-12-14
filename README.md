@@ -12,7 +12,7 @@ You will use 2d view (top-down or profile)
  - [🎮 Features](#-features)
  - [📜 Story Mode](#-story-mode)
  - [🧑‍💻 2.5D semi isometric view](#-25d-semi-isometric-view)
- - [⚙️ How to run the project ?](#-preview)
+ - [⚙️ How to run the project ?](#%EF%B8%8F-how-to-run-the-project-)
 
 ## 📺 Preview
 ![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/preview_dialogbox.png?raw=true)
@@ -26,26 +26,14 @@ I implemented basic game mechanics that you can find on traditionnal games.
 * Life bar
 * Intro story
 
-I managed to generate differents furnitures, depending on how the walls are placed inside the map playable zone.  
-[FILL THIS SPACE]  
-I also managed to display differents collectibles with pseudo-randomizer algorithm. (Because randomness does'nt really exist)  
-[FILL THIS SPACE]  
-
 ## 📜 Story Mode
-I added a story extension if you use a specific map size. You can discover it by copy pasting this map size sample :
-````shell
-111111111111
-1011101C11T1
-1T00000000C1
-1000000CC001
-1P01100000E1
-111111111111
-````
+I added a story extension if you use a specific map size. You can discover it by playing on `map/piano.ber` :
+  
 ![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/preview_story.png?raw=true)
 ##### (Press Space to get to the next frame)
-
+  
 ## 🧑‍💻 2.5D semi isometric view
-In this project, I decided to use a 2d isometric view.  
+In this project, I decided to use a 2.5d isometric view.  
 In order to create the isometric effect, here are the steps :
 * Step 1: I parse my map to get all my elements into a 2 dimensional array of char (char **)  
 ````shell
@@ -65,7 +53,7 @@ XX1000000001XXX
 X1000000001XXXX
 1111111111XXXXX
 ````
-* Step 3: I use this new 2d_map to print my textures in the right place.
+* Step 3: I use this new 2d_map to print my textures at the right place.
 
 ## How do I print my textures ?
 Printing images directly by using mlx_put_image_to_window() function from the minilibx is from far easier, but the .xpm format does not support the transparency. If you are doing a 2d top-view(for example), you can counter this problem by pasting your texture on top of your floor texture. But because of the perspective, I couldnt use this method, so I managed to recode a function from the minilibx, mlx_pixel_put(), to make it more efficient and faster, to have a really smooth result.
@@ -78,3 +66,20 @@ void	my_mlx_pixel_put(t_test *test, int x, int y, int color)
 }
 ````
 Then I simply told my algorithm that if it encounters a specific dark pixel (0xFF000000), It does not need to print it.  
+
+## Object Generation
+
+I managed to generate differents furnitures, depending on how the walls are placed inside the map playable zone.  
+[FILL THIS SPACE]  
+I also managed to display differents collectibles with pseudo-randomizer algorithm. (Because randomness does'nt really exist)  
+[FILL THIS SPACE]  
+
+## ⚙️ How to run the project ?
+
+1. Clone the repository:  
+`git clone https://github.com/ethan0905/so_long.git`  
+2. Compile the project:  
+`make -j`  
+3. Run the program:  
+`./so_long map/piano.ber`  
+4. Enjoy ;)  
