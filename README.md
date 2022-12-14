@@ -12,7 +12,7 @@ You will use 2d view (top-down or profile)
  - [🎮 Features](#-features)
  - [📜 Story Mode](#-story-mode)
  - [🧑‍💻 2.5D semi isometric view](#-25d-semi-isometric-view)
- - [⚙️ How to run the project ?](#-preview)
+ - [⚙️ How to run the project ?](#%EF%B8%8F-how-to-run-the-project-)
 
 ## 📺 Preview
 ![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/preview_dialogbox.png?raw=true)
