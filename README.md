@@ -6,10 +6,45 @@ collects any valuables before leaving the place.
 You will use 2d view (top-down or profile)
 ###### Read more [here](https://cdn.intra.42.fr/pdf/pdf/34601/en.subject.pdf)
 
-## Preview
+## 📔 Summary
+
+ - [📺 Preview](#-preview)
+ - [🎮 Features](#-preview)
+ - [📜 Story Mode](#-preview)
+ - [🧑‍💻 2.5D semi isometric view](#-preview)
+ - [⚙️ How to run the project ?](#-preview)
+
+## 📺 Preview
 ![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/preview_dialogbox.png?raw=true)
 
-## Map parsing
+## 🎮 Features
+I implemented basic game mechanics that you can find on traditionnal games.  
+* Press key to start an event  
+* Open a dialog-box  
+* Animated sprites
+* Inventory
+* Life bar
+* Intro story
+
+I managed to generate differents furnitures, depending on how the walls are placed inside the map playable zone.  
+[FILL THIS SPACE]  
+I also managed to display differents collectibles with pseudo-randomizer algorithm. (Because randomness does'nt really exist)  
+[FILL THIS SPACE]  
+
+## 📜 Story Mode
+I added a story extension if you use a specific map size. You can discover it by copy pasting this map size sample :
+````shell
+111111111111
+1011101C11T1
+1T00000000C1
+1000000CC001
+1P01100000E1
+111111111111
+````
+![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/preview_story.png?raw=true)
+##### (Press Space to get to the next frame)
+
+## 🧑‍💻 2.5D semi isometric view
 In this project, I decided to use a 2d isometric view.  
 In order to create the isometric effect, here are the steps :
 * Step 1: I parse my map to get all my elements into a 2 dimensional array of char (char **)  
@@ -43,30 +78,3 @@ void	my_mlx_pixel_put(t_test *test, int x, int y, int color)
 }
 ````
 Then I simply told my algorithm that if it encounters a specific dark pixel (0xFF000000), It does not need to print it.  
-
-## Functionnalities
-I implemented basic game mechanics that you can find on traditionnal games.  
-* Press key to start an event  
-* Open a dialog-box  
-* Animated sprites
-* Inventory
-* Life bar
-* Intro story
-
-I managed to generate differents furnitures, depending on how the walls are placed inside the map playable zone.  
-[FILL THIS SPACE]  
-I also managed to display differents collectibles with pseudo-randomizer algorithm. (Because randomness does'nt really exist)  
-[FILL THIS SPACE]  
-
-## Story
-I added a story extension if you use a specific map size. You can discover it by copy pasting this map size sample :
-````shell
-111111111111
-1011101C11T1
-1T00000000C1
-1000000CC001
-1P01100000E1
-111111111111
-````
-![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/preview_story.png?raw=true)
-##### (Press Space to get to the next frame)
