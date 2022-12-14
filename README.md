@@ -27,18 +27,11 @@ I implemented basic game mechanics that you can find on traditionnal games.
 * Intro story
 
 ## 📜 Story Mode
-I added a story extension if you use a specific map size. You can discover it by copy pasting this map size sample :
-````shell
-111111111111
-1011101C11T1
-1T00000000C1
-1000000CC001
-1P01100000E1
-111111111111
-````
+I added a story extension if you use a specific map size. You can discover it by playing on `map/piano.ber` :
+  
 ![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/preview_story.png?raw=true)
 ##### (Press Space to get to the next frame)
-
+  
 ## 🧑‍💻 2.5D semi isometric view
 In this project, I decided to use a 2d isometric view.  
 In order to create the isometric effect, here are the steps :
