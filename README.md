@@ -82,8 +82,7 @@ Then I simply told my algorithm that if it encounters a specific dark pixel (0xF
 ## ⚙️ How to run the project ?
 
 1. Clone the repository:  
-`shell
-git clone https://github.com/ethan0905/so_long.git`  
+`git clone https://github.com/ethan0905/so_long.git`  
 2. Compile the project:  
 `make -j`  
 3. Run the program:  
