@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_stats.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 11:51:57 by esafar            #+#    #+#             */
-/*   Updated: 2021/12/07 11:52:09 by esafar           ###   ########.fr       */
+/*   Updated: 2022/12/14 14:45:23 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,7 @@ void	draw_life(t_test *test)
 		}
 		while (test->stats.damages > 0)
 		{
-			draw_on_image(test, &test->stats.empty_heart, 7
-				+ ((test->stats.damages - 1) + test->stats.lives)
-				* 24, -5 + 64);
+			draw_on_image(test, &test->stats.empty_heart, 7	+ ((test->stats.damages - 1) + test->stats.lives) * 24, -5 + 64);
 			test->stats.damages--;
 		}
 		i--;

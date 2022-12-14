@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_elem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 12:12:05 by esafar            #+#    #+#             */
-/*   Updated: 2021/12/14 12:12:15 by esafar           ###   ########.fr       */
+/*   Updated: 2022/12/14 14:52:45 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ int	map_surounded_by_walls(t_test *test, char **map)
 	if (i != test->param.height)
 		return (-1);
 	i = 0;
-	while (i < test->param.height && map[i][test->param.width - 1] != \
-		'\0' && map[i][test->param.width - 1] == '1')
+	while (i < test->param.height && map[i][test->param.width - 1] != '\0' && map[i][test->param.width - 1] == '1')
 		i++;
 	if (i != test->param.height)
 		return (-1);
@@ -120,10 +119,7 @@ int	check_chars(t_test *test)
 		j = 0;
 		while (test->param.map[i][j])
 		{
-			if (test->param.map[i][j] == '1' || test->param.map[i][j] == \
-				'0' || test->param.map[i][j] == 'E' || test->param.\
-				map[i][j] == 'C' || test->param.map[i][j] == 'P' || \
-				test->param.map[i][j] == 'T')
+			if (test->param.map[i][j] == '1' || test->param.map[i][j] == '0' || test->param.map[i][j] == 'E' || test->param.map[i][j] == 'C' || test->param.map[i][j] == 'P' || test->param.map[i][j] == 'T')
 				count++;
 			j++;
 		}

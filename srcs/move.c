@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 10:32:34 by esafar            #+#    #+#             */
-/*   Updated: 2021/12/08 10:32:35 by esafar           ###   ########.fr       */
+/*   Updated: 2022/12/14 14:41:48 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	move_right(t_test *test)
 {
-	if (test->player.lock_pos == 0 && test->player.pos_j < test->param.width
-		&& test->player.pos_i < test->param.height
-		&& test->param.map[test->player.pos_i][test->player.pos_j + 1] != '1')
+	if (test->player.lock_pos == 0 && test->player.pos_j < test->param.width && test->player.pos_i < test->param.height	&& test->param.map[test->player.pos_i][test->player.pos_j + 1] != '1')
 	{
 		if (test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C')
 		{
@@ -43,8 +41,7 @@ void	move_right(t_test *test)
 
 void	move_left(t_test *test)
 {
-	if (test->player.lock_pos == 0 && test->player.pos_j != 0
-		&& test->param.map[test->player.pos_i][test->player.pos_j - 1] != '1')
+	if (test->player.lock_pos == 0 && test->player.pos_j != 0 && test->param.map[test->player.pos_i][test->player.pos_j - 1] != '1')
 	{
 		if (test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'C')
 		{
@@ -71,8 +68,7 @@ void	move_left(t_test *test)
 
 void	move_down(t_test *test)
 {
-	if (test->player.lock_pos == 0 && test->player.pos_i + 1 != 0
-		&& test->param.map[test->player.pos_i + 1][test->player.pos_j] != '1')
+	if (test->player.lock_pos == 0 && test->player.pos_i + 1 != 0 && test->param.map[test->player.pos_i + 1][test->player.pos_j] != '1')
 	{
 		if (test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'C')
 		{
@@ -99,8 +95,7 @@ void	move_down(t_test *test)
 
 void	move_up(t_test *test)
 {
-	if (test->player.lock_pos == 0
-		&& test->param.map[test->player.pos_i - 1][test->player.pos_j] != '1')
+	if (test->player.lock_pos == 0 && test->param.map[test->player.pos_i - 1][test->player.pos_j] != '1')
 	{
 		if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == 'C')
 		{

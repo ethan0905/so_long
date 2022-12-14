@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_button.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 09:49:54 by esafar            #+#    #+#             */
-/*   Updated: 2021/12/08 09:50:04 by esafar           ###   ########.fr       */
+/*   Updated: 2022/12/14 14:52:02 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ void	make_collec_key_event(t_test *test)
 {
 	if (test->button.time % 2 == 0)
 	{
-		draw_on_image(test, &test->button.e_key, test->player.pos_x
-			+ 32, test->player.pos_y - 42);
+		draw_on_image(test, &test->button.e_key, test->player.pos_x	+ 32, test->player.pos_y - 42);
 		while (test->iter.i < 45000000)
 			test->iter.i++;
 		test->button.time = 1;
@@ -55,8 +54,7 @@ void	make_piano_key_event(t_test *test)
 {
 	if (test->button.time % 2 == 0 && test->player.lock_pos == 0)
 	{
-		draw_on_image(test, &test->button.p_key, test->player.pos_x
-			+ 32, test->player.pos_y - 42);
+		draw_on_image(test, &test->button.p_key, test->player.pos_x + 32, test->player.pos_y - 42);
 		while (test->iter.i < 45000000)
 			test->iter.i++;
 		test->button.time = 1;
@@ -82,8 +80,7 @@ void	make_exit_key_event(t_test *test)
 {
 	if (test->button.time % 2 == 0)
 	{
-		draw_on_image(test, &test->button.o_key, test->player.pos_x
-			+ 32, test->player.pos_y - 42);
+		draw_on_image(test, &test->button.o_key, test->player.pos_x	+ 32, test->player.pos_y - 42);
 		while (test->iter.i < 45000000)
 			test->iter.i++;
 		test->button.time = 1;
@@ -108,20 +105,9 @@ void	make_exit_key_event(t_test *test)
 void	draw_button(t_test *test)
 {
 	test->iter.i = 0;
-	if ((test->param.map[test->player.pos_i][test->player.pos_j + 1] == \
-		'C' || test->param.map[test->player.pos_i][test->player.pos_j - 1]
-		== 'C' || test->param.map[test->player.pos_i - 1][test->player.pos_j]
-		== 'C' || test->param.map[test->player.pos_i + 1][test->player.pos_j]
-		== 'C'))
+	if ((test->param.map[test->player.pos_i][test->player.pos_j + 1] == 'C' || test->param.map[test->player.pos_i][test->player.pos_j - 1] == 'C' || test->param.map[test->player.pos_i - 1][test->player.pos_j] == 'C' || test->param.map[test->player.pos_i + 1][test->player.pos_j] == 'C'))
 		make_collec_key_event(test);
-	else if (test->param.map[test->player.pos_i - 1][test->player.pos_j] == \
-		'1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 1]
-		== '1'
-		&& test->param.map[test->player.pos_i - 1][test->player.pos_j + 2]
-		== '0' && test->player.pos_j + 1 < test->param.width - 1 && \
-		test->param.map[test->player.pos_i - 1][test->player.pos_j - 1] == '1'
-		&& test->param.map[test->player.pos_i - 1][test->player.pos_j - 2]
-		== '0')
+	else if (test->param.map[test->player.pos_i - 1][test->player.pos_j] ==	'1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 1] == '1' && test->param.map[test->player.pos_i - 1][test->player.pos_j + 2] == '0' && test->player.pos_j + 1 < test->param.width - 1 && test->param.map[test->player.pos_i - 1][test->player.pos_j - 1] == '1'	&& test->param.map[test->player.pos_i - 1][test->player.pos_j - 2] == '0')
 		make_piano_key_event(test);
 	else if (test->collec.exit == 1 && test->all.exit.opened == 0)
 		make_exit_key_event(test);

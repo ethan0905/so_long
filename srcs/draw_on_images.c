@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_on_images.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 10:59:23 by esafar            #+#    #+#             */
-/*   Updated: 2021/12/07 10:59:26 by esafar           ###   ########.fr       */
+/*   Updated: 2022/12/14 14:46:10 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ void	draw_on_image(t_test *test, t_data *img, int startx, int starty)
 		while (x < 64)
 		{
 			test->tex.tex_x = (int)((double)x * test->tex.ratio_x);
-			if (get_pixel(img, test->tex.tex_x, test->tex.tex_y)
-				!= (int)0xFF000000)
-				my_mlx_pixel_put(test, x + startx, y + starty, \
-					get_pixel(img, test->tex.tex_x, test->tex.tex_y));
+			if (get_pixel(img, test->tex.tex_x, test->tex.tex_y) != (int)0xFF000000)
+				my_mlx_pixel_put(test, x + startx, y + starty, get_pixel(img, test->tex.tex_x, test->tex.tex_y));
 			x++;
 		}
 		y++;

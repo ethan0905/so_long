@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 16:32:28 by esafar            #+#    #+#             */
-/*   Updated: 2021/11/23 16:32:30 by esafar           ###   ########.fr       */
+/*   Updated: 2022/12/14 14:39:00 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,9 @@ void	draw_all_together(t_test *test)
 
 int	render(t_test *test)
 {
-	if ((test->intro_or_not == 1 || test->intro_or_not == 2 || \
-		test->intro_or_not == 3 || test->intro_or_not == 4 || \
-		test->intro_or_not == 5) && test->param.width_with_x * \
-		64 - (2 * 64) == 960 && (test->param.height - 2) * 64 + \
-		3 * 64 == 448)
+	if ((test->intro_or_not == 1 || test->intro_or_not == 2 || test->intro_or_not == 3 || test->intro_or_not == 4 || test->intro_or_not == 5) && test->param.width_with_x * 64 - (2 * 64) == 960 && (test->param.height - 2) * 64 +	3 * 64 == 448)
 		make_intro(test);
-	else if ((test->param.rendered == 0 || test->param.rendered \
-		== 1) && test->stats.lives != 0)
+	else if ((test->param.rendered == 0 || test->param.rendered == 1) && test->stats.lives != 0)
 	{
 		draw_all_together(test);
 		test->intro_or_not = 0;
@@ -88,19 +83,17 @@ int	main(int ac, char **av)
 	get_map(&test, ac, av);
 	check_error(&test, av);
 	print_map(&test);
+	
 	test.mlx = mlx_init();
-	test.win = mlx_new_window(test.mlx, test.param.width_with_x \
-		* 64 - (2 * 64), (test.param.height - 2) * 64 + 3 * 64, \
-		"so_short on time!");
-	test.data.img = mlx_new_image(test.mlx, test.param.\
-		width_with_x * 64 - (2 * 64), (test.param.height - 2) \
-		* 64 + 3 * 64);
-	test.data.addr = mlx_get_data_addr(test.data.img, &test.data.\
-		bits_per_pixel, &test.data.line_length, &test.data.endian);
+	test.win = mlx_new_window(test.mlx, test.param.width_with_x * 64 - (2 * 64), (test.param.height - 2) * 64 + 3 * 64, "so_short on time!");
+	test.data.img = mlx_new_image(test.mlx, test.param.width_with_x * 64 - (2 * 64), (test.param.height - 2) * 64 + 3 * 64);
+	test.data.addr = mlx_get_data_addr(test.data.img, &test.data.bits_per_pixel, &test.data.line_length, &test.data.endian);
 	get_all_images_and_addresses(&test);
+	
 	mlx_hook(test.win, 2, 1L << 0, &handle_keypress, &test);
 	mlx_loop_hook(test.mlx, render, &test);
 	mlx_hook(test.win, 17, 1L << 0, &close_win_cross, &test);
 	mlx_loop(test.mlx);
+	
 	return (0);
 }

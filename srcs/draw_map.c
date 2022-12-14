@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 11:03:46 by esafar            #+#    #+#             */
-/*   Updated: 2021/12/07 11:03:58 by esafar           ###   ########.fr       */
+/*   Updated: 2022/12/14 14:45:52 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,10 @@ void	draw_floors(t_test *test)
 		x = test->param.width_with_x - test->param.width - count - 1 - 1;
 		while (x < test->param.width_with_x - 2 - count)
 		{
-			if (x == test->param.width_with_x - test->param.width
-				- count - 1 - 1)
-				draw_on_image(test, &test->all.floor_half_right, x
-					* 64, 3 * 64 + y * 64);
+			if (x == test->param.width_with_x - test->param.width - count - 1 - 1)
+				draw_on_image(test, &test->all.floor_half_right, x * 64, 3 * 64 + y * 64);
 			else if (x == test->param.width_with_x - 2 - count - 1)
-				draw_on_image(test, &test->all.floor_half_left, x
-					* 64, 3 * 64 + y * 64);
+				draw_on_image(test, &test->all.floor_half_left, x * 64, 3 * 64 + y * 64);
 			else
 				draw_on_image(test, &test->all.floor, x * 64, 3 * 64 + y * 64);
 			x++;

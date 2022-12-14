@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esafar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: esafar <esafar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 19:21:10 by esafar            #+#    #+#             */
-/*   Updated: 2021/12/07 19:21:23 by esafar           ###   ########.fr       */
+/*   Updated: 2022/12/14 14:44:51 by esafar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void	get_pos_player(t_test *test)
 			{
 				test->player.pos_i = i;
 				test->player.pos_j = j;
-				test->player.pos_x = (j - 1) * 64 + 30 + \
-					(test->param.height - 3) * 64 - (i - 1) * 64;
-				test->player.pos_y = 3 * 64 + (i - 1) * 64 - \
-					64 - 25 + 10;
+				test->player.pos_x = (j - 1) * 64 + 30 + (test->param.height - 3) * 64 - (i - 1) * 64;
+				test->player.pos_y = 3 * 64 + (i - 1) * 64 - 64 - 25 + 10;
 			}
 			else if (test->param.map[i][j] == 'C' && test->param.rendered == 0)
 				test->collec.amount++;
@@ -94,10 +92,8 @@ void	draw_player(t_test *test)
 			test->player.lock_pos = 0;
 			test->player.side = &test->player.frontside;
 		}
-		draw_on_image_bis(test, test->player.side, \
-			test->player.pos_x, test->player.pos_y);
+		draw_on_image_bis(test, test->player.side, test->player.pos_x, test->player.pos_y);
 	}
 	else if (test->player.hurt == 0)
-		draw_on_image_bis(test, test->player.side, \
-			test->player.pos_x, test->player.pos_y);
+		draw_on_image_bis(test, test->player.side, test->player.pos_x, test->player.pos_y);
 }
