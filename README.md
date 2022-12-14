@@ -12,7 +12,7 @@ You will use 2d view (top-down or profile)
  - [🎮 Features](#-features)
  - [📜 Story Mode](#-story-mode)
  - [🧑‍💻 2.5D semi isometric view](#-25d-semi-isometric-view)
- - [📦 Object Generation](#-25d-semi-isometric-view)
+ - [📦 Object Generation](#-object-generation)
  - [⚙️ How to run the project ?](#%EF%B8%8F-how-to-run-the-project-)
 
 ## 📺 Preview
