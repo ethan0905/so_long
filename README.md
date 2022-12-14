@@ -12,6 +12,8 @@ You will use 2d view (top-down or profile)
  - [🎮 Features](#-features)
  - [📜 Story Mode](#-story-mode)
  - [🧑‍💻 2.5D semi isometric view](#-25d-semi-isometric-view)
+ - [📦 Object Generation](#-object-generation)
+ - [✏️ How do I print my textures ?](#%EF%B8%8F-how-do-i-print-my-textures-)
  - [⚙️ How to run the project ?](#%EF%B8%8F-how-to-run-the-project-)
 
 ## 📺 Preview
@@ -55,8 +57,8 @@ X1000000001XXXX
 ````
 * Step 3: I use this new 2d_map to print my textures at the right place.
 
-## How do I print my textures ?
-Printing images directly by using mlx_put_image_to_window() function from the minilibx is from far easier, but the .xpm format does not support the transparency. If you are doing a 2d top-view(for example), you can counter this problem by pasting your texture on top of your floor texture. But because of the perspective, I couldnt use this method, so I managed to recode a function from the minilibx, mlx_pixel_put(), to make it more efficient and faster, to have a really smooth result.
+## ✏️ How do I print my textures ?
+.xpm format does not support transparency. If you are doing a 2d top-view(for example), you can counter this problem by pasting your texture on top of your floor texture. But because of the perspective, I couldn't use this method, so I recode the mlx_put_image_to_window from the minilibx, mlx_pixel_put(), to make it more efficient and faster, to have a really smooth result.
 ````c
 void	my_mlx_pixel_put(t_test *test, int x, int y, int color)
 {
@@ -67,7 +69,7 @@ void	my_mlx_pixel_put(t_test *test, int x, int y, int color)
 ````
 Then I simply told my algorithm that if it encounters a specific dark pixel (0xFF000000), It does not need to print it.  
 
-## Object Generation
+## 📦 Object Generation
 
 I managed to generate differents furnitures, depending on how the walls are placed inside the map playable zone.  
 [FILL THIS SPACE]  
