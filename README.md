@@ -56,7 +56,7 @@ X1000000001XXXX
 ````
 * Step 3: I use this new 2d_map to print my textures at the right place.
 
-## How do I print my textures ?
+## ✏️ How do I print my textures ?
 .xpm format does not support transparency. If you are doing a 2d top-view(for example), you can counter this problem by pasting your texture on top of your floor texture. But because of the perspective, I couldn't use this method, so I recode the mlx_put_image_to_window from the minilibx, mlx_pixel_put(), to make it more efficient and faster, to have a really smooth result.
 ````c
 void	my_mlx_pixel_put(t_test *test, int x, int y, int color)
