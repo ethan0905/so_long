@@ -1,5 +1,5 @@
 # so_long 🎮 [![esafar's 42 so_long Score](https://badge42.vercel.app/api/v2/cl6l739qg00490gialxmtgsrk/project/2392663)](https://github.com/JaeSeoKim/badge42)
-## Subject
+## 🧱 Subject
 You must create a small 2D game where a dolphin
 escapes earth after eating some fish. Or any hero
 collects any valuables before leaving the place.
@@ -9,9 +9,9 @@ You will use 2d view (top-down or profile)
 ## 📔 Summary
 
  - [📺 Preview](#-preview)
- - [🎮 Features](#-preview)
- - [📜 Story Mode](#-preview)
- - [🧑‍💻 2.5D semi isometric view](#-preview)
+ - [🎮 Features](#-features)
+ - [📜 Story Mode](#-story-mode)
+ - [🧑‍💻 2.5D semi isometric view](#-25d-semi-isometric-view)
  - [⚙️ How to run the project ?](#-preview)
 
 ## 📺 Preview
