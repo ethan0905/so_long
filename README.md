@@ -78,3 +78,13 @@ void	my_mlx_pixel_put(t_test *test, int x, int y, int color)
 }
 ````
 Then I simply told my algorithm that if it encounters a specific dark pixel (0xFF000000), It does not need to print it.  
+
+## ⚙️ How to run the project ?
+
+1. Clone the repository:  
+`shell
+git clone https://github.com/ethan0905/so_long.git`  
+2. Compile the project:  
+`make -j`  
+3. Run the program:  
+`./so_long map/piano.ber`  
