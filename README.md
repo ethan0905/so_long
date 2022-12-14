@@ -26,11 +26,6 @@ I implemented basic game mechanics that you can find on traditionnal games.
 * Life bar
 * Intro story
 
-I managed to generate differents furnitures, depending on how the walls are placed inside the map playable zone.  
-[FILL THIS SPACE]  
-I also managed to display differents collectibles with pseudo-randomizer algorithm. (Because randomness does'nt really exist)  
-[FILL THIS SPACE]  
-
 ## 📜 Story Mode
 I added a story extension if you use a specific map size. You can discover it by copy pasting this map size sample :
 ````shell
@@ -78,6 +73,13 @@ void	my_mlx_pixel_put(t_test *test, int x, int y, int color)
 }
 ````
 Then I simply told my algorithm that if it encounters a specific dark pixel (0xFF000000), It does not need to print it.  
+
+## Object Generation
+
+I managed to generate differents furnitures, depending on how the walls are placed inside the map playable zone.  
+[FILL THIS SPACE]  
+I also managed to display differents collectibles with pseudo-randomizer algorithm. (Because randomness does'nt really exist)  
+[FILL THIS SPACE]  
 
 ## ⚙️ How to run the project ?
 
