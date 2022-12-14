@@ -13,6 +13,7 @@ You will use 2d view (top-down or profile)
  - [📜 Story Mode](#-story-mode)
  - [🧑‍💻 2.5D semi isometric view](#-25d-semi-isometric-view)
  - [📦 Object Generation](#-object-generation)
+ - [✏️ How do I print my textures ?](#%EF%B8%8F-how-do-i-print-my-textures-)
  - [⚙️ How to run the project ?](#%EF%B8%8F-how-to-run-the-project-)
 
 ## 📺 Preview
