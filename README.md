@@ -87,3 +87,4 @@ Then I simply told my algorithm that if it encounters a specific dark pixel (0xF
 `make -j`  
 3. Run the program:  
 `./so_long map/piano.ber`  
+4. Enjoy ;)  
