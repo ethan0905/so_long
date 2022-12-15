@@ -15,6 +15,7 @@ You will use 2d view (top-down or profile)
  - [📦 Object Generation](#-object-generation)
  - [✏️ How do I print my textures ?](#%EF%B8%8F-how-do-i-print-my-textures-)
  - [⚙️ How to run the project ?](#%EF%B8%8F-how-to-run-the-project-)
+ - [📄 Documentation](#-documentation)
 
 ## 📺 Preview
 ![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/preview_dialogbox.png?raw=true)
@@ -85,3 +86,11 @@ I also managed to display differents collectibles with pseudo-randomizer algorit
 3. Run the program:  
 `./so_long map/piano.ber`  
 4. Enjoy ;)  
+
+## 📄 Documentation
+    
+  https://harm-smits.github.io/42docs/libs/minilibx  
+    
+  https://aurelienbrabant.fr/blog/getting-started-with-the-minilibx  
+  https://aurelienbrabant.fr/blog/managing-events-with-the-minilibx  
+  https://aurelienbrabant.fr/blog/pixel-drawing-with-the-minilibx  
