@@ -1,5 +1,11 @@
 # so_long 🎮 [![esafar's 42 so_long Score](https://badge42.vercel.app/api/v2/cl6l739qg00490gialxmtgsrk/project/2392663)](https://github.com/JaeSeoKim/badge42)
 
+<div align="center">
+
+  <img src="so_long/textures/preview_dialogbox.png" alt="logo" width="400" height="auto" />
+
+</div>
+
 > *You must create a **small 2D game** where a dolphin escapes earth after eating some fish. Or **any hero collects any valuables before leaving the place**.* 
 >
 > You will use 2d view (top-down or profile). You gonna learn how to use of minilibx (graphical library). 
@@ -16,9 +22,6 @@
  - [✏️ How do I print my textures ?](#%EF%B8%8F-how-do-i-print-my-textures-)
  - [⚙️ How to run the project ?](#%EF%B8%8F-how-to-run-the-project-)
  - [📄 Documentation](#-documentation)
-
-## 📺 Preview
-![alt text](https://github.com/ethan0905/so_long-new-version/blob/master/textures/preview_dialogbox.png?raw=true)
 
 ## 🎮 Features
 I implemented basic game mechanics that you can find on traditionnal games.  
