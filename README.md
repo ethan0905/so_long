@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  <img src="textures/preview_dialogbox.png" alt="logo" width="600" height="auto" />
+  <img src="textures/preview_dialogbox.png" alt="logo" width="800" height="auto" />
 
 </div>
 
