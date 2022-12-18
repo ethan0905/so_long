@@ -14,7 +14,6 @@
   
 ## 📔 Summary
 
- - [📺 Preview](#-preview)
  - [🎮 Features](#-features)
  - [📜 Story Mode](#-story-mode)
  - [🧑‍💻 2.5D semi isometric view](#-25d-semi-isometric-view)
