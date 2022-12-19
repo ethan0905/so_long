@@ -90,9 +90,11 @@ I also managed to display differents collectibles with pseudo-randomizer algorit
 4. Enjoy ;)  
 
 ## 📄 Documentation
-    
+#### 42 doc:
   https://harm-smits.github.io/42docs/libs/minilibx  
-    
+#### Tuto mlx:
   https://aurelienbrabant.fr/blog/getting-started-with-the-minilibx  
   https://aurelienbrabant.fr/blog/managing-events-with-the-minilibx  
   https://aurelienbrabant.fr/blog/pixel-drawing-with-the-minilibx  
+#### Github commented:
+  https://github.com/S-LucasSerrano/miniLibX_sample
