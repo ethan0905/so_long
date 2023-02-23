@@ -1,5 +1,5 @@
 # so_long 🎮 [![esafar's 42 so_long Score](https://badge42.vercel.app/api/v2/cl6l739qg00490gialxmtgsrk/project/2392663)](https://github.com/JaeSeoKim/badge42)
-<p align="center"> <img src="https://komarev.com/ghpvc/?username=ethan0905&label=Profile%20views&color=0e75b6&style=flat" alt="jcluzet" /> </p>
+<p align="center"> <img src="https://komarev.com/ghpvc/?username=ethan0905&label=so_long%20views&color=0e75b6&style=flat" alt="jcluzet" /> </p>
 
 <div align="center">
 
